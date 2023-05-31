@@ -1,0 +1,189 @@
+.xans-member-login {
+    position: relative;
+    width: 100%;
+    padding-top: 100px;
+    margin-top: -8px;
+}
+.xans-member-login .login {
+    width: 354px;
+    margin: 0px auto 140px;
+    font-size: 10px;
+    color: rgb(0, 0, 0);
+}
+.xans-member-login .login fieldset {
+    position: relative;
+}
+img,
+fieldset {
+    border: none;
+    vertical-align: top;
+}
+legend {
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 0px;
+    height: 0px;
+    line-height: 0;
+}
+.xans-member-login .login fieldset .login_form li {
+    margin-bottom: 10px;
+}
+html>body .xans-member-login .login fieldset label {
+    font-size: 11px;
+    line-height: 40px;
+    height: 40px;
+    text-indent: 8px;
+    color: rgb(0, 0, 0);
+}
+.xans-member-login .login fieldset input[type="text"],
+.xans-member-login .login fieldset input[type="password"] {
+    width: 342px;
+    line-height: 32px;
+    height: 32px;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 11px;
+    padding-left: 10px;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s ease-in-out 0s;
+}
+.xans-member-login .login .login_btn {
+    color: rgb(204, 204, 204);
+}
+.xans-member-login .login .login_btn li.left {
+    float: left;
+}
+.xans-member-login .login .login_btn li.left a {
+    padding-right: 5px;
+}
+.xans-member-login .login .login_btn a {
+    display: inline-block;
+    font-size: 10px;
+    line-height: 48px;
+    color: rgb(0, 0, 0);
+}
+.xans-member-login .login .login_btn li.right {
+    float: right;
+}
+.xans-member-login .login .login_btn li.right a {
+    font-size: 14px;
+}
+.xans-member-login .login .login_btn a {
+    display: inline-block;
+    font-size: 10px;
+    line-height: 48px;
+    color: rgb(0, 0, 0);
+}
+.xans-member-login .login .login_btn ul.sns_login {
+    clear: both;
+    text-align: right;
+}
+.displaynone {
+    display: none;
+}
+xans-member-login .login .login_btn ul.sns_login a.btn_facebook {
+    color: rgb(59, 89, 152);
+}
+.xans-member-login .login .login_btn ul.sns_login a {
+    font-size: 11px;
+    line-height: 16px;
+}
+.xans-member-login .login .login_btn a {
+    display: inline-block;
+    font-size: 10px;
+    line-height: 48px;
+    color: rgb(0, 0, 0);
+}
+.xans-member-login .login .login_btn ul.sns_login a.btn_naver {
+    color: rgb(34, 182, 0);
+}
+.xans-member-login .login .login_btn ul.sns_login a.btn_google {
+    color: rgb(234, 67, 53);
+}
+.xans-member-login .login .login_btn ul.sns_login a.btn_kakao {
+    color: rgb(226, 203, 0);
+}
+.nomember_buy {
+    margin-bottom: 140px;
+    text-align: center;
+}
+.nomember_buy li {
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.nomember_buy li,
+.nomember_buy li a {
+    display: inline-block;
+    padding: 0px 4px;
+}
+.nomember_buy li a {
+    font-size: 12px;
+    line-height: 32px;
+}
+
+/* noneMember */
+.xans-myshop-orderhistorynologin {
+    width: 354px;
+    margin: 0px auto 140px;
+}
+
+.xans-myshop-orderhistorynologin h3 {
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.xans-myshop-orderhistorynologin li {
+    width: 332px;
+    line-height: 32px;
+    height: 32px;
+    border: 1px solid rgb(0, 0, 0);
+    padding: 0px 10px;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.xans-myshop-orderhistorynologin li strong {
+    font-weight: 500;
+    float: left;
+    text-align: left;
+    font-size: 10px;
+    cursor: default;
+}
+.xans-myshop-orderhistorynologin input[type="text"] {
+    width: 265px;
+    line-height: 24px;
+    height: 24px;
+    font-size: 12px;
+    border: 0px;
+}
+input[type="text"],
+input[type="password"] {
+    height: 18px;
+    line-height: 20px;
+    padding: 2px 4px;
+    border: 1px solid rgb(213, 213, 213);
+    color: rgb(53, 53, 53);
+    font-size: 12px;
+}
+.xans-myshop-orderhistorynologin #order_id {
+    width: 230px;
+}
+.xans-myshop-orderhistorynologin input[type="password"] {
+    width: 250px;
+    line-height: 26px;
+    height: 26px;
+    font-size: 12px;
+    border: 0px;
+}
+.xans-myshop-orderhistorynologin .order_btn {
+    text-align: right;
+    font-size: 14px;
+    padding-top: 18px;
+}
+.xans-myshop-orderhistorynologin input {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}

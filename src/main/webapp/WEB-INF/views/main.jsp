@@ -38,7 +38,7 @@
                 <li><a href="/front/php/b/board_list.php?board_no=4">Review</a></li>
                 <li><a href="#dialog" name="modal">About</a></li>
             </ul><ul class="logo"><li><a href="/index.html" style="font-family: 'Oswald', sans-serif;">this is logo</a></li>
-        </ul><ul class="membership_list"><li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/login.html">Log-in</a>
+        </ul><ul class="membership_list"><li class="xans-element- xans-layout xans-layout-statelogoff "><a href='<c:url value="user/login"/>'>Log-in</a>
         </li>
             <li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/join.html">Register</a>
             </li>
