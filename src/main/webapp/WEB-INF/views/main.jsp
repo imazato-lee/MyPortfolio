@@ -13,7 +13,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
 </head>
-
+<script>
+    $(document).ready(function() {
+        var msg = "${msg}";
+        if (msg !== "" && msg !== null) {
+            if(msg === 'LOG_OK'){
+                alert("성공적으로 로그인하였습니다.")
+            }
+        }
+    });
+</script>
 <body>
 <div id="skipNavigation"><p><a href="#category">전체상품목록 바로가기</a></p><p><a href="#contents">본문 바로가기</a></p></div>
 <div id="wrap">
@@ -38,7 +47,16 @@
                 <li><a href="/front/php/b/board_list.php?board_no=4">Review</a></li>
                 <li><a href="#dialog" name="modal">About</a></li>
             </ul><ul class="logo"><li><a href="/index.html" style="font-family: 'Oswald', sans-serif;">this is logo</a></li>
-        </ul><ul class="membership_list"><li class="xans-element- xans-layout xans-layout-statelogoff "><a href='<c:url value="user/login"/>'>Log-in</a>
+        </ul><ul class="membership_list"><li class="xans-element- xans-layout xans-layout-statelogoff ">
+            <c:choose>
+                <c:when test="${not empty sessionScope.id}">
+                    <a href="<c:url value='user/logout'/>">Logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="<c:url value='user/login'/>">Log-in</a>
+                </c:otherwise>
+            </c:choose>
+<%--            <a href='<c:url value="user/login"/>'>Log-in</a>--%>
         </li>
             <li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/join.html">Register</a>
             </li>

@@ -30,8 +30,6 @@
             // 히든 필드 생성 및 값을 설정
             var id = $('input[name=id]').val();
             var pwd = $('input[name=pwd]').val();
-            console.log("id: "+id)
-            console.log("pwd:"+pwd)
             form.append($('<input>').attr({
                 type: 'hidden',
                 name: 'id',

@@ -26,6 +26,8 @@ public class UserController {
     public String login(@ModelAttribute("userDto") UserDto userDto, Model m, RedirectAttributes rttr, HttpSession session){
         try {
             UserDto existUser = userService.select(userDto.getId());
+//            System.out.println("userDto = " + userDto);
+//            System.out.println("existUser = " + existUser);
             if(!existUser.getPwd().equals(userDto.getPwd())){
                 throw new Exception("login Failed");
             }
@@ -39,21 +41,10 @@ public class UserController {
             return "redirect:/user/login";
         }
     }
-//    @PostMapping("/signup")
-//    public String signup(UserDto userDto, Model m, RedirectAttributes rttr){
-//        try {
-//            int rowCnt = userService.insert(userDto);
-//            if(rowCnt != 1){
-//                throw new Exception("insert Failed");
-//            }
-//            rttr.addFlashAttribute("msg","REG_OK");
-//            return "redirect:/";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            rttr.addFlashAttribute("msg","REG_ERR");
-//            m.addAttribute("UserDto",userDto);
-//            return "login";
-//        }
-//    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
 
 }
