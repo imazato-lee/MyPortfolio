@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +58,7 @@
             </c:choose>
 <%--            <a href='<c:url value="user/login"/>'>Log-in</a>--%>
         </li>
-            <li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/join.html">Register</a>
+            <li class="xans-element- xans-layout xans-layout-statelogoff "><a href="<c:url value='user/register'/>">Register</a>
             </li>
             <li><a href="/myshop/order/list.html">Order</a></li>
             <li><a href="/myshop/index.html">Mypage</a></li>

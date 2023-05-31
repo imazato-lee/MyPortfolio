@@ -19,4 +19,9 @@ public class UserDaoImplTest extends TestCase {
         UserDto dto = userdao.select(id);
         System.out.println("dto = " + dto);
     }
+    @Test
+    public void testInsert() throws Exception{
+        UserDto userDto = new UserDto("asdf4321","asdf4321!","lee","tpgus5417@naver.com","1993-12-21","01033334444");
+        userdao.insert(userDto);
+    }
 }

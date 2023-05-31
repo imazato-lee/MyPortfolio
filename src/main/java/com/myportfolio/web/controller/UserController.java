@@ -46,5 +46,24 @@ public class UserController {
         session.invalidate();
         return "redirect:/";
     }
-
+    @GetMapping("/register")
+    public String signup(){
+        return "register";
+    }
+    @PostMapping("/register")
+    public String signup(UserDto userDto,RedirectAttributes rttr,Model m){
+        try {
+            int RowCnt = userService.insert(userDto);
+            if(RowCnt!=1){
+                throw new Exception("register failed");
+            }
+            rttr.addFlashAttribute("msg","REG_OK");
+            return "redirect:/";
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","REG_ERR");
+            m.addAttribute("userDto",userDto);
+            return "register";
+        }
+    }
 }
