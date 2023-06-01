@@ -92,24 +92,6 @@
                                         <p class="text_guide"><span id="pwConfirmMsg"></span></p>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">NAME </th>
-                                    <td><input id="email1" name="email1" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">E-MAIL </th>
-                                    <td><input id="email1" name="email1" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">BIRTH </th>
-                                    <td>
-                                        <input id="year" name="year" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
-                                        <input id="month" name="month" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
-                                        <input id="day" name="day" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
-                                    </td>
-                                </tr>
                                 <tr class="">
                                     <th scope="row">MOBILE</th>
                                     <td><select id="mobile1" name="mobile[]" fw-filter="isNumber" fw-label="휴대전화" fw-alone="N" fw-msg="">
@@ -120,6 +102,21 @@
                                         <option value="018">018</option>
                                         <option value="019">019</option>
                                     </select>-<input id="mobile2" name="mobile[]" maxlength="4" fw-filter="isNumber" fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text">-<input id="mobile3" name="mobile[]" maxlength="4" fw-filter="isNumber" fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text"></td>
+                                </tr>
+                                <tr class="">
+                                    <th scope="row">SMS 수신여부 </th>
+                                    <td><input id="is_sms0" name="is_sms" fw-label="is_sms" fw-msg="" class="ec-base-chk" value="T" type="checkbox"><label for="is_sms0">동의함</label><p>쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">E MAIL </th>
+                                    <td><input id="email1" name="email1" fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N" fw-msg="" value="" type="text"> <span id="emailMsg"></span>
+                                    </td>
+                                </tr>
+                                <tr class="">
+                                    <th scope="row">이메일 수신여부 </th>
+                                    <td><input id="is_news_mail0" name="is_news_mail" fw-label="is_news_mail" fw-msg="" class="ec-base-chk" value="T" type="checkbox"><label for="is_news_mail0">동의함</label><p>쇼핑몰에서 제공하는 유익한 이벤트 소식을 이메일로 받으실 수 있습니다.</p>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

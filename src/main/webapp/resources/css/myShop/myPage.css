@@ -1,0 +1,111 @@
+.titleArea {
+    min-height: 30px;
+    margin: 0px 0px 80px;
+    color: rgb(153, 153, 153);
+    font-family: "Libre Baskerville", Arial, "malgun gothic", 맑은고딕, NanumGothic, dotum, 돋움, sans-serif;
+}
+.titleArea h2 {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+}
+#mypage_wrap {
+    width: 100%;
+    max-width: 800px;
+    margin: 0px auto;
+}
+.xans-myshop-orderstate {
+    padding: 50px 0px;
+    width: 100%;
+    margin: 50px auto 0px;
+    border-top: 1px solid rgb(221, 221, 221);
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.xans-myshop-orderstate ul::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-myshop-orderstate ul li {
+    float: left;
+    width: 20%;
+    text-align: center;
+    border-right: 1px solid rgb(221, 221, 221);
+    margin-left: -1px;
+}
+.xans-myshop-orderstate ul li a {
+    font-size: 12px;
+    line-height: 30px;
+}
+.xans-myshop-orderstate ul li strong {
+    font-weight: 500;
+    display: block;
+}
+.xans-myshop-orderstate ul li.cs {
+    padding-top: 5px;
+}
+.xans-myshop-orderstate ul li:last-child {
+    border: 0px;
+    margin: 0px;
+}
+.xans-myshop-orderstate ul li.cs a {
+    display: block;
+    font-size: 11px;
+    line-height: 16px;
+    color: rgb(136, 136, 136);
+}
+.xans-myshop-orderstate ul li.cs strong {
+    display: inline-block;
+    width: 80px;
+}
+.myshop_bankbook {
+    width: 900px;
+    margin: 60px auto 0px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
+}
+.myshop_bankbook ul {
+    display: inline-block;
+    width: 200px;
+}
+.myshop_bankbook ul li.mypage_ico {
+    padding-bottom: 15px;
+}
+.myshop_bankbook a {
+    display: block;
+}
+.mypage_wrap {
+    width: 100%;
+    margin: 60px auto 200px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 18px;
+    text-transform: uppercase;
+}
+.mypage_wrap ul {
+    display: block;
+    margin-right: -1px;
+}
+.mypage_wrap ul::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.mypage_wrap ul li {
+    float: left;
+    width: 16.6667%;
+    margin-left: -1px;
+    margin-top: -1px;
+}
+.mypage_wrap ul li a {
+    display: block;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 60px 0px;
+    color: rgb(85, 85, 85);
+}
+.mypage_wrap ul li a strong {
+    display: block;
+    font-weight: 500;
+    line-height: 28px;
+}

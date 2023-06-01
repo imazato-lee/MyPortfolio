@@ -46,7 +46,7 @@
                 <li><a href="/front/php/b/board_list.php?board_no=6">Q&amp;A</a></li>
                 <li><a href="/front/php/b/board_list.php?board_no=4">Review</a></li>
                 <li><a href="#dialog" name="modal">About</a></li>
-            </ul><ul class="logo"><li><a href="/index.html" style="font-family: 'Oswald', sans-serif;">this is logo</a></li>
+            </ul><ul class="logo"><li><a href="/" style="font-family: 'Oswald', sans-serif;">this is logo</a></li>
         </ul><ul class="membership_list"><li class="xans-element- xans-layout xans-layout-statelogoff ">
             <c:choose>
                 <c:when test="${not empty sessionScope.id}">
