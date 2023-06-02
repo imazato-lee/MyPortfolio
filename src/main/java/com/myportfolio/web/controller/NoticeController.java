@@ -23,9 +23,9 @@ public class NoticeController {
 
     @GetMapping("/list")
     public String list(SearchCondition sc, Model m,HttpSession session){
-        if(!loginCheck(session)){
-            return "redirect:/user/login";
-        }
+//        if(!loginCheck(session)){
+//            return "redirect:/user/login";
+//        }
         try {
             int totalCnt = noticeService.getSearchResultCnt(sc);
             m.addAttribute("totalCnt",totalCnt);

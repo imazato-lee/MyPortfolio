@@ -132,3 +132,6 @@ select {
     height: 24px;
     border: 1px solid #d5d5d5;
 }
+.ec-base-table.gBorder td {
+    border-left: 1px solid #dfdfdf;
+}

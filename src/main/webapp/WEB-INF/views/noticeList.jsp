@@ -18,8 +18,27 @@
     <link rel="stylesheet" href="<c:url value='/css/myShop/main.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/myShop/noticeList.css'/>">
     <title>Document</title>
-</head>
+    <script>
+        let addZero = function(value=1){
+            return value > 9 ? value : "0"+value;
+        }
 
+        let dateToString = function(ms) {
+            let date = new Date(ms);
+
+            let yyyy = date.getFullYear();
+            let mm = addZero(date.getMonth() + 1);
+            let dd = addZero(date.getDate());
+
+            // let HH = addZero(date.getHours());
+            // let MM = addZero(date.getMinutes());
+            // let ss = addZero(date.getSeconds());
+
+            // return yyyy+"."+mm+"."+dd+ " " + HH + ":" + MM + ":" + ss;
+            return yyyy+"-"+mm+"-"+dd
+        }
+    </script>
+</head>
 <body>
 <div id="skipNavigation"><p><a href="#category">전체상품목록 바로가기</a></p><p><a href="#contents">본문 바로가기</a></p></div>
 <div id="wrap">
@@ -67,6 +86,7 @@
 
                                 <col style="width:auto;">
                                 <col style="width:100px;">
+                                <col style="width:100px;">
                                 <col style="width:100px;" class="">
 
 
@@ -74,63 +94,27 @@
                             </colgroup>
                             <thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 "><tr>
                                 <th scope="col"> NO.</th>
-
                                 <th scope="col">TITLE</th>
                                 <th scope="col">POSTED BY</th>
+                                <th scope="col" >VIEW</th>
                                 <th scope="col" class="">DATE</th>
 
 
 
                             </tr></thead>
-                            <tbody class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center"><!--
-$product_name_cut = 30
-$login_page_url = /member/login.html
-$deny_access_url = /index.html
---><tr class="xans-record-">
-                                <td> 3</td>
+                            <tbody class="xans-element- xans-board xans-board-list-1002 xans-board-list xans-board-1002 center">
+                            <c:forEach items="${list}" var="noticeDto">
+                                <tr class="xans-record-">
+                                    <td>${noticeDto.nno}</td>
+                                    <td class="subject left txtBreak">
+                                        <a href="/notice/read?nno=${noticeDto.nno}">${noticeDto.title}</a>
+                                    </td>
+                                    <td>${noticeDto.writer}</td>
+                                    <td>${noticeDto.view_cnt}</td>
+                                    <td class=""><span class="txtNum"><script>document.write(dateToString(${noticeDto.reg_date.time}))</script></span></td>
+                                </tr>
+                            </c:forEach>
 
-                                <td class="subject left txtBreak">
-<span class="displaynone">
-<a href="#none" onclick="BOARD.viewTarget('14','1',this);"><img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기"></a>
-</span>
-                                    <a href="/article/notice/1/14/">카카오톡 상담 서비스 오픈</a> <span class="txtEm"></span>
-                                </td>
-                                <td>ID5AGIT</td>
-                                <td class=""><span class="txtNum">2018-06-24</span></td>
-
-
-
-                            </tr>
-                            <tr class="xans-record-">
-                                <td> 2</td>
-
-                                <td class="subject left txtBreak">
-<span class="displaynone">
-<a href="#none" onclick="BOARD.viewTarget('13','1',this);"><img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기"></a>
-</span>
-                                    <a href="/article/notice/1/13/">교환 및 반품 안내</a> <span class="txtEm"></span>
-                                </td>
-                                <td>ID5AGIT</td>
-                                <td class=""><span class="txtNum">2018-06-24</span></td>
-
-
-
-                            </tr>
-                            <tr class="xans-record-">
-                                <td> 1</td>
-
-                                <td class="subject left txtBreak">
-<span class="displaynone">
-<a href="#none" onclick="BOARD.viewTarget('12','1',this);"><img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기"></a>
-</span>
-                                    <a href="/article/notice/1/12/">크리에이티브 아이디오아지트</a> <span class="txtEm"></span>
-                                </td>
-                                <td>ID5AGIT</td>
-                                <td class=""><span class="txtNum">2018-06-24</span></td>
-
-
-
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -163,13 +147,21 @@ $deny_access_url = /index.html
                     <!--// board_footer -->
                 </div>
 
-                <div class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate-text"><a href="?board_no=1&amp;page=1">PREV</a>
-                    <ol>
-                        <li class="xans-record-"><a href="?board_no=1&amp;page=1" class="this">1</a></li>
-                    </ol>
-                    <a href="?board_no=1&amp;page=1">NEXT</a>
+                <div class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate-text">
+                    <c:if test="${totalCnt!=null && totalCnt!=0}">
+                        <c:if test="${ph.showPrev}">
+                            <a href="<c:url value="/notice/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">PREV</a>
+                        </c:if>
+                        <ol>
+                            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                                <li class="xans-record-"><a href="<c:url value="/notice/list${ph.sc.getQueryString(i)}"/>" class="this">${i}</a></li>
+                            </c:forEach>
+                        </ol>
+                        <c:if test="${ph.showNext}">
+                            <a href="<c:url value="/notice/list${ph.sc.getQueryString(ph.endPage+1)}"/>">NEXT</a>
+                        </c:if>
+                    </c:if>
                 </div>
-
 
 
                 <!-- 관리자 전용 메뉴 -->
