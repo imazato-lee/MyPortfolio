@@ -42,7 +42,7 @@
     </div>
     <div id="header">
         <div class="header">
-            <ul class="board_list"><li><a href="/front/php/b/board_list.php?board_no=1">Notice</a></li>
+            <ul class="board_list"><li><a href="<c:url value='notice/list'/>">Notice</a></li>
                 <li><a href="/front/php/b/board_list.php?board_no=6">Q&amp;A</a></li>
                 <li><a href="/front/php/b/board_list.php?board_no=4">Review</a></li>
                 <li><a href="#dialog" name="modal">About</a></li>

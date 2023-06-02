@@ -65,7 +65,7 @@ public class NoticeDaoImpl implements NoticeDao {
     }
     @Override
     public void increaseViewCnt(int nno) throws Exception  {
-        session.update(NAMESPACE + ".increaseViewCnt", nno);
+        session.update(NAMESPACE + "increaseViewCnt", nno);
     }
     @Override
     public int searchResultCnt(SearchCondition sc) throws Exception {

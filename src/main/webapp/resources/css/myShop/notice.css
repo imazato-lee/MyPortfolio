@@ -1,0 +1,190 @@
+input,
+select,
+textarea,
+pre {
+    font-family: Arial, "malgun gothic", 맑은고딕, NanumGothic, dotum, 돋움, sans-serif;
+    font-size: 11px;
+    color: rgb(0, 0, 0);
+    vertical-align: middle;
+}
+.xans-board-read {
+    position: relative;
+    border: 1px solid rgb(221, 221, 221);
+    margin-bottom: 30px;
+}
+.xans-board-read::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-board-read .board_wrap {
+    position: relative;
+    width: 92%;
+    margin: 40px auto;
+}
+.xans-board-read .board_wrap .board_top {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    vertical-align: bottom;
+    padding-bottom: 40px;
+}
+.xans-board-read .board_wrap .board_top::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-board-read .board_wrap .board_top ul.left {
+    float: left;
+    width: 50%;
+}
+.xans-board-read .board_wrap .board_top ul.left .subject {
+    font-size: 14px;
+    padding-bottom: 30px;
+}
+.displaynone {
+    display: none !important;
+}
+.xans-board-read .board_wrap .board_top ul.left .etc p {
+    display: inline-block;
+    padding-right: 20px;
+}
+img,
+fieldset {
+    border: none;
+    vertical-align: top;
+}
+.xans-board-read .board_wrap .detail {
+    padding: 80px 0px;
+    font-size: 12px;
+    line-height: 180%;
+}
+.fr-view {
+    word-wrap: break-word;
+}
+.fr-view:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.fr-view blockquote:not([class]),
+.fr-view h4:not([class]),
+.fr-view ol:not([class]),
+.fr-view p:not([class]),
+.fr-view ul:not([class]) {
+    margin: 0;
+    line-height: 1.5;
+}
+.fr-view blockquote:not([class]),
+.fr-view div:not([class]),
+.fr-view h1:not([class]),
+.fr-view h2:not([class]),
+.fr-view h3:not([class]),
+.fr-view h4:not([class]),
+.fr-view h5:not([class]),
+.fr-view h6:not([class]),
+.fr-view hr:not([class]),
+.fr-view ol:not([class]),
+.fr-view p:not([class]),
+.fr-view pre:not([class]),
+.fr-view ul:not([class]) {
+    display: block;
+}
+.xans-board-read .board_wrap .board_footer {
+    padding-top: 40px;
+}
+.xans-board-read .board_wrap .board_footer ul.left {
+    float: left;
+    text-align: right;
+}
+.xans-board-read .board_wrap .board_footer ul.left li {
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.xans-board-read .board_wrap .board_footer ul.left li strong {
+    font-weight: 500;
+    color: rgb(153, 153, 153);
+}
+.xans-board-read .board_wrap .board_footer ul.left li input {
+    border: 0px;
+}
+.xans-board-read .board_wrap .board_footer ul.right {
+    float: right;
+}
+.xans-board-read .board_wrap .board_footer ul.right a {
+    margin-bottom: 5px;
+}
+.btn_000 {
+    display: inline-block;
+    width: 80px;
+    line-height: 24px;
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+.xans-board-commentform {
+    margin: 10px 20px;
+    padding: 5px 20px 20px;
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(53, 53, 53);
+}
+.xans-board-commentform legend {
+    visibility: hidden;
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+    font-size: 0px;
+    line-height: 0;
+}
+.xans-board-commentform p {
+    margin: 10px 0px 0px;
+}
+.xans-board-commentform input[type="text"],
+.xans-board-commentform input[type="password"] {
+    width: 135px;
+    margin: 0px 10px 0px 9px;
+}
+input[type="text"],
+input[type="password"] {
+    height: 18px;
+    line-height: 20px;
+    padding: 2px 4px;
+    border: 1px solid rgb(213, 213, 213);
+    color: rgb(53, 53, 53);
+    font-size: 12px;
+}
+.xans-board-commentform .secret {
+    margin: 0px 20px 0px 10px;
+}
+label {
+    cursor: default;
+}
+.xans-board-commentform .view {
+    position: relative;
+    margin: 10px 0px 0px;
+    padding: 0px 180px 0px 0px;
+}
+.xans-board-commentform textarea {
+    width: 100%;
+    height: 44px;
+    padding: 2px 2px 2px 4px;
+}
+.xans-board-commentform .submit {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.btn_ccc_box {
+    display: inline-block;
+    width: 78px;
+    line-height: 48px;
+    border: 1px solid rgb(204, 204, 204);
+    color: rgb(153, 153, 153);
+    text-align: center;
+}
+.xans-board-commentformsecret {
+    margin: 10px 25px 0px 0px;
+    padding: 20px 15px;
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(53, 53, 53);
+}
+.ec-base-table.gBorder td {
+    border-left: 1px solid #dfdfdf;
+}

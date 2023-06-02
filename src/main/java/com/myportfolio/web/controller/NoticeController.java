@@ -43,5 +43,18 @@ public class NoticeController {
     private boolean loginCheck(HttpSession session) {
         return session.getAttribute("id")!=null;
     }
+    @GetMapping("/read")
+    public String read(Integer nno, Integer page, Integer pageSize, Model m){
+        try {
+            NoticeDto noticeDto = noticeService.read(nno);
+            m.addAttribute(noticeDto);
+            m.addAttribute("page",page);
+            m.addAttribute("pageSize",pageSize);
+            m.addAttribute("nno",nno);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "notice";
+    }
 }
 

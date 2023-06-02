@@ -1,5 +1,8 @@
 package com.myportfolio.web.domain;
 
+import lombok.Data;
+
+@Data
 public class PageHandler {
     //    private int page; //현재 페이지
     //    private int pageSize; //한 페이지의 크기
@@ -33,20 +36,6 @@ public class PageHandler {
         showNext = endPage != totalPage;
     }
 
-    @Override
-    public String toString() {
-        return "PageHandler{" +
-                "sc=" + sc +
-                ", totalCnt=" + totalCnt +
-                ", naviSize=" + naviSize +
-                ", totalPage=" + totalPage +
-                ", beginPage=" + beginPage +
-                ", endPage=" + endPage +
-                ", showPrev=" + showPrev +
-                ", showNext=" + showNext +
-                '}';
-    }
-
     void print(){
         System.out.println("page = " + sc.getPage());
         System.out.print(showPrev ? "[PREV] " : "");
@@ -56,68 +45,4 @@ public class PageHandler {
         System.out.println(showNext ? " [NEXT]" : "");
     }
 
-
-    public int getTotalCnt() {
-        return totalCnt;
-    }
-
-    public void setTotalCnt(int totalCnt) {
-        this.totalCnt = totalCnt;
-    }
-
-    public int getNaviSize() {
-        return naviSize;
-    }
-
-    public void setNaviSize(int naviSize) {
-        this.naviSize = naviSize;
-    }
-
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public int getBeginPage() {
-        return beginPage;
-    }
-
-    public void setBeginPage(int beginPage) {
-        this.beginPage = beginPage;
-    }
-
-    public int getEndPage() {
-        return endPage;
-    }
-
-    public void setEndPage(int endPage) {
-        this.endPage = endPage;
-    }
-
-    public boolean isShowPrev() {
-        return showPrev;
-    }
-
-    public void setShowPrev(boolean showPrev) {
-        this.showPrev = showPrev;
-    }
-
-    public boolean isShowNext() {
-        return showNext;
-    }
-
-    public void setShowNext(boolean showNext) {
-        this.showNext = showNext;
-    }
-
-    public SearchCondition getSc() {
-        return sc;
-    }
-
-    public void setSc(SearchCondition sc) {
-        this.sc = sc;
-    }
 }
