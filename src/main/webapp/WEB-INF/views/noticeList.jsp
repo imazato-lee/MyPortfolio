@@ -141,7 +141,7 @@
                         </fieldset>
                         </div>
                         </form>
-                        <div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002  " style="float: right;padding-right: 20px;"><a href="/board/free/write.html?board_no=1">WRITE</a>
+                        <div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002  " style="float: right;padding-right: 20px;"><a href="<c:url value='/notice/write?page=${ph.sc.page}&pageSize=${ph.sc.pageSize}'/>">WRITE</a>
                         </div>
                     </div>
                     <!--// board_footer -->

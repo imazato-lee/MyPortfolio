@@ -17,7 +17,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/css/myShop/main.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/myShop/noticeWrite&Modify.css'/>">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
+    <script>
+        function formsubmit() {
+            var content = $('#content').val();
+
+            // 값을 hidden input에 설정하여 폼 전송
+            $('#noticeWriteForm').append('<input type="hidden" name="content" value="' + content + '">');
+            $('#noticeWriteForm').submit();
+        }
+    </script>
 </head>
 
 <body>
@@ -59,8 +69,9 @@
                 <div class="xans-element- xans-board xans-board-writepackage-4 xans-board-writepackage xans-board-4 "><div class="xans-element- xans-board xans-board-title-4 xans-board-title xans-board-4 "><p class="title_text"><font color="#555555">NOTICE</font></p>
 
                 </div>
-                    <form id="boardWriteForm" name="" action="/exec/front/Board/write/4" method="post" target="_self" enctype="multipart/form-data">
-                        <input id="board_no" name="board_no" value="4" type="hidden">
+                    <form id="noticeWriteForm" name="" action="<c:url value='/notice/write'/>" method="post">
+                        <input id="nno" name="nno" value="" type="hidden">
+                        <input id="writer" name="writer" value="" type="hidden">
                         <div class="xans-element- xans-board xans-board-write-4 xans-board-write xans-board-4">
                             <div class="ec-base-table typeWrite ">
                                 <table border="1" summary="">
@@ -72,11 +83,11 @@
                                     <tbody>
                                     <tr>
                                         <th scope="row">제목</th>
-                                        <td> <input id="subject" name="subject" fw-filter="isFill" fw-label="제목" fw-msg="" class="inputTypeText" placeholder="" maxlength="125" value="" type="text">  </td>
+                                        <td> <input id="subject" name="title" class="inputTypeText" placeholder="" maxlength="125" value="" type="text">  </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">작성자</th>
-                                        <td> </td>
+                                        <td> 세션에서 id 가져올 것</td>
                                     </tr>
                                     <tr style="
     border-bottom: 1px solid #dfdfdf;
@@ -94,7 +105,7 @@
 
                                             <!-- HTML -->
                                             <textarea style="width: 96%; border: none;" name="content" id="content" class="ec-fr-never-be-duplicated"></textarea>
-                                            <input type="hidden" id="content_hidden" fw-filter="isSimplexEditorFill" fw-label="내용" value="EC_FROALA_INSTANCE">
+
 
                                             <!-- JavaScript -->
                                             <script type="text/javascript" src="//img.echosting.cafe24.com/editors/froala/js/polyfill.min.js?vs=2306011209"></script>
@@ -113,10 +124,10 @@
                             <div class="ec-base-button">
             <span class="gLeft">
 
-                <a href="/board/review/4/" class="btn_ccc">목록</a>
+                <a href="<c:url value='/notice/list?page=${page}&pageSize=${pageSize}'/>" class="btn_ccc">목록</a>
             </span>
                                 <span class="gRight">
-                <a href="#none" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="btn_000">등록</a>
+                <a href="#" onclick="formsubmit()" class="btn_000">등록</a>
             </span>
                             </div>
                         </div>
