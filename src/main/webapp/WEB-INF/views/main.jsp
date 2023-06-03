@@ -66,7 +66,7 @@
     <a href="/order/basket.html" module="Layout_orderBasketcount">Cart <span class="count {$basket_count_display_class}"><span class="{$basket_count_class}">{$basket_count}</span></span></a>
     </ul>--></div>
     </div>
-    <div id="contents_wrap">
+    <body id="contents_wrap">
         <div id="container">
             <div id="contents">
 
@@ -240,4 +240,5 @@
         </script>
         <div id="modalBackpanel"></div>
         <div id="modalContainer"></div>
+
 </html>
