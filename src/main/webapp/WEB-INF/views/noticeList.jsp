@@ -107,7 +107,7 @@
                                 <tr class="xans-record-">
                                     <td>${noticeDto.nno}</td>
                                     <td class="subject left txtBreak">
-                                        <a href="/notice/read?nno=${noticeDto.nno}">${noticeDto.title}</a>
+                                        <a href="/notice/read?nno=${noticeDto.nno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}">${noticeDto.title}</a>
                                     </td>
                                     <td>${noticeDto.writer}</td>
                                     <td>${noticeDto.view_cnt}</td>

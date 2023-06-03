@@ -114,7 +114,7 @@ $deny_access_url = /board/free/list.html
 
               </ul>
               <ul class="right">
-                <a href="/board/notice/1/" class="btn_000">LIST</a>
+                <a href="<c:url value='/notice/list?page=${page}&pageSize=${pageSize}'/>" class="btn_000">LIST</a>
                 <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','1');" class="btn_000">DELETE</a>
                 <a href="/board/free/modify.html?board_act=edit&amp;no=14&amp;board_no=1" class="btn_000">MODIFY</a>
                 <a href="/board/free/reply.html" class="btn_000">REPLY</a>
@@ -255,4 +255,5 @@ $deny_access_url = /board/free/list.html
   </script>
   <div id="modalBackpanel"></div>
   <div id="modalContainer"></div>
+
 </html>

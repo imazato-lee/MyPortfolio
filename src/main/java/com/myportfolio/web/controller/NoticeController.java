@@ -36,7 +36,7 @@ public class NoticeController {
             m.addAttribute("list",list);
             m.addAttribute("ph",ph);
         } catch (Exception e) {
-            return "redirect:/";
+//            return "redirect:/";
         }
         return "noticeList";
     }
