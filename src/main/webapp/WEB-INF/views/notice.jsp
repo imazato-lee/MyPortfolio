@@ -17,8 +17,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<c:url value='/css/myShop/main.css'/>">
   <link rel="stylesheet" href="<c:url value='/css/myShop/notice.css'/>">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>Document</title>
   <script>
+    let page = ${page};
+    let pageSize = ${pageSize};
+
     let addZero = function(value=1){
       return value > 9 ? value : "0"+value;
     }
@@ -36,6 +40,14 @@
 
       // return yyyy+"."+mm+"."+dd+ " " + HH + ":" + MM + ":" + ss;
       return yyyy+"-"+mm+"-"+dd
+    }
+    function deleteNotice(){
+      if(!confirm("정말로 삭제하시겠습니까?")) return;
+      let form = $("#BoardDelForm");
+      let actionUrl = '/notice/remove?page=' + page + '&pageSize=' + pageSize;
+      form.attr("action", actionUrl)
+      form.attr("method", "post")
+      form.submit();
     }
   </script>
 </head>
@@ -82,18 +94,9 @@
 
 
 
-        <form id="BoardDelForm" name="" action="/exec/front/Board/del/1" method="post" target="_self" enctype="multipart/form-data">
-          <input id="no" name="no" value="14" type="hidden">
-          <input id="bulletin_no" name="bulletin_no" value="15" type="hidden">
-          <input id="board_no" name="board_no" value="1" type="hidden">
-          <input id="member_id" name="member_id" value="ecudemo97964" type="hidden">
-          <input id="list_url" name="list_url" value="/board/free/list.html?board_no=1" type="hidden">
-          <input id="bdf_modify_url" name="bdf_modify_url" value="/board/free/modify.html?board_act=edit&amp;no=14&amp;board_no=1" type="hidden">
-          <input id="bdf_del_url" name="bdf_del_url" value="/exec/front/Board/del/1" type="hidden">
-          <input id="bdf_action_type" name="bdf_action_type" value="" type="hidden"><div class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002"><!--
-$login_page_url = /member/login.html
-$deny_access_url = /board/free/list.html
--->
+        <form id="BoardDelForm">
+          <input id="nno" name="nno" value="${nno}" type="hidden">
+       <div class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
           <div class="board_wrap">
             <div class="board_top ">
               <ul class="left">
@@ -111,7 +114,7 @@ $deny_access_url = /board/free/list.html
               </ul>
               <ul class="right">
                 <a href="<c:url value='/notice/list?page=${page}&pageSize=${pageSize}'/>" class="btn_000">LIST</a>
-                <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','1');" class="btn_000">DELETE</a>
+                <a href="#" onclick="deleteNotice();" class="btn_000">DELETE</a>
                 <a href="<c:url value='/notice/modify?nno=${nno}&page=${page}&pageSize=${pageSize}'/>" class="btn_000">MODIFY</a>
                 <a href="/board/free/reply.html" class="btn_000">REPLY</a>
 

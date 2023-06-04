@@ -24,106 +24,134 @@ public class NoticeController {
     NoticeService noticeService;
 
     @RequestMapping("/list")
-    public String list(SearchCondition sc, Model m,HttpSession session){
+    public String list(SearchCondition sc, Model m, HttpSession session) {
 //        if(!loginCheck(session)){
 //            return "redirect:/user/login";
 //        }
         try {
             int totalCnt = noticeService.getSearchResultCnt(sc);
-            m.addAttribute("totalCnt",totalCnt);
+            m.addAttribute("totalCnt", totalCnt);
 
-            PageHandler ph = new PageHandler(totalCnt,sc);
+            PageHandler ph = new PageHandler(totalCnt, sc);
 
             List<NoticeDto> list = noticeService.getSearchResultPage(sc);
-            m.addAttribute("list",list);
-            m.addAttribute("ph",ph);
+            m.addAttribute("list", list);
+            m.addAttribute("ph", ph);
         } catch (Exception e) {
 //            return "redirect:/";
         }
         return "noticeList";
     }
+
     private boolean loginCheck(HttpSession session) {
-        return session.getAttribute("id")!=null;
+        return session.getAttribute("id") != null;
     }
+
     @GetMapping("/read")
-    public String read(Integer nno, Integer page, Integer pageSize, Model m){
+    public String read(Integer nno, Integer page, Integer pageSize, Model m) {
         try {
             NoticeDto noticeDto = noticeService.read(nno);
             m.addAttribute(noticeDto);
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
-            m.addAttribute("nno",nno);
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("nno", nno);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "notice";
     }
+
     @GetMapping("/write")
-    public String write(Integer page, Integer pageSize,Model m){
-        m.addAttribute("page",page);
-        m.addAttribute("pageSize",pageSize);
+    public String write(Integer page, Integer pageSize, Model m) {
+        m.addAttribute("page", page);
+        m.addAttribute("pageSize", pageSize);
         return "noticeWrite&Modify";
     }
+
     @PostMapping("/write")
-    public String write(NoticeDto noticeDto,Model m,HttpSession session, RedirectAttributes rttr){
+    public String write(NoticeDto noticeDto, Model m, HttpSession session, RedirectAttributes rttr) {
 //        String writer = (String) session.getAttribute("id");
 //        noticeDto.setWriter(writer);
         noticeDto.setWriter("test");
         try {
             int rowCnt = noticeService.write(noticeDto);
-            if(rowCnt != 1)
+            if (rowCnt != 1)
                 throw new Exception("write failed");
-            rttr.addFlashAttribute("msg","WRT_OK");
+            rttr.addFlashAttribute("msg", "WRT_OK");
             return "redirect:/notice/list";
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(noticeDto);
-            rttr.addFlashAttribute("msg","WRT_ERR");
+            rttr.addFlashAttribute("msg", "WRT_ERR");
             return "noticeWrite&Modify";
         }
     }
+
     @GetMapping("/modify")
-    public String modify(Integer nno,Integer page,Integer pageSize,Model m,RedirectAttributes rttr){
+    public String modify(Integer nno, Integer page, Integer pageSize, Model m, RedirectAttributes rttr) {
         try {
             NoticeDto noticeDto = noticeService.read(nno);
             m.addAttribute(noticeDto);
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
-            m.addAttribute("mode","modify");
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("mode", "modify");
             return "noticeWrite&Modify";
         } catch (Exception e) {
             e.printStackTrace();
-            rttr.addFlashAttribute("msg","GET_MOD_ERR");
-            rttr.addAttribute("nno",nno);
-            rttr.addAttribute("page",page);
-            rttr.addFlashAttribute("pageSize",pageSize);
+            rttr.addFlashAttribute("msg", "GET_MOD_ERR");
+            rttr.addAttribute("nno", nno);
+            rttr.addAttribute("page", page);
+            rttr.addFlashAttribute("pageSize", pageSize);
             return "redirect:/notice/read";
         }
     }
+
     @PostMapping("/modify")
-    public String modify(Integer page,Integer pageSize, NoticeDto noticeDto,RedirectAttributes rttr,Model m){
+    public String modify(Integer page, Integer pageSize, NoticeDto noticeDto, RedirectAttributes rttr, Model m) {
         ///notice/modify?page=page&pageSize=pageSize
         System.out.println("noticeDto = " + noticeDto);
         try {
             int rowCnt = noticeService.modify(noticeDto);
 
-            if(rowCnt != 1)
+            if (rowCnt != 1)
                 throw new Exception("Modify failed");
 
-            rttr.addFlashAttribute("msg","MOD_OK");
-            return "redirect:/notice/list?page="+page+"&pageSize="+pageSize;
+            rttr.addFlashAttribute("msg", "MOD_OK");
+            return "redirect:/notice/list?page=" + page + "&pageSize=" + pageSize;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("noticeDto = " + noticeDto);
             m.addAttribute(noticeDto);
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
-            m.addAttribute("mode","modify");
-            rttr.addFlashAttribute("msg","MOD_ERR");
-//            return "noticeWrite&Modify";
-
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("mode", "modify");
+            rttr.addFlashAttribute("msg", "MOD_ERR");
+            return "noticeWrite&Modify";
         }
-        return "notice/list?page="+page+"&pageSize="+pageSize;
     }
-}
 
+    @PostMapping("/remove")
+    public String remove(Integer nno, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rttr) {
+//        String writer = (String) session.getAttribute("id");
+        String writer = "test";
+
+
+        try {
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+
+            int rowCnt = noticeService.remove(nno, writer);
+
+            if (rowCnt != 1)
+                throw new Exception("notice remove error");
+
+            rttr.addFlashAttribute("msg", "DEL_OK");
+            return "redirect:/notice/list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg", "DEL_ERR");
+        }
+        return "redirect:/notice/list";
+    }
+
+}
