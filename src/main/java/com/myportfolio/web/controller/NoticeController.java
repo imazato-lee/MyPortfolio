@@ -133,12 +133,10 @@ public class NoticeController {
     @PostMapping("/remove")
     public String remove(Integer nno, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rttr) {
 //        String writer = (String) session.getAttribute("id");
-        String writer = "test";
+        String writer = "admin";
 
 
         try {
-            m.addAttribute("page", page);
-            m.addAttribute("pageSize", pageSize);
 
             int rowCnt = noticeService.remove(nno, writer);
 
@@ -146,7 +144,7 @@ public class NoticeController {
                 throw new Exception("notice remove error");
 
             rttr.addFlashAttribute("msg", "DEL_OK");
-            return "redirect:/notice/list";
+            return "redirect:/notice/list?page=" + page + "&pageSize=" + pageSize;
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("msg", "DEL_ERR");

@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/css/myShop/main.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/myShop/noticeList.css'/>">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
     <script>
         let addZero = function(value=1){
@@ -36,6 +37,10 @@
 
             // return yyyy+"."+mm+"."+dd+ " " + HH + ":" + MM + ":" + ss;
             return yyyy+"-"+mm+"-"+dd
+        }
+        function searchFormSubmit() {
+            let form = $('#search-form');
+            form.submit();
         }
     </script>
 </head>
@@ -122,22 +127,17 @@
                     <div class="board_footer" style="
     padding-top: 30px;
 ">
-                        <form id="boardSearchForm" name="" action="/front/php/b/board_list.php" method="get" target="_top" enctype="multipart/form-data" style="
-    width: 90%;
-    float: left;
-">
-                            <input id="board_no" name="board_no" value="1" type="hidden">
-                            <input id="page" name="page" value="1" type="hidden">
-                            <input id="board_sort" name="board_sort" value="" type="hidden"><div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
+                        <form id="search-form" action="<c:url value='/notice/list'/>" method="get" style="width: 90%;  float: left;">
+                            <fieldset class="boardSearch">
                             <legend>게시물 검색</legend>
 
-                            <p><select id="search_key" name="search_key" fw-filter="" fw-label="" fw-msg="">
-                                <option value="subject">제목</option>
-                                <option value="content">내용</option>
-                                <option value="writer_name">글쓴이</option>
-                                <option value="member_id">아이디</option>
-                                <option value="nick_name">별명</option>
-                            </select> <input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text"> <a href="#none" onclick="BOARD.form_submit('boardSearchForm');">SEARCH</a></p>
+                            <p>   <select class="search-option" name="option">
+                                <option value="A" ${ph.sc.option=='A' || ph.sc.option=='' ? "selected" : ""}>제목+내용</option>
+                                <option value="T" ${ph.sc.option=='T' ? "selected" : ""}>제목만</option>
+                                <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option>
+                            </select>
+                                <input type="text" name="keyword" class="search-input" type="text" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요">
+                                <a href="#" onclick="searchFormSubmit();">SEARCH</a></p>
                         </fieldset>
                         </div>
                         </form>
