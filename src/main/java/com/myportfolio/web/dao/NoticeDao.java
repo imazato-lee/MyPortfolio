@@ -30,4 +30,5 @@ public interface NoticeDao {
     int searchResultCnt(SearchCondition sc) throws Exception;
 
     List<NoticeDto> searchSelectPage(SearchCondition sc) throws Exception;
+    int updateCommentCnt(Integer nno, int cnt);
 }

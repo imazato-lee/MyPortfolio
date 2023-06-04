@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myportfolio.web.dao.CommentMapper">
+    <delete id="deleteAll" parameterType="int">
+        DELETE FROM comment_tbl
+        WHERE  nno = #{nno}
+    </delete>
+
+    <select id="count" parameterType="int" resultType="int">
+        SELECT count(*) FROM comment_tbl
+        WHERE  nno = #{nno}
+    </select>
+
+    <delete id="delete" parameterType="map">
+        DELETE FROM comment_tbl WHERE cno = #{cno}
+    </delete>
+    <insert id="insert" parameterType="CommentDto">
+        INSERT INTO comment_tbl
+            (nno,  comment, commenter, reg_date, up_date)
+        VALUES
+            (#{nno}, #{comment}, #{commenter}, now(), now())
+    </insert>
+
+    <select id="selectAll" parameterType="int" resultType="CommentDto">
+        SELECT cno, nno, comment, commenter, reg_date, up_date
+        FROM comment_tbl
+        WHERE nno = #{nno}
+        ORDER BY cno asc;
+    </select>
+
+    <select id="select" parameterType="int" resultType="CommentDto">
+        SELECT cno, nno, comment, commenter, reg_date, up_date
+        FROM comment_tbl
+        WHERE cno = #{cno}
+    </select>
+
+    <update id="update" parameterType="CommentDto">
+        UPDATE comment_tbl
+        SET comment = #{comment}
+          , up_date = now()
+        WHERE cno = #{cno} and commenter = #{commenter}
+    </update>
+
+    <select id="selectPage" parameterType="map" resultType="CommentDto">
+        SELECT cno, nno, comment, commenter, reg_date, up_date
+        FROM comment_tbl where nno = #{nno}
+        ORDER BY nno asc
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+</mapper>

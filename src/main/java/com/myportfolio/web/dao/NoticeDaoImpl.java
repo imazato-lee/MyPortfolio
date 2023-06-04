@@ -78,4 +78,11 @@ public class NoticeDaoImpl implements NoticeDao {
     public List<NoticeDto> searchSelectPage(SearchCondition sc) throws Exception {
         return session.selectList(NAMESPACE+"searchSelectPage", sc);
     }
+    @Override
+    public int updateCommentCnt(Integer nno, int cnt){
+        Map map = new HashMap();
+        map.put("cnt",cnt);
+        map.put("bno",nno);
+        return session.update(NAMESPACE+"updateCommentCnt",map);
+    }
 }
