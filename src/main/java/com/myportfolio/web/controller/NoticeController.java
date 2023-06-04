@@ -48,12 +48,11 @@ public class NoticeController {
     }
 
     @GetMapping("/read")
-    public String read(Integer nno, Integer page, Integer pageSize, Model m) {
+    public String read(Integer nno, SearchCondition sc, Model m) {
         try {
             NoticeDto noticeDto = noticeService.read(nno);
             m.addAttribute(noticeDto);
-            m.addAttribute("page", page);
-            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("sc", sc);
             m.addAttribute("nno", nno);
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,9 +61,8 @@ public class NoticeController {
     }
 
     @GetMapping("/write")
-    public String write(Integer page, Integer pageSize, Model m) {
-        m.addAttribute("page", page);
-        m.addAttribute("pageSize", pageSize);
+    public String write(SearchCondition sc, Model m) {
+        m.addAttribute("sc", sc);
         return "noticeWrite&Modify";
     }
 
@@ -88,26 +86,23 @@ public class NoticeController {
     }
 
     @GetMapping("/modify")
-    public String modify(Integer nno, Integer page, Integer pageSize, Model m, RedirectAttributes rttr) {
+    public String modify(Integer nno, SearchCondition sc, Model m, RedirectAttributes rttr) {
         try {
             NoticeDto noticeDto = noticeService.read(nno);
             m.addAttribute(noticeDto);
-            m.addAttribute("page", page);
-            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("sc",sc);
             m.addAttribute("mode", "modify");
             return "noticeWrite&Modify";
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("msg", "GET_MOD_ERR");
             rttr.addAttribute("nno", nno);
-            rttr.addAttribute("page", page);
-            rttr.addFlashAttribute("pageSize", pageSize);
-            return "redirect:/notice/read";
+            return "redirect:/notice/read"+sc.getQueryString();
         }
     }
 
     @PostMapping("/modify")
-    public String modify(Integer page, Integer pageSize, NoticeDto noticeDto, RedirectAttributes rttr, Model m) {
+    public String modify(SearchCondition sc, NoticeDto noticeDto, RedirectAttributes rttr, Model m) {
         ///notice/modify?page=page&pageSize=pageSize
         System.out.println("noticeDto = " + noticeDto);
         try {
@@ -117,13 +112,12 @@ public class NoticeController {
                 throw new Exception("Modify failed");
 
             rttr.addFlashAttribute("msg", "MOD_OK");
-            return "redirect:/notice/list?page=" + page + "&pageSize=" + pageSize;
+            return "redirect:/notice/list"+sc.getQueryString();
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("noticeDto = " + noticeDto);
             m.addAttribute(noticeDto);
-            m.addAttribute("page", page);
-            m.addAttribute("pageSize", pageSize);
+            m.addAttribute("sc",sc);
             m.addAttribute("mode", "modify");
             rttr.addFlashAttribute("msg", "MOD_ERR");
             return "noticeWrite&Modify";
@@ -131,7 +125,7 @@ public class NoticeController {
     }
 
     @PostMapping("/remove")
-    public String remove(Integer nno, Integer page, Integer pageSize, HttpSession session, Model m, RedirectAttributes rttr) {
+    public String remove(Integer nno, SearchCondition sc, HttpSession session, Model m, RedirectAttributes rttr) {
 //        String writer = (String) session.getAttribute("id");
         String writer = "admin";
 
@@ -144,7 +138,7 @@ public class NoticeController {
                 throw new Exception("notice remove error");
 
             rttr.addFlashAttribute("msg", "DEL_OK");
-            return "redirect:/notice/list?page=" + page + "&pageSize=" + pageSize;
+            return "redirect:/notice/list"+sc.getQueryString();
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("msg", "DEL_ERR");

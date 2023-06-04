@@ -20,8 +20,10 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>Document</title>
   <script>
-    let page = ${page};
-    let pageSize = ${pageSize};
+    let page = ${sc.page};
+    let pageSize = ${sc.pageSize};
+    let option = "${sc.option}";
+    let keyword = "${sc.keyword}";
 
     let addZero = function(value=1){
       return value > 9 ? value : "0"+value;
@@ -44,7 +46,7 @@
     function deleteNotice(){
       if(!confirm("정말로 삭제하시겠습니까?")) return;
       let form = $("#BoardDelForm");
-      let actionUrl = '/notice/remove?page=' + page + '&pageSize=' + pageSize;
+      let actionUrl = '/notice/remove?page=' + page + '&pageSize=' + pageSize + '&option=' + option + '&keyword=' + keyword;
       form.attr("action", actionUrl)
       form.attr("method", "post")
       form.submit();
@@ -113,9 +115,9 @@
               <ul class="left">
               </ul>
               <ul class="right">
-                <a href="<c:url value='/notice/list?page=${page}&pageSize=${pageSize}'/>" class="btn_000">LIST</a>
+                <a href="<c:url value='/notice/list${sc.getQueryString()}'/>" class="btn_000">LIST</a>
                 <a href="#" onclick="deleteNotice();" class="btn_000">DELETE</a>
-                <a href="<c:url value='/notice/modify?nno=${nno}&page=${page}&pageSize=${pageSize}'/>" class="btn_000">MODIFY</a>
+                <a href="<c:url value='/notice/modify${sc.getQueryString()}&nno=${nno}'/>" class="btn_000">MODIFY</a>
                 <a href="/board/free/reply.html" class="btn_000">REPLY</a>
 
               </ul>

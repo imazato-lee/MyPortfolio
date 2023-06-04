@@ -20,15 +20,17 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
     <script>
-        let page = ${page};
-        let pageSize = ${pageSize};
-        let content = null;
+        let page = ${sc.page};
+        let pageSize = ${sc.pageSize};
+        let option = "${sc.option}";
+        let keyword = "${sc.keyword}";
+
         function formsubmit() {
             var form = $('#noticeWriteForm');
 
             var actionUrl = '/notice/write';
             if (${mode eq "modify"}) {
-                actionUrl = '/notice/modify?page=' + page + '&pageSize=' + pageSize;
+                actionUrl = '/notice/modify?page=' + page + '&pageSize=' + pageSize + '&option=' + option + '&keyword=' + keyword;
             }
             form.attr('action', actionUrl);
 
@@ -132,7 +134,7 @@
                             <div class="ec-base-button">
             <span class="gLeft">
 
-                <a href="<c:url value='/notice/list?page=${page}&pageSize=${pageSize}'/>" class="btn_ccc">목록</a>
+                <a href="<c:url value='/notice/list${sc.getQueryString()}'/>" class="btn_ccc">목록</a>
             </span>
                                 <span class="gRight">
                 <a href="#" onclick="formsubmit()" class="btn_000">${mode eq 'modify' ? '수정' : '등록'}</a>

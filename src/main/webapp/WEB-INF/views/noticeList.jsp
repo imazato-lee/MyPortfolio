@@ -112,7 +112,7 @@
                                 <tr class="xans-record-">
                                     <td>${noticeDto.nno}</td>
                                     <td class="subject left txtBreak">
-                                        <a href="/notice/read?nno=${noticeDto.nno}&page=${ph.sc.page}&pageSize=${ph.sc.pageSize}">${noticeDto.title}</a>
+                                        <a href="/notice/read${ph.sc.getQueryString()}&nno=${noticeDto.nno}">${noticeDto.title}</a>
                                     </td>
                                     <td>${noticeDto.writer}</td>
                                     <td>${noticeDto.view_cnt}</td>
@@ -141,7 +141,7 @@
                         </fieldset>
                         </div>
                         </form>
-                        <div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002  " style="float: right;padding-right: 20px;"><a href="<c:url value='/notice/write?page=${ph.sc.page}&pageSize=${ph.sc.pageSize}'/>">WRITE</a>
+                        <div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002  " style="float: right;padding-right: 20px;"><a href="<c:url value='/notice/write${ph.sc.getQueryString()}'/>">WRITE</a>
                         </div>
                     </div>
                     <!--// board_footer -->
