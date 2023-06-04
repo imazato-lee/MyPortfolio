@@ -101,22 +101,18 @@ $deny_access_url = /board/free/list.html
                 <li class="writer">POSTED BY :  ${noticeDto.writer}  </li>
                 <li class="etc">
                   <p class=""><script>document.write(dateToString(${noticeDto.reg_date.time}))</script></p>
-
-
                 </li>
-              </ul></div>
-
+              </ul>
+            </div>
             <div class="detail">
               <div class="fr-view fr-view-article"><p style="font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif;">${noticeDto.content}</p></div></div>
-
             <div class="board_footer ">
               <ul class="left">
-
               </ul>
               <ul class="right">
                 <a href="<c:url value='/notice/list?page=${page}&pageSize=${pageSize}'/>" class="btn_000">LIST</a>
                 <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','1');" class="btn_000">DELETE</a>
-                <a href="/board/free/modify.html?board_act=edit&amp;no=14&amp;board_no=1" class="btn_000">MODIFY</a>
+                <a href="<c:url value='/notice/modify?nno=${nno}&page=${page}&pageSize=${pageSize}'/>" class="btn_000">MODIFY</a>
                 <a href="/board/free/reply.html" class="btn_000">REPLY</a>
 
               </ul>

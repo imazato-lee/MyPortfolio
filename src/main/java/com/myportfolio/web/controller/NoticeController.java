@@ -23,7 +23,7 @@ public class NoticeController {
     @Autowired
     NoticeService noticeService;
 
-    @GetMapping("/list")
+    @RequestMapping("/list")
     public String list(SearchCondition sc, Model m,HttpSession session){
 //        if(!loginCheck(session)){
 //            return "redirect:/user/login";
@@ -82,6 +82,48 @@ public class NoticeController {
             return "noticeWrite&Modify";
         }
     }
+    @GetMapping("/modify")
+    public String modify(Integer nno,Integer page,Integer pageSize,Model m,RedirectAttributes rttr){
+        try {
+            NoticeDto noticeDto = noticeService.read(nno);
+            m.addAttribute(noticeDto);
+            m.addAttribute("page",page);
+            m.addAttribute("pageSize",pageSize);
+            m.addAttribute("mode","modify");
+            return "noticeWrite&Modify";
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","GET_MOD_ERR");
+            rttr.addAttribute("nno",nno);
+            rttr.addAttribute("page",page);
+            rttr.addFlashAttribute("pageSize",pageSize);
+            return "redirect:/notice/read";
+        }
+    }
+    @PostMapping("/modify")
+    public String modify(Integer page,Integer pageSize, NoticeDto noticeDto,RedirectAttributes rttr,Model m){
+        ///notice/modify?page=page&pageSize=pageSize
+        System.out.println("noticeDto = " + noticeDto);
+        try {
+            int rowCnt = noticeService.modify(noticeDto);
 
+            if(rowCnt != 1)
+                throw new Exception("Modify failed");
+
+            rttr.addFlashAttribute("msg","MOD_OK");
+            return "redirect:/notice/list?page="+page+"&pageSize="+pageSize;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("noticeDto = " + noticeDto);
+            m.addAttribute(noticeDto);
+            m.addAttribute("page",page);
+            m.addAttribute("pageSize",pageSize);
+            m.addAttribute("mode","modify");
+            rttr.addFlashAttribute("msg","MOD_ERR");
+//            return "noticeWrite&Modify";
+
+        }
+        return "notice/list?page="+page+"&pageSize="+pageSize;
+    }
 }
 
