@@ -2,6 +2,7 @@ package com.myportfolio.web.controller;
 
 import com.myportfolio.web.domain.UserDto;
 import com.myportfolio.web.service.UserService;
+import com.mysql.cj.Session;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,7 +64,7 @@ public class UserController {
             e.printStackTrace();
             rttr.addFlashAttribute("msg","REG_ERR");
             m.addAttribute("userDto",userDto);
-            return "register";
+            return "register&modify";
         }
     }
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -78,6 +79,18 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>("duplicate",HttpStatus.OK);
+        }
+    }
+    @GetMapping("/modify")
+    public String modify(Model m,HttpSession session){
+        String id = (String)session.getAttribute("id");
+        try {
+            UserDto userDto = userService.select(id);
+            m.addAttribute("mode","modify");
+            m.addAttribute("userDto",userDto);
+            return "register&modify";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -238,7 +238,13 @@ $(document).ready(function() {
     })
     /* SECTION - SUBMIT */
     $('#submit').on("click",function(){
-
+        var mode = '${mode}'
+        console.log("mode:" + mode);
+        if(mode === 'modify'){
+            isIdValid = true;
+            duplicationChecked = true;
+            isNameValid = true;
+        }
         if(!isIdValid){
             alert("아이디를 확인하세요.")
             return
