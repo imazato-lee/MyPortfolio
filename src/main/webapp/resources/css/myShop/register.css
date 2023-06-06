@@ -113,20 +113,20 @@ tbody {
     color: rgb(153, 153, 153);
     line-height: 30px;
 }.xans-member-join .ec-base-table table th,
-.xans-member-join .ec-base-table table td {
-    padding-left: 0px;
-    border-width: 0px 0px 1px;
-    border-top-style: initial;
-    border-right-style: initial;
-    border-left-style: initial;
-    border-top-color: initial;
-    border-right-color: initial;
-    border-left-color: initial;
-    border-image: initial;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(221, 221, 221);
-    transition: all 0.3s ease-in-out 0s;
-}
+ .xans-member-join .ec-base-table table td {
+     padding-left: 0px;
+     border-width: 0px 0px 1px;
+     border-top-style: initial;
+     border-right-style: initial;
+     border-left-style: initial;
+     border-top-color: initial;
+     border-right-color: initial;
+     border-left-color: initial;
+     border-image: initial;
+     border-bottom-style: solid;
+     border-bottom-color: rgb(221, 221, 221);
+     transition: all 0.3s ease-in-out 0s;
+ }
 .ec-base-table img {
     vertical-align: middle;
 }
@@ -135,12 +135,13 @@ tbody {
 }
 .xans-member-join p.text_guide {
     display: block;
-    margin-top: 2px;
+    margin-top: 7px;
+    margin-bottom: 0px;
     color: rgb(153, 153, 153);
 }
 .xans-member-join p.text_guide span {
     display: block;
-    color: rgb(28, 74, 224);
+    color: red;
 }
 option {
     font-weight: normal;
@@ -201,9 +202,27 @@ input[type="radio"]+label,
 input[type="checkbox"]+label {
     margin: 0px 4px 0px 2px;
 }
-.xans-member-join #email1 {
-    width: 100px;
+.xans-member-join #email-txt {
+    width: 160px;
     margin-right: 4px;
+}
+.xans-member-join #domain-txt {
+    width: 160px;
+    margin-right: 4px;
+}
+.xans-member-join #domain-list {
+    width: 162px;
+}
+.xans-member-join #year {
+    width: 80px;
+    margin-right: 4px;
+}
+.xans-member-join #month {
+    width: 80px;
+    margin-right: 4px;
+}
+.xans-member-join #day {
+    width: 80px;
 }
 .xans-member-join h3 {
     padding: 50px 0px 10px;
@@ -364,6 +383,7 @@ member-join .agreeArea .agree p {
 .xans-member-join .ec-base-table select,
 .xans-member-join .ec-base-table input {
     box-sizing: border-box;
+    padding-left: 10px;
     border: 1px solid rgb(221, 221, 221);
     color: rgb(136, 136, 136);
     width: 100%;
@@ -410,4 +430,36 @@ p {
     content: "";
     display: block;
     clear: both;
+}
+.xans-member-join .ec-base-table table th,
+.xans-member-join .ec-base-table table td {
+    padding-left: 0px;
+    padding-top: 15px;
+    box-sizing: border-box;
+    border-width: 0px 0px 1px;
+    border-top-style: initial;
+    border-right-style: initial;
+    border-left-style: initial;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-left-color: initial;
+    border-image: initial;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(221, 221, 221);
+    transition: all 0.3s ease-in-out 0s;
+}
+#id-check {
+    position: absolute;
+    width: 80px;
+    height: 29px;
+    top: 126.5px;
+    right: 110px;
+    z-index: 1;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    line-height: 28px;
+    text-indent: 5px;
+    color: rgb(136, 136, 136);
 }

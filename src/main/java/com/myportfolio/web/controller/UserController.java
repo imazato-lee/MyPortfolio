@@ -4,12 +4,12 @@ import com.myportfolio.web.domain.UserDto;
 import com.myportfolio.web.service.UserService;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +23,7 @@ public class UserController {
     @GetMapping("/login")
     public String login(){ return "login";};
     @PostMapping("/login")
-    public String login(@ModelAttribute("userDto") UserDto userDto, Model m, RedirectAttributes rttr, HttpSession session){
+    public String login(UserDto userDto, Model m, RedirectAttributes rttr, HttpSession session){
         try {
             UserDto existUser = userService.select(userDto.getId());
 //            System.out.println("userDto = " + userDto);
@@ -66,4 +66,19 @@ public class UserController {
             return "register";
         }
     }
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public ResponseEntity<String> idCheck(@PathVariable String id){
+        try {
+            UserDto userDto = userService.select(id);
+            if(userDto == null || !userDto.getId().equals(id)){
+                return new ResponseEntity<>("success",HttpStatus.OK);
+            }
+            throw new Exception("this id is duplicated");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("duplicate",HttpStatus.OK);
+        }
+    }
+
 }
