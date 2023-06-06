@@ -12,7 +12,7 @@
 		values (#{id}, #{pwd}, #{name}, #{email}, #{birth}, #{mobile})
 	</insert>
 	<update id = "update" parameterType = "UserDto">
-		update user set pwd = #{pwd}, name = #{name}, email = #{email}, birth = #{birth}, mobile = #{mobile} where id = #{id}
+		update user set pwd = #{pwd}, email = #{email}, birth = #{birth}, mobile = #{mobile} where id = #{id}
 	</update>
 	<delete id = "delete" parameterType = "String">
 		delete from user where id = #{id}

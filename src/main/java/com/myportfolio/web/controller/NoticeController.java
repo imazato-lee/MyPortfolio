@@ -128,8 +128,6 @@ public class NoticeController {
     public String remove(Integer nno, SearchCondition sc, HttpSession session, Model m, RedirectAttributes rttr) {
 //        String writer = (String) session.getAttribute("id");
         String writer = "admin";
-
-
         try {
 
             int rowCnt = noticeService.remove(nno, writer);

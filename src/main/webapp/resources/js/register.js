@@ -238,7 +238,7 @@ $(document).ready(function() {
     })
     /* SECTION - SUBMIT */
     $('#submit').on("click",function(){
-        var mode = '${mode}'
+
         console.log("mode:" + mode);
         if(mode === 'modify'){
             isIdValid = true;

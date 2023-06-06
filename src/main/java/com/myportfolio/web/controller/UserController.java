@@ -38,7 +38,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("msg","LOG_ERR");
-            m.addAttribute("userDto",userDto);
+            m.addAttribute(userDto);
             return "redirect:/user/login";
         }
     }
@@ -54,8 +54,8 @@ public class UserController {
     @PostMapping("/register")
     public String signup(UserDto userDto,RedirectAttributes rttr,Model m){
         try {
-            int RowCnt = userService.insert(userDto);
-            if(RowCnt!=1){
+            int rowCnt = userService.insert(userDto);
+            if(rowCnt!=1){
                 throw new Exception("register failed");
             }
             rttr.addFlashAttribute("msg","REG_OK");
@@ -63,7 +63,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("msg","REG_ERR");
-            m.addAttribute("userDto",userDto);
+            m.addAttribute(userDto);
             return "register&modify";
         }
     }
@@ -87,10 +87,27 @@ public class UserController {
         try {
             UserDto userDto = userService.select(id);
             m.addAttribute("mode","modify");
-            m.addAttribute("userDto",userDto);
+            m.addAttribute(userDto);
             return "register&modify";
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+    @PostMapping("/modify")
+    public String modify(UserDto userDto,Model m,RedirectAttributes rttr){
+        System.out.println("userDto = " + userDto);
+        try {
+            int rowCnt = userService.update(userDto);
+            if(rowCnt!=1){
+                throw new Exception("user modify failed");
+            }
+            rttr.addFlashAttribute("msg","USER_MOD_OK");
+            return "redirect:/";
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","USER_MOD_ERR");
+            m.addAttribute(userDto);
+            return "register&modify";
         }
     }
 

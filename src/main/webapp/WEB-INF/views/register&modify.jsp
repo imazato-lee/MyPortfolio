@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="<c:url value='/css/myShop/main.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/myShop/register.css'/>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let mode = "${mode}";
+    </script>
     <script src="<c:url value='/js/register.js'/>"></script>
     <title>Document</title>
 </head>
@@ -85,6 +88,9 @@
                                         ${mode eq 'modify' ? '' : '<img src="<c:url value=\'/images/ico_required.gif\'/>"'}
                                     </th>
                                     <td><input id="idInput" name="id" placeholder="아이디를 입력하세요(6~20자)" value="${userDto.id}" type="text" ${mode eq 'modify'? 'disabled' : ''}>
+                                        <c:if test="${mode eq 'modify'}">
+                                            <input type="hidden" name="id" value="${userDto.id}">
+                                        </c:if>
                                         <p class="text_guide"><span id="idMsg"></span></p>
 
                                     </td>
@@ -108,6 +114,9 @@
                                         ${mode eq 'modify' ? '' : '<img src="<c:url value=\'/images/ico_required.gif\'/>"'}
                                     </th>
                                     <td><input id="nameInput" name="name" placeholder="이름을 입력해주세요" value="${userDto.name}" type="text"  ${mode eq 'modify'? 'disabled' : ''}>
+                                        <c:if test="${mode eq 'modify'}">
+                                            <input type="hidden" name="name" value="${userDto.name}">
+                                        </c:if>
                                         <p class="text_guide"><span id="namelMsg"></span></p>
                                     </td>
                                 </tr>
