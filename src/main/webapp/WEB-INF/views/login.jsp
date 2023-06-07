@@ -66,7 +66,7 @@
                         </div>
                         <div class="nomember_buy displaynone">
                             <ul>
-                                <li><a href="" onclick="">비회원 구매하기</a></li>
+<%--                                <li><a href="" onclick="">비회원 구매하기</a></li>--%>
                             </ul>
                         </div>
                     </div>

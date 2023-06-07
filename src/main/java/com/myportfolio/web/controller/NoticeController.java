@@ -61,7 +61,9 @@ public class NoticeController {
     }
 
     @GetMapping("/write")
-    public String write(SearchCondition sc, Model m) {
+    public String write(SearchCondition sc, Model m,HttpSession session) {
+        String id =(String)session.getAttribute("id");
+        m.addAttribute("id",id);
         m.addAttribute("sc", sc);
         return "noticeWrite&Modify";
     }

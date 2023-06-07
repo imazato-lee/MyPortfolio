@@ -16,7 +16,6 @@ $(document).ready(function() {
             $("#idMsg").text("6~20자의 영문 소문자와 숫자만 사용 가능합니다.");
             $("#idMsg").css("color", "red");
             isIdValid = false;
-            return;
         }
     });
 

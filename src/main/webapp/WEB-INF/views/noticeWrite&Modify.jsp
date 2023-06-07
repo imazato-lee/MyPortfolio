@@ -52,7 +52,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">작성자</th>
-                                        <td>세션에서 id 가져올 것</td>
+                                        <td>${id}</td>
                                     </tr>
                                     <tr style="
     border-bottom: 1px solid #dfdfdf;

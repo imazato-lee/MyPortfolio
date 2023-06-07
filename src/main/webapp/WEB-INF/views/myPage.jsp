@@ -27,7 +27,8 @@
 <div id="wrap">
   <div id="LeftMenu">
     <div class="LeftMenu">
-      <ul class="xans-element- xans-layout xans-layout-category"><li class="xans-record-"><a href="/product/list.html?cate_no=24">NEW ARRIVALS</a></li>
+      <ul class="xans-element- xans-layout xans-layout-category">
+        <li class="xans-record-"><a href="/product/list.html?cate_no=24">NEW ARRIVALS</a></li>
         <li class="xans-record-"><a href="/product/list.html?cate_no=25">BEST ITEM</a></li>
         <li>　</li>
         <li class="xans-record-"><a href="/product/list.html?cate_no=26">OUTWEARS</a></li>

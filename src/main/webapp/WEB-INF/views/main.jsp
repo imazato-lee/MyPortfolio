@@ -80,7 +80,7 @@
                             goToSection(index);
                         });
 
-// 스크롤 이벤트에 따른 메뉴 스타일 변경
+                        // 스크롤 이벤트에 따른 메뉴 스타일 변경
                         $(window).on('scroll', { passive: false }, function(e) {
                             e.preventDefault(); // preventDefault를 추가하여 스크롤 이벤트의 기본 동작을 막음
 
@@ -107,6 +107,6 @@
                 </script>
             </div>
         </div>
-
-<div id="footer_title">Simple and Basic Market</div>
-
+        <div id="footer_title">아직이름을 못정했어요</div>
+</body>
+</html>
