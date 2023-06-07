@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("user/*")
+@RequestMapping("/user/*")
 public class UserController {
     @Autowired
     UserService userService;
@@ -49,7 +49,7 @@ public class UserController {
     }
     @GetMapping("/register")
     public String signup(){
-        return "register";
+        return "register&modify";
     }
     @PostMapping("/register")
     public String signup(UserDto userDto,RedirectAttributes rttr,Model m){
