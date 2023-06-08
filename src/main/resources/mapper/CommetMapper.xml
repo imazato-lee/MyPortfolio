@@ -14,7 +14,7 @@
     </select>
 
     <delete id="delete" parameterType="map">
-        DELETE FROM comment_tbl WHERE cno = #{cno}
+        DELETE FROM comment_tbl WHERE cno = #{cno} and commenter = #{commenter}
     </delete>
     <insert id="insert" parameterType="CommentDto">
         INSERT INTO comment_tbl
