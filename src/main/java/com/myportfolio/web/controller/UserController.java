@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user/*")
 public class UserController {
     @Autowired
-    UserService userService;
+    private UserService userService;
+//    @Autowired
+//    private BCryptPasswordEncoder pwEncoder;
 
     @GetMapping("/login")
     public String login(){ return "login";};
@@ -53,6 +56,13 @@ public class UserController {
     }
     @PostMapping("/register")
     public String signup(UserDto userDto,RedirectAttributes rttr,Model m){
+//        String rawPw = "";      //인코딩 전 비밀번호
+//        String encodePw = "";   //인코딩 후 비밀번호
+//
+//        rawPw = userDto.getPwd();
+//        encodePw = pwEncoder.encode(rawPw);
+//        userDto.setPwd(encodePw);
+
         try {
             int rowCnt = userService.insert(userDto);
             if(rowCnt!=1){
