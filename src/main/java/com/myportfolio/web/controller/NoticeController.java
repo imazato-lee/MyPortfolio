@@ -53,7 +53,6 @@ public class NoticeController {
             NoticeDto noticeDto = noticeService.read(nno);
             m.addAttribute(noticeDto);
             m.addAttribute("sc", sc);
-            m.addAttribute("nno", nno);
         } catch (Exception e) {
             e.printStackTrace();
         }

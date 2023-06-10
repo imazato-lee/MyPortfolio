@@ -8,11 +8,11 @@
 <%@ include file="includes/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <link rel="stylesheet" href="<c:url value='/css/myShop/notice.css'/>">
-  <script>function showComment() {
-
-  }
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<c:url value="/js/CommentService.js" />"></script>
+<link rel="stylesheet" href="<c:url value='/css/myShop/notice.css'/>">
+<script>
+  //notice용 script
   let page = ${sc.page};
     let pageSize = ${sc.pageSize};
     let option = "${sc.option}";
@@ -44,12 +44,56 @@
       form.attr("method", "post")
       form.submit();
     }
-  </script>
+</script>
+<script>
+//comment용 script
+var rno;
+$(function(){
+  getCommentList();
+  function getCommentList(){
+    CommentService.getList(
+            {nno : '<c:out value="${noticeDto.nno}"/>'},
+            function(list){
+              console.log("list: " + list)
+              // showCommentList(list)
+            },
+            function(error){
+              alert(error)
+            }
+    )
+  }
+  $("#addComment").on("click",function(){
+    let comment = {
+      nno : '<c:out value="${noticeDto.nno}"/>',
+      comment : $("#comment").val(),
+      commenter : '<%= session.getAttribute("id") %>'
+    }
+    ReplyService.add(comment,
+        function(result){
+          alert(result)
+
+        },
+        function(error){
+          alert(error)
+        })
+  })
+
+
+
+})
+
+
+function showComment() {
+  let boardComment = $(".boardComment")
+  boardComment.toggle();
+}
+
+</script>
   <div id="contents_wrap">
     <div id="container">
       <div id="contents">
         <form id="BoardDelForm">
-          <input id="nno" name="nno" value="${nno}" type="hidden">
+          <input id="nno" name="nno" value="${noticeDto.nno}" type="hidden">
           <div class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
             <div class="board_wrap">
               <div class="board_top ">
@@ -80,7 +124,8 @@
           <!-- //board_wrap -->
           </div>
         </form>
-        <div class="xans-element- xans-board  xans-board-commentpackage"><!-- 코멘트 리스트 -->
+        <div class="xans-element- xans-board  xans-board-commentpackage">
+          <!-- 코멘트 리스트 -->
           <div class="xans-element- xans-board xans-board-commentlist">
             <ul class="boardComment">
               <li class="first  xans-record-">
@@ -99,30 +144,22 @@
           </div>
           <!-- 코멘트 페이징 -->
           <!-- 댓글 수정 -->
-          <form id="commentForm" name="" action="" method="post" >
-            <input id="board_no1" name="board_no" value="6" type="hidden">
-            <input id="no1" name="no" value="7" type="hidden">
-            <input id="comment_no1" name="comment_no" value="" type="hidden">
-            <input id="member_id1" name="member_id" value="asdfasdf" type="hidden">
+          <div id="commentModifyForm">
             <div class="xans-element- xans-board xans-board-commentform-4 xans-board-commentform xans-board-4">
               <fieldset>
                 <legend>댓글 수정</legend>
                 <div class="view">
                   <textarea id="comment_modify" name="comment_modify"></textarea>
                   <span class="submit">
-                    <a href="#" onclick="" class="btn_ccc_box">MODIFY</a>
-                    <a href="#" onclick="" class="btn_ccc_box">CANCEL</a>
+                    <a href="#" id="commentModify" class="btn_ccc_box">MODIFY</a>
+                    <a href="#" id="commentModifyCancel" class="btn_ccc_box">CANCEL</a>
                   </span>
                 </div>
               </fieldset>
             </div>
-          </form>
+          </div>
           <!-- 댓글 쓰기 -->
-          <form id="commentWriteForm" name="" action="">
-            <input id="board_no" name="board_no" value="6" type="hidden">
-            <input id="no" name="no" value="7" type="hidden">
-            <input id="comment_no" name="comment_no" value="" type="hidden">
-            <input id="member_id" name="member_id" value="asdfasdf" type="hidden">
+          <div id="commentWriteForm">
             <div class="xans-element- xans-board xans-board-commentwrite-4 xans-board-commentwrite xans-board-4 "><!-- 댓글권한 있음 -->
               <div class="">
                 <fieldset>
@@ -131,7 +168,7 @@
                     <span class="">이름  <input id="comment_name" name="comment_name" class="inputTypeText" placeholder="" value="" type="text">
                   </p>
                   <div class="view">
-                    <textarea id="comment" name="comment" fw-filter="isFill" fw-label="댓글내용" fw-msg=""></textarea><a href="#none" onclick="BOARD_COMMENT.comment_insert('/exec/front/Board/CommentWrite/6');" class="submit btn_ccc_box">확인</a>
+                    <textarea id="comment" name="comment" ></textarea><a href="#" id="addComment" class="submit btn_ccc_box">확인</a>
                   </div>
                 </fieldset>
               </div>
@@ -140,7 +177,7 @@
                 <p>회원에게만 댓글 작성 권한이 있습니다.</p>
               </div>
             </div>
-          </form>
+          </div>
     </div>
 
 

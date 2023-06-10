@@ -319,3 +319,6 @@ fieldset {
     top: 0;
     right: 0;
 }
+.boardComment{
+    display : none;
+}

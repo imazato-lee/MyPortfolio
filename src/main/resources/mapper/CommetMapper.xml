@@ -18,9 +18,9 @@
     </delete>
     <insert id="insert" parameterType="CommentDto">
         INSERT INTO comment_tbl
-            (nno,  comment, commenter, reg_date, up_date)
+            (nno,  comment, commenter)
         VALUES
-            (#{nno}, #{comment}, #{commenter}, now(), now())
+            (#{nno}, #{comment}, #{commenter})
     </insert>
 
     <select id="selectAll" parameterType="int" resultType="CommentDto">
