@@ -79,32 +79,68 @@
             </div>
           <!-- //board_wrap -->
           </div>
-        </form> <!-- //board_read_1002 -->
-
-        <div class="xans-element- xans-board xans-board-commentpackage-1002 xans-board-commentpackage xans-board-1002 "><!-- 코멘트 리스트 -->
+        </form>
+        <div class="xans-element- xans-board  xans-board-commentpackage"><!-- 코멘트 리스트 -->
+          <div class="xans-element- xans-board xans-board-commentlist">
+            <ul class="boardComment">
+              <li class="first  xans-record-">
+                <div class="commentTop">
+                  <strong class="name">  이세현</strong>
+                  <span class="date">2023-06-10</span>
+                </div>
+                <span class="button">
+                  <a href="" onclick="" class="btn_ccc">MODIFY</a>
+                  <a href="" onclick="" class="btn_ccc">DELETE</a>
+                </span>
+                <div class="comment">
+                  <span id="comment_contents">comment</span></div>
+              </li>
+            </ul>
+          </div>
           <!-- 코멘트 페이징 -->
           <!-- 댓글 수정 -->
           <form id="commentForm" name="" action="" method="post" >
-            <input id="board_no" name="board_no" value="" type="hidden">
-            <input id="no" name="no" value="14" type="hidden">
-            <input id="comment_no" name="comment_no" value="" type="hidden">
-            <input id="member_id" name="member_id" value="" type="hidden">
-            <div class="xans-element- xans-board xans-board-commentform-1002 xans-board-commentform xans-board-1002 ">
+            <input id="board_no1" name="board_no" value="6" type="hidden">
+            <input id="no1" name="no" value="7" type="hidden">
+            <input id="comment_no1" name="comment_no" value="" type="hidden">
+            <input id="member_id1" name="member_id" value="asdfasdf" type="hidden">
+            <div class="xans-element- xans-board xans-board-commentform-4 xans-board-commentform xans-board-4">
               <fieldset>
-              <legend>댓글 수정</legend>
-              <p>비밀번호  <input id="comment_password" name="comment_password" value="" type="password"> </p>
-              <div class="view">
-                <textarea id="comment_modify" name="comment_modify" style="border: 1px solid rgb(204, 204, 204);"></textarea>
+                <legend>댓글 수정</legend>
+                <div class="view">
+                  <textarea id="comment_modify" name="comment_modify"></textarea>
                   <span class="submit">
-                    <a href="#none" onclick="BOARD_COMMENT.comment_update_ok('commentForm');" class="btn_ccc_box">MODIFY</a>
-                    <a href="#none" onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');" class="btn_ccc_box">CANCEL</a>
+                    <a href="#" onclick="" class="btn_ccc_box">MODIFY</a>
+                    <a href="#" onclick="" class="btn_ccc_box">CANCEL</a>
                   </span>
-              </div>
+                </div>
               </fieldset>
             </div>
           </form>
-        </div>
-      </div>
+          <!-- 댓글 쓰기 -->
+          <form id="commentWriteForm" name="" action="">
+            <input id="board_no" name="board_no" value="6" type="hidden">
+            <input id="no" name="no" value="7" type="hidden">
+            <input id="comment_no" name="comment_no" value="" type="hidden">
+            <input id="member_id" name="member_id" value="asdfasdf" type="hidden">
+            <div class="xans-element- xans-board xans-board-commentwrite-4 xans-board-commentwrite xans-board-4 "><!-- 댓글권한 있음 -->
+              <div class="">
+                <fieldset>
+                  <legend>댓글 입력</legend>
+                  <p>
+                    <span class="">이름  <input id="comment_name" name="comment_name" class="inputTypeText" placeholder="" value="" type="text">
+                  </p>
+                  <div class="view">
+                    <textarea id="comment" name="comment" fw-filter="isFill" fw-label="댓글내용" fw-msg=""></textarea><a href="#none" onclick="BOARD_COMMENT.comment_insert('/exec/front/Board/CommentWrite/6');" class="submit btn_ccc_box">확인</a>
+                  </div>
+                </fieldset>
+              </div>
+            <!-- 댓글권한 없음 -->
+              <div class="displaynone">
+                <p>회원에게만 댓글 작성 권한이 있습니다.</p>
+              </div>
+            </div>
+          </form>
     </div>
 
 

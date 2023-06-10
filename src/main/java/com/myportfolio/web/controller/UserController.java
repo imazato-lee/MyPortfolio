@@ -30,11 +30,11 @@ public class UserController {
     public String login(UserDto userDto, Model m, RedirectAttributes rttr, HttpSession session){
         try {
             UserDto existUser = userService.select(userDto.getId());
-//            System.out.println("userDto = " + userDto);
-//            System.out.println("existUser = " + existUser);
             if(!existUser.getPwd().equals(userDto.getPwd())){
                 throw new Exception("login Failed");
             }
+//            if(false == pwEncoder.matches(userDto.getPwd(),existUser.getPwd())) //pwEncoder되면 암호화된 비밀번호와 match여부 확인
+
             session.setAttribute("id",userDto.getId());
             rttr.addFlashAttribute("msg","LOG_OK");
             return "redirect:/";
