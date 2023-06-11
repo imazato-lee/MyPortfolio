@@ -52,8 +52,12 @@
 var rno;
 const userName = "${userName}"
 const userId = "${userId}"
+let pageNum = 1;
+
 $(function(){
-  getCommentList();
+  // getCommentList();
+  getCommentListWithPaging(pageNum);
+  //댓글 추가
   $("#addComment").on("click",function(event){
     event.preventDefault();
     let comment = {
@@ -73,6 +77,7 @@ $(function(){
           console.log(result)
         })
   })
+  //댓글 삭제
   $(".xans-board-commentlist").on("click","#commentDel",function(event){
     event.preventDefault();
     let comment = {
@@ -89,6 +94,7 @@ $(function(){
           alert(error)
         })
   })
+  //댓글 수정창 가져오기
   $(document).on("click", "#commentMod", function(event) {
     event.preventDefault();
 
@@ -98,6 +104,7 @@ $(function(){
 
     comment.append(commentModifyForm)
   })
+  //댓글 수정
   $(document).on("click","#commentModify",function(event){
     event.preventDefault()
     let liElement = $(this).closest('li');
@@ -119,6 +126,11 @@ $(function(){
           alert(error)
         })
   })
+  $(document).on("click","#commentModifyCancel",function(event){
+    event.preventDefault()
+    $("#commentModifyForm").css("display","none");
+    $(".xans-board-commentlist").append($("#commentModifyForm"))
+  })
 })
 
 function getCommentList(){
@@ -130,6 +142,19 @@ function getCommentList(){
           },
           function(error){
             alert(error)
+          })
+}
+
+function getCommentListWithPaging(page){
+  CommentService.getListWithPaging(
+          { nno: '<c:out value="${noticeDto.nno}"/>', page: page},
+          function(commentCnt,list){
+            console.log("list: " + list)
+            showCommentList(list)
+            // showCommentPaging(CommentCnt)
+          },
+          function(error){
+            alert(error);
           })
 }
 function showCommentList(list){
@@ -170,7 +195,7 @@ function showCommentList(list){
     <div id="container">
       <div id="contents">
         <form id="BoardDelForm">
-          <input id="nno" name="nno" value="${noticeDto.nno}" type="hidden">
+          <input id="nno" name="nno" value="${param.nno}" type="hidden">
           <div class="xans-element- xans-board xans-board-read-1002 xans-board-read xans-board-1002">
             <div class="board_wrap">
               <div class="board_top ">
@@ -193,7 +218,7 @@ function showCommentList(list){
                 <ul class="right">
                   <a href="<c:url value='/notice/list${sc.getQueryString()}'/>" class="btn_000">LIST</a>
                   <a href="#" onclick="deleteNotice();" class="btn_000">DELETE</a>
-                  <a href="<c:url value='/notice/modify${sc.getQueryString()}&nno=${nno}'/>" class="btn_000">MODIFY</a>
+                  <a href="<c:url value='/notice/modify${sc.getQueryString()}&nno=${param.nno}'/>" class="btn_000">MODIFY</a>
 <%--                  <a href="#" class="btn_000" onclick="viewCommentList();">REPLY</a>--%>
                 </ul>
               </div>
@@ -242,7 +267,7 @@ function showCommentList(list){
             <fieldset>
               <legend>댓글 수정</legend>
               <div class="view">
-                <textarea id="comment_modify" name="comment_modify"></textarea>
+                <textarea id="comment_modify" name="comment_modify" placeholder="수정할 내용을 입력해주세요."></textarea>
                 <span class="submit">
                     <a href="#" id="commentModify" class="btn_ccc_box">MODIFY</a>
                     <a href="#" id="commentModifyCancel" class="btn_ccc_box">CANCEL</a>

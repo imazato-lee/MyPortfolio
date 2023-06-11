@@ -3,6 +3,7 @@ package com.myportfolio.web.service;
 import com.myportfolio.web.dao.CommentDao;
 import com.myportfolio.web.dao.NoticeDao;
 import com.myportfolio.web.domain.CommentDto;
+import com.myportfolio.web.domain.CommentPageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,8 +70,12 @@ public class CommentServiceImpl implements CommentService {
     public int modify(CommentDto commentDto) throws Exception {
         return commentDao.update(commentDto);
     }
+//    @Override
+//    public List<CommentDto> getSelectPage(Map map) throws Exception{
+//        return commentDao.selectPage(map);
+//    }
     @Override
-    public List<CommentDto> getSelectPage(Map map) throws Exception{
-        return commentDao.selectPage(map);
+    public CommentPageDto getSelectPage(Map map) throws Exception{
+        return new CommentPageDto(commentDao.count((Integer) map.get("nno")),commentDao.selectPage(map));
     }
 }

@@ -69,9 +69,8 @@ public class NoticeController {
 
     @PostMapping("/write")
     public String write(NoticeDto noticeDto, Model m, HttpSession session, RedirectAttributes rttr) {
-//        String writer = (String) session.getAttribute("id");
-//        noticeDto.setWriter(writer);
-        noticeDto.setWriter("test");
+        String writer = (String) session.getAttribute("id");
+        noticeDto.setWriter(writer);
         try {
             int rowCnt = noticeService.write(noticeDto);
             if (rowCnt != 1)

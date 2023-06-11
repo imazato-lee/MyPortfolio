@@ -1,6 +1,7 @@
 package com.myportfolio.web.service;
 
 import com.myportfolio.web.domain.CommentDto;
+import com.myportfolio.web.domain.CommentPageDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,5 +24,6 @@ public interface CommentService {
 
     int modify(CommentDto commentDto) throws Exception;
 
-    List<CommentDto> getSelectPage(Map map) throws Exception;
+//    List<CommentDto> getSelectPage(Map map) throws Exception;
+    CommentPageDto getSelectPage(Map map) throws Exception;
 }

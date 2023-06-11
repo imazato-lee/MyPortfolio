@@ -1,6 +1,7 @@
 package com.myportfolio.web.controller;
 
 import com.myportfolio.web.domain.CommentDto;
+import com.myportfolio.web.domain.CommentPageDto;
 import com.myportfolio.web.domain.UserDto;
 import com.myportfolio.web.service.CommentService;
 import com.myportfolio.web.service.UserService;
@@ -12,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -76,6 +79,22 @@ public class CommentController {
                 throw new Exception("Modify Failed");
 
             return new ResponseEntity<>("success",HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(value = "/{nno}/{page}", produces = { MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<CommentPageDto> getselectPage(@PathVariable Integer nno, @PathVariable Integer page){
+        Map map = new HashMap();
+        map.put("offset",(page-1)*10);
+        map.put("nno",nno);
+        map.put("pageSize",10);
+        try {
+            CommentPageDto dto = commentService.getSelectPage(map);
+            System.out.println("dto = " + dto);
+            return new ResponseEntity<>(dto,HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

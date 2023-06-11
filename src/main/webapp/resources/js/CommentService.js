@@ -77,6 +77,22 @@ class CommentService{
             }
         })
     }
+    static getListWithPaging(param,callback,error){
+        let nno = param.nno
+        let page = param.page
+        $.getJSON('/comments/'+nno+'/'+page,
+            function(data){
+                if(callback){
+                    console.log(data.commentCnt,data.list)
+                    callback(data.commentCnt, data.list)
+                }
+            }).fail(function(xhr, status, er){
+                if(error){
+                    error(xhr.status + ' ' + status)
+                }
+        })
+    }
+
 
     //시간 처리
     static displayTime(timeValue){
