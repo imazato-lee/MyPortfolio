@@ -52,7 +52,7 @@ public class CommentController {
     }
 
     //지정된 댓글을 삭제하는 메서드
-    @DeleteMapping(value = "/{cno}" ,consumes = "application/json", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @DeleteMapping(value = "/{cno}" ,consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> remove(@PathVariable Integer cno,@RequestBody CommentDto dto,HttpSession session){
         try {
             int rowCnt = commentService.remove(dto);
@@ -69,7 +69,7 @@ public class CommentController {
 
     //댓글을 수정하는 메서드
     @PatchMapping(value = "/{cno}", consumes = "application/json",
-    produces = {MediaType.APPLICATION_JSON_VALUE})
+    produces = {MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto){
         try {
             if(commentService.modify(dto)!=1)

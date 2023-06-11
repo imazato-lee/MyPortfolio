@@ -94,10 +94,31 @@ $(function(){
 
     let commentModifyForm = $("#commentModifyForm");
     commentModifyForm.css("display", "block");
-    let comment = $(this).closest('li').find('.commentTop');
+    let comment = $(this).closest('li').find('.comment');
 
     comment.append(commentModifyForm)
-  });
+  })
+  $(document).on("click","#commentModify",function(event){
+    event.preventDefault()
+    let liElement = $(this).closest('li');
+    let cno = liElement.data("cno");
+    let comment = {
+      comment : $("#comment_modify").val(),
+      commenter : userName,
+      cno : cno
+    }
+
+    CommentService.update(comment,
+        function(result){
+          alert(result)
+          $("#commentModifyForm").css("display","none");
+          $(".xans-board-commentlist").append($("#commentModifyForm"))
+          getCommentList()
+        },
+        function(error){
+          alert(error)
+        })
+  })
 })
 
 function getCommentList(){
@@ -120,9 +141,9 @@ function showCommentList(list){
   }
   for (var i = 0, len = list.length || 0; i < len; i++) {
     if (i === 0) {
-      str += '<li class="first xans-record-">'
+      str += '<li class="first xans-record-" data-cno="'+ list[i].cno+'">'
     } else {
-      str += '<li class="xans-record-">'
+      str += '<li class="xans-record-" data-cno="'+ list[i].cno+'">'
     }
     str += '<div class="commentTop">'
     str += '<strong class="name">'+list[i].commenter+'</strong>'
@@ -187,25 +208,12 @@ function showCommentList(list){
 
             </ul>
           </div>
-          <!-- 코멘트 페이징 -->
-          <!-- 댓글 수정 -->
-          <div id="commentModifyForm" style="display: none">
-            <div class="xans-element- xans-board xans-board-commentform-4 xans-board-commentform xans-board-4">
-              <fieldset>
-                <legend>댓글 수정</legend>
-                <div class="view">
-                  <textarea id="comment_modify" name="comment_modify"></textarea>
-                  <span class="submit">
-                    <a href="#" id="commentModify" class="btn_ccc_box">MODIFY</a>
-                    <a href="#" id="commentModifyCancel" class="btn_ccc_box">CANCEL</a>
-                  </span>
-                </div>
-              </fieldset>
-            </div>
-          </div>
+
           <!-- 댓글 쓰기 -->
           <div id="commentWriteForm">
-            <div class="xans-element- xans-board xans-board-commentwrite-4 xans-board-commentwrite xans-board-4 "><!-- 댓글권한 있음 -->
+            <div class="xans-element- xans-board xans-board-commentwrite-4 xans-board-commentwrite xans-board-4 ">
+              <!-- 댓글권한 있음 -->
+              <c:if test="${sessionScope.name ne null}">
               <div class="">
                 <fieldset>
                   <legend>댓글 입력</legend>
@@ -217,13 +225,31 @@ function showCommentList(list){
                   </div>
                 </fieldset>
               </div>
+              </c:if>
+              <c:if test="${sessionScope.name eq null}">
               <!-- 댓글권한 없음 -->
-              <div class="displaynone">
+              <div>
                 <p>회원에게만 댓글 작성 권한이 있습니다.</p>
               </div>
             </div>
+              </c:if>
           </div>
         </div>
 
+        <!-- 댓글 수정 -->
+        <div id="commentModifyForm" style="display: none">
+          <div class="xans-element- xans-board xans-board-commentform-4 xans-board-commentform xans-board-4">
+            <fieldset>
+              <legend>댓글 수정</legend>
+              <div class="view">
+                <textarea id="comment_modify" name="comment_modify"></textarea>
+                <span class="submit">
+                    <a href="#" id="commentModify" class="btn_ccc_box">MODIFY</a>
+                    <a href="#" id="commentModifyCancel" class="btn_ccc_box">CANCEL</a>
+                  </span>
+              </div>
+            </fieldset>
+          </div>
+        </div>
 
 <%@ include file="includes/footer.jsp"%>
