@@ -34,8 +34,8 @@ public class UserController {
                 throw new Exception("login Failed");
             }
 //            if(false == pwEncoder.matches(userDto.getPwd(),existUser.getPwd())) //pwEncoder되면 암호화된 비밀번호와 match여부 확인
-
             session.setAttribute("id",userDto.getId());
+            session.setAttribute("name",existUser.getName());
             rttr.addFlashAttribute("msg","LOG_OK");
             return "redirect:/";
         } catch (Exception e) {

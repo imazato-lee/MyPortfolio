@@ -11,7 +11,7 @@ public interface CommentService {
 
     @Transactional(rollbackFor = Exception.class)
         //댓글 삭제
-    int remove(Integer cno, Integer nno, String commenter) throws Exception;
+    int remove(CommentDto dto) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
         //댓글 쓰기

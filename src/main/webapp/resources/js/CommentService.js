@@ -59,10 +59,12 @@ class CommentService{
     }
 
     //댓글 삭제
-    static remove(cno,callback,error){
+    static remove(comment,callback,error){
         $.ajax({
             type : 'delete',
-            url : '/comments/' + cno,
+            url : '/comments/' + comment.cno,
+            data : JSON.stringify(comment),
+            contentType: "application/json; charset=utf-8",
             success : function(deleteResult, status, xhr){
                 if(callback){
                     callback(deleteResult)
@@ -86,7 +88,7 @@ class CommentService{
             let hh = dateObj.getHours()
             let mi = dateObj.getMinutes()
             let ss = dateObj.getSeconds()
-            return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi, (ss > 9 ? '' : '0') + ss].join('')
+            return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi, ':', (ss > 9 ? '' : '0') + ss].join('')
         } else {
             let yy=dateObj.getFullYear()
             let mm = dateObj.getMonth()

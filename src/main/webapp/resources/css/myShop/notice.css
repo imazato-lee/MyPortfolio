@@ -120,7 +120,7 @@ fieldset {
     text-align: center;
 }
 .xans-board-commentform {
-    margin: 10px 20px;
+    margin: 20px 20px 10px 20px;
     padding: 5px 20px 20px;
     border: 1px solid rgb(221, 221, 221);
     color: rgb(53, 53, 53);
@@ -319,6 +319,6 @@ fieldset {
     top: 0;
     right: 0;
 }
-.boardComment{
-    display : none;
+.xans-board-commentlist{
+    /*display : none;*/
 }

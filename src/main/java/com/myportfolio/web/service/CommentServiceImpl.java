@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +31,14 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)   //댓글 삭제
-    public int remove(Integer cno, Integer nno, String commenter) throws Exception {
-        int rowCnt = noticeDao.updateCommentCnt(nno, -1);
+    public int remove(CommentDto dto) throws Exception {
+        Map map = new HashMap();
+        map.put("cnt",-1);
+        map.put("nno",dto.getNno());
+        int rowCnt = noticeDao.updateCommentCnt(map);
         System.out.println("updateCommentCnt - rowCnt = " + rowCnt);
 //        throw new Exception("test");
-        rowCnt = commentDao.delete(cno, commenter);
+        rowCnt = commentDao.delete(dto.getCno(), dto.getCommenter());
         System.out.println("rowCnt = " + rowCnt);
         return rowCnt;
     }
@@ -42,7 +46,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional(rollbackFor = Exception.class) //댓글 쓰기
     public int write(CommentDto commentDto) throws Exception {
-        noticeDao.updateCommentCnt(commentDto.getNno(), 1);
+        Map map = new HashMap();
+        map.put("cnt",1);
+        map.put("nno",commentDto.getNno());
+        noticeDao.updateCommentCnt(map);
 //                throw new Exception("test");
         return commentDao.insert(commentDto);
     }
