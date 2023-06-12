@@ -69,7 +69,8 @@ $(function(){
         function(result){
           console.log(result)
           alert(result)
-          getCommentList()
+          // getCommentList()
+          getCommentListWithPaging(pageNum)
           $("#comment").val('')
         },
         function(error){
@@ -88,7 +89,8 @@ $(function(){
     CommentService.remove(comment,
         function(result){
           alert(result)
-          getCommentList()
+          // getCommentList()
+          getCommentListWithPaging(pageNum)
         },
         function(error){
           alert(error)
@@ -120,7 +122,8 @@ $(function(){
           alert(result)
           $("#commentModifyForm").css("display","none");
           $(".xans-board-commentlist").append($("#commentModifyForm"))
-          getCommentList()
+          // getCommentList()
+          getCommentListWithPaging(pageNum)
         },
         function(error){
           alert(error)
@@ -131,8 +134,45 @@ $(function(){
     $("#commentModifyForm").css("display","none");
     $(".xans-board-commentlist").append($("#commentModifyForm"))
   })
-})
+  let commentPaging = $(".xans-comment-paging")
+  commentPaging.on("click","a",function(e){
+    e.preventDefault()
+    console.log("page clicked")
+    let targetPageNum = $(this).attr("href")
+    console.log("targetPageNum: " + targetPageNum)
+    pageNum = targetPageNum
+    getCommentListWithPaging(pageNum)
+  })
 
+})
+function showCommentPaging(commentCnt){
+  let commentPaging = $(".xans-comment-paging")
+  let naviSize = 10
+  let totalPage = parseInt(Math.ceil(commentCnt / 10.0))
+  let beginPage = (Math.floor((pageNum-1) / naviSize) * naviSize) + 1;
+  let endPage = Math.min(beginPage + (naviSize-1),totalPage)
+  let showPrev = beginPage !== 1
+  let showNext = endPage !== totalPage
+  let str = ""
+
+  if(commentCnt !=null && commentCnt !==0){
+    if(showPrev){
+      str += '<a href="'+(beginPage-1)+'">PREV</a>'
+    }
+    str += '<ol>'
+    for(let i = beginPage; i<= endPage; i++){
+      let active = pageNum === i ? "active_list" : ""
+      str += ' <li class="xans-record-"><a href="'+i+'" class="this">'+i+'</a></li>'
+    }
+    str += '</ol>'
+    if(showNext){
+      str += '<a href="'+(endPage+1)+'">NEXT</a>'
+    }
+    str += '</div>'
+    console.log(str)
+    commentPaging.html(str)
+  }
+}
 function getCommentList(){
   CommentService.getList(
           {nno : '<c:out value="${noticeDto.nno}"/>'},
@@ -145,18 +185,19 @@ function getCommentList(){
           })
 }
 
-function getCommentListWithPaging(page){
+function getCommentListWithPaging(pageNum){
   CommentService.getListWithPaging(
-          { nno: '<c:out value="${noticeDto.nno}"/>', page: page},
+          { nno: '<c:out value="${noticeDto.nno}"/>', page: pageNum},
           function(commentCnt,list){
             console.log("list: " + list)
             showCommentList(list)
-            // showCommentPaging(CommentCnt)
+            showCommentPaging(commentCnt)
           },
           function(error){
             alert(error);
           })
 }
+
 function showCommentList(list){
   let str = "";
   let boardComment = $(".boardComment")
@@ -232,6 +273,9 @@ function showCommentList(list){
             <ul class="boardComment">
 
             </ul>
+          </div>
+          <div class="xans-comment-paging">
+
           </div>
 
           <!-- 댓글 쓰기 -->

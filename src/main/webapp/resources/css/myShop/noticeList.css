@@ -135,3 +135,9 @@ select {
 .ec-base-table.gBorder td {
     border-left: 1px solid #dfdfdf;
 }
+.ec-base-paginate-text li {
+    display: inline-block;
+    margin: 2px;
+    font-size: 13px;
+    display: inline;
+}

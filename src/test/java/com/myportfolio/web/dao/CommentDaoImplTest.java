@@ -25,8 +25,13 @@ public class CommentDaoImplTest {
 
     @Test
     public void insert() throws Exception {
-        CommentDto dto = new CommentDto(422,"comment","commenter");
-        dao.insert(dto);
+//
+//        CommentDto dto = new CommentDto(422,"comment","commenter");
+//        dao.insert(dto);
+        for(int i=0; i<200; i++){
+            CommentDto dto = new CommentDto(641,"hihi"+i,"admin");
+            dao.insert(dto);
+        }
     }
 
     @Test
