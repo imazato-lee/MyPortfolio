@@ -22,7 +22,7 @@ import java.util.Map;
 @AllArgsConstructor
 @RequestMapping("/comments/*")
 public class CommentController {
-    @Autowired
+
     private CommentService commentService;
 
     //지정된 게시물의 모든 댓글을 가져오는 메서드
