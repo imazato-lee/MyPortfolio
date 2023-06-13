@@ -1,7 +1,6 @@
 <%@ include file="includes/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
     <link rel="stylesheet" href="<c:url value='/css/myShop/noticeList.css'/>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>

@@ -1,6 +1,7 @@
 package com.myportfolio.web.dao;
 
 import com.myportfolio.web.domain.NoticeDto;
+import com.myportfolio.web.domain.SearchCondition;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,4 +21,13 @@ public class NoticeDaoImplTest extends TestCase {
             noticeDao.insert(dto);
         }
     }
+    @Test
+    public void testList() throws Exception {
+        int count = noticeDao.count();
+        System.out.println("count = " + count);
+    }
+//    @Test
+//    public void setSelectPageTest() throws Exception{
+//        SearchCondition sc = new SearchCondition();
+//    }
 }

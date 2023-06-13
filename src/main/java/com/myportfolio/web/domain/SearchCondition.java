@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.util.UriComponentsBuilder;
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class SearchCondition {
     //검색 조건
     private Integer page = 1; //기본값 컨트롤러에서 값을 못받으면 첫화면을 보여준다.
@@ -15,6 +14,21 @@ public class SearchCondition {
     //    private Integer offset = 0;   //offset은 page와 pageSize로 계산되는 값이기 때문에 굳이 iv로 저장할 필요 x
     private String keyword ="";
     private String option ="";
+
+    public SearchCondition(Integer page, Integer pageSize) {
+        this(page, pageSize, "", "");
+    }
+
+    public SearchCondition(Integer page, Integer pageSize, String option, String keyword) {
+        this.page = page;
+        this.pageSize = pageSize;
+        this.option = option;
+        this.keyword = keyword;
+    }
+
+    public Integer getOffset(){
+        return (page-1) * pageSize;
+    }
 
     public String getQueryString(Integer page){
         // ?page1=1&pageSize=10&option=T&keyword="title"
@@ -29,4 +43,6 @@ public class SearchCondition {
         // ?page1=1&pageSize=10&option=T&keyword="title"
         return getQueryString(page);
     }
+
+
 }

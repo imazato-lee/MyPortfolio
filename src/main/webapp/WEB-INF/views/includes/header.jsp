@@ -18,8 +18,9 @@
 <div id="wrap">
     <div id="LeftMenu">
         <div class="LeftMenu">
-            <ul class="xans-element- xans-layout xans-layout-category"><li class="xans-record-"><a href="/product/list.html?cate_no=24">NEW ARRIVALS</a></li>
-                <li class="xans-record-"><a href="/product/list.html?cate_no=25">BEST ITEM</a></li>
+            <ul class="xans-element- xans-layout xans-layout-category">
+                <li class="xans-record-"><a href="/product/list.html?cate_no=24">NEW ARRIVALS</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list"/>'>BEST ITEM</a></li>
                 <li>　</li>
                 <li class="xans-record-"><a href="/product/list.html?cate_no=26">OUTWEARS</a></li>
                 <li class="xans-record-"><a href="/product/list.html?cate_no=27">TOPS</a></li>
@@ -61,9 +62,9 @@
                 </li>
                 <li><a href="/myshop/order/list.html">Order</a></li>
                 <li><a href="/myshop/index.html">Mypage</a></li>
-                <c:if test="${sessionScope.id eq 'admin'}">
+<%--                <c:if test="${sessionScope.id eq 'admin'}">--%>
                     <li><a href="<c:url value='/item/write'/>">ITEM</a></li>
-                </c:if>
+<%--                </c:if>--%>
             </ul>
         </div>
     </div>

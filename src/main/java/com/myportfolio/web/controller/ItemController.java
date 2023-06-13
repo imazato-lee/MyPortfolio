@@ -11,4 +11,9 @@ public class ItemController {
     public String write(){
         return "itemRegister";
     }
+
+    @GetMapping("/list")
+    public String list(){
+        return "itemList";
+    }
 }

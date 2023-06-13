@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -31,14 +30,13 @@ public class NoticeController {
         try {
             int totalCnt = noticeService.getSearchResultCnt(sc);
             m.addAttribute("totalCnt", totalCnt);
-
             PageHandler ph = new PageHandler(totalCnt, sc);
 
             List<NoticeDto> list = noticeService.getSearchResultPage(sc);
             m.addAttribute("list", list);
             m.addAttribute("ph", ph);
         } catch (Exception e) {
-//            return "redirect:/";
+            return "redirect:/";
         }
         return "noticeList";
     }
