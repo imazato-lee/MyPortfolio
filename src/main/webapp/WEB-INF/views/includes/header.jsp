@@ -36,18 +36,20 @@
                 <li><a href="/front/php/b/board_list.php?board_no=6">Q&amp;A</a></li>
                 <li><a href="/front/php/b/board_list.php?board_no=4">Review</a></li>
                 <li><a href="#dialog" name="modal">About</a></li>
-            </ul><ul class="logo"><li><a href="/" style="font-family: 'Oswald', sans-serif;">아직이름을못정했어요</a></li>
-        </ul><ul class="membership_list"><li class="xans-element- xans-layout xans-layout-statelogoff ">
-            <c:choose>
-                <c:when test="${not empty sessionScope.id}">
-                    <a href="<c:url value='/user/logout'/>">Logout</a>
-                </c:when>
-                <c:otherwise>
-                    <a href="<c:url value='/user/login'/>">Log-in</a>
-                </c:otherwise>
-            </c:choose>
-        </li>
-            <li class="xans-element- xans-layout xans-layout-statelogoff ">
+            </ul>
+            <ul class="logo"><li><a href="/" style="font-family: 'Oswald', sans-serif;">아직이름을못정했어요</a></li></ul>
+            <ul class="membership_list">
+                <li class="xans-element- xans-layout xans-layout-statelogoff ">
+                <c:choose>
+                    <c:when test="${not empty sessionScope.id}">
+                        <a href="<c:url value='/user/logout'/>">Logout</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="<c:url value='/user/login'/>">Log-in</a>
+                    </c:otherwise>
+                </c:choose>
+                </li>
+                <li class="xans-element- xans-layout xans-layout-statelogoff ">
                 <c:choose>
                     <c:when test="${not empty sessionScope.id}">
                         <a href="<c:url value='/user/modify'/>">Modify</a>
@@ -56,8 +58,12 @@
                         <a href="<c:url value='/user/register'/>">Register</a>
                     </c:otherwise>
                 </c:choose>
-            </li>
-            <li><a href="/myshop/order/list.html">Order</a></li>
-            <li><a href="/myshop/index.html">Mypage</a></li>
-        </ul></div>
+                </li>
+                <li><a href="/myshop/order/list.html">Order</a></li>
+                <li><a href="/myshop/index.html">Mypage</a></li>
+                <c:if test="${sessionScope.id eq 'admin'}">
+                    <li><a href="<c:url value='/item/write'/>">ITEM</a></li>
+                </c:if>
+            </ul>
+        </div>
     </div>

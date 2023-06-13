@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
-@Log4j2
 public class UploadController {
 
     private String getFolder(){
