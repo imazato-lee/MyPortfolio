@@ -60,8 +60,8 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public int selectPageWithCategoryCount(Map<String, Object> map) throws Exception {
-        return session.selectOne(namespace + "selectPageWithCategoryCount", map);
+    public int selectPageWithCategoryCount(String category) throws Exception {
+        return session.selectOne(namespace + "selectPageWithCategoryCount", category);
     }
 
     @Override

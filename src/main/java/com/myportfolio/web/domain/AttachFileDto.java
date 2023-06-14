@@ -1,4 +1,4 @@
-package com.myportfolio.web.dao;
+package com.myportfolio.web.domain;
 
 import lombok.Data;
 

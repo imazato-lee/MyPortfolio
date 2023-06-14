@@ -9,5 +9,6 @@
         <typeAlias alias="UserDto" type="com.myportfolio.web.domain.UserDto"/>
         <typeAlias alias="NoticeDto" type="com.myportfolio.web.domain.NoticeDto"/>
         <typeAlias alias="ItemDto" type="com.myportfolio.web.domain.ItemDto"/>
+        <typeAlias alias="ItemAttachDto" type="com.myportfolio.web.domain.ItemAttachDto"/>
     </typeAliases>
 </configuration>

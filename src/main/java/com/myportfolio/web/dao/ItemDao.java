@@ -24,7 +24,7 @@ public interface ItemDao {
 
     List<ItemDto> selectPageWithCategory(Map<String, Object> map) throws Exception;
 
-    int selectPageWithCategoryCount(Map<String, Object> map) throws Exception;
+    int selectPageWithCategoryCount(String category) throws Exception;
 
     List<ItemDto> selectPageWithViewCnt(Map<String, Object> map) throws Exception;
 }

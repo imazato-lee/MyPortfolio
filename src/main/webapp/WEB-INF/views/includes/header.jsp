@@ -21,6 +21,7 @@
             <ul class="xans-element- xans-layout xans-layout-category">
                 <li class="xans-record-"><a href="/product/list.html?cate_no=24">NEW ARRIVALS</a></li>
                 <li class="xans-record-"><a href='<c:url value="/item/list"/>'>BEST ITEM</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list"/>'>ALL ITEM</a></li>
                 <li>　</li>
                 <li class="xans-record-"><a href="/product/list.html?cate_no=26">OUTWEARS</a></li>
                 <li class="xans-record-"><a href="/product/list.html?cate_no=27">TOPS</a></li>

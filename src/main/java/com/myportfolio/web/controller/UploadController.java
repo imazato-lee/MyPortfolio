@@ -1,7 +1,6 @@
 package com.myportfolio.web.controller;
 
-import com.myportfolio.web.dao.AttachFileDto;
-import lombok.extern.log4j.Log4j2;
+import com.myportfolio.web.domain.AttachFileDto;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

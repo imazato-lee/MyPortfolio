@@ -1,20 +1,31 @@
 package com.myportfolio.web.controller;
 
+import com.myportfolio.web.domain.ItemAttachDto;
 import com.myportfolio.web.domain.ItemDto;
+import com.myportfolio.web.domain.ItemPageHandler;
+import com.myportfolio.web.domain.PageHandler;
 import com.myportfolio.web.service.ItemService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
-@AllArgsConstructor
 @RequestMapping("/item/*")
 public class ItemController {
-
+    @Autowired
     private ItemService itemService;
     @GetMapping("/write")
     public String write(){
@@ -25,6 +36,7 @@ public class ItemController {
     public String write(ItemDto itemDto, Model m, RedirectAttributes rttr){
         System.out.println("itemDto = " + itemDto);
         try {
+
             int rowCnt =itemService.write(itemDto);
             if(rowCnt != 1)
                 throw new Exception("ITEM WRITE FAILED");
@@ -39,7 +51,31 @@ public class ItemController {
     }
 
     @GetMapping("/list")
-    public String list(){
+    public String list(@RequestParam(defaultValue = "1") int page,Model m){
+
+
+        try {
+            int totalCnt = itemService.getCount();
+            ItemPageHandler ph = new ItemPageHandler(totalCnt,page);
+            Map map = new HashMap();
+            map.put("offset",(page-1)*6);
+            map.put("pageSize",ph.getPageSize());
+            List<ItemDto> list = itemService.selectPage(map);
+            m.addAttribute("list",list);
+            m.addAttribute("ph",ph);
+            m.addAttribute("totalCnt",totalCnt);
+
+        } catch (Exception e) {
+           return "redirect:/";
+        }
         return "itemList";
+    }
+
+    @GetMapping( value = "/getAttachListOnList", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<Integer, List<ItemAttachDto>>> getAttachListOnList(
+            @RequestParam(value = "list[]") List<Integer> list){
+       Map<Integer, List<ItemAttachDto>> map = new HashMap<Integer, List<ItemAttachDto>>();
+       list.stream().forEach(ino->map.put(ino, itemService.getAttachList(ino)));
+       return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }

@@ -13,6 +13,9 @@
         DELETE FROM item WHERE ino = #{ino}
     </delete>
     <insert id="insert" parameterType="ItemDto">
+        <selectKey keyProperty="ino" resultType="int" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO item
             (itemName, category, itemPrice, itemStock, itemDiscount, itemContent)
         VALUES
@@ -56,7 +59,7 @@
             LIMIT #{offset}, #{pageSize}
     </select>
     <!-- 종류 별 페이징  -->
-    <select id="selectPageWithCategoryCount" parameterType="map" resultType="int">
+    <select id="selectPageWithCategoryCount" parameterType="String" resultType="int">
         SELECT count(*)
         FROM item
         WHERE category = #{category}

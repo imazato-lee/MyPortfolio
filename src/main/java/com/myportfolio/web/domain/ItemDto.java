@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,4 +21,6 @@ public class ItemDto {
     private Integer viewCnt;
     private Date reg_date;
     private Date up_date;
+
+    private List<ItemAttachDto> attachList;
 }
