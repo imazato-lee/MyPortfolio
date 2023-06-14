@@ -141,3 +141,7 @@ select {
     font-size: 13px;
     display: inline;
 }
+#comment_cnt{
+    color: #a5a0a0;
+    font-family: 'Oswald';
+}

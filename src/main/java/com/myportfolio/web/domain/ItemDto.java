@@ -10,14 +10,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemDto {
-    private int ino;
+    private Integer ino;
     private String itemName;
     private String category;
-    private int itemPrice;
-    private int itemStock;
-    private double itemDiscount;
+    private Integer itemPrice;
+    private Integer itemStock;
+    private Double itemDiscount;
     private String itemContent;
-    private int viewCnt;
+    private Integer viewCnt;
     private Date reg_date;
     private Date up_date;
 }

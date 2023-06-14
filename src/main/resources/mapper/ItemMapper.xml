@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myportfolio.web.dao.ItemMapper">
+    <delete id="deleteAll">
+        DELETE FROM item
+    </delete>
+    <select id="count" resultType="int">
+        SELECT count(*) FROM item
+    </select>
+    <delete id="delete" parameterType="int">
+        DELETE FROM item WHERE ino = #{ino}
+    </delete>
+    <insert id="insert" parameterType="ItemDto">
+        INSERT INTO item
+            (itemName, category, itemPrice, itemStock, itemDiscount, itemContent)
+        VALUES
+            (#{itemName}, #{category}, #{itemPrice}, #{itemStock}, #{itemDiscount}, #{itemContent})
+    </insert>
+    <select id="select" parameterType="int" resultType="ItemDto">
+        SELECT ino, itemName, category, itemPrice, itemStock, itemDiscount, itemContent, view_cnt, reg_date, up_date
+        FROM item
+        WHERE ino = #{ino}
+    </select>
+    <update id="update" parameterType="ItemDto">
+        UPDATE item
+        SET itemName = #{itemName},
+            category = #{category},
+            itemPrice = #{itemPrice},
+            itemStock = #{itemStock},
+            itemDiscount = #{itemDiscount},
+            itemContent = #{itemContent},
+            up_date = now()
+        WHERE ino = #{ino}
+    </update>
+    <!-- 나중에 인기상품순 정렬에 사용할 것   -->
+    <update id="increaseViewCnt" parameterType="int">
+        UPDATE item
+        SET view_cnt = view_cnt + 1
+        WHERE ino = #{ino}
+    </update>
+
+    <select id="selectPage" parameterType="map" resultType="ItemDto">
+        SELECT ino, itemName, category, itemPrice, itemStock, itemDisCount, itemContent, view_cnt, reg_date, up_date
+        FROM item
+        ORDER BY ino ASC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="selectPageWithCategory" parameterType="map" resultType="ItemDto">
+        SELECT ino, itemName, category, itemPrice, itemStock, itemDisCount, itemContent, view_cnt, reg_date, up_date
+        FROM item
+        WHERE category = #{category}
+        ORDER BY ino ASC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+    <!-- 종류 별 페이징  -->
+    <select id="selectPageWithCategoryCount" parameterType="map" resultType="int">
+        SELECT count(*)
+        FROM item
+        WHERE category = #{category}
+    </select>
+
+    <!-- 조회수 순으로 페이징 -->
+    <select id="selectPageWithViewCnt" parameterType="map" resultType="ItemDto">
+        SELECT ino, itemName, category, itemPrice, itemStock, itemDisCount, itemContent, view_cnt, reg_date, up_date
+        FROM item
+        ORDER BY view_cnt DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+</mapper>

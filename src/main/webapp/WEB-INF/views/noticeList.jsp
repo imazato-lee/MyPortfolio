@@ -60,7 +60,7 @@
                                 <tr class="xans-record-">
                                     <td>${noticeDto.nno}</td>
                                     <td class="subject left txtBreak">
-                                        <a href="/notice/read${ph.sc.getQueryString()}&nno=${noticeDto.nno}">${noticeDto.title}</a>
+                                        <a href="/notice/read${ph.sc.getQueryString()}&nno=${noticeDto.nno}">${noticeDto.title} <span id="comment_cnt">(${noticeDto.comment_cnt})</span></a>
                                     </td>
                                     <td>${noticeDto.writer}</td>
                                     <td>${noticeDto.view_cnt}</td>
