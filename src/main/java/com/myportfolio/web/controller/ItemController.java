@@ -1,9 +1,6 @@
 package com.myportfolio.web.controller;
 
-import com.myportfolio.web.domain.ItemAttachDto;
-import com.myportfolio.web.domain.ItemDto;
-import com.myportfolio.web.domain.ItemPageHandler;
-import com.myportfolio.web.domain.PageHandler;
+import com.myportfolio.web.domain.*;
 import com.myportfolio.web.service.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,15 +48,15 @@ public class ItemController {
     }
 
     @GetMapping("/list")
-    public String list(@RequestParam(defaultValue = "1") int page,Model m){
+    public String list(ItemCondition ic, Model m){
 
 
         try {
             int totalCnt = itemService.getCount();
-            ItemPageHandler ph = new ItemPageHandler(totalCnt,page);
+            ItemPageHandler ph = new ItemPageHandler(totalCnt,ic);
             Map map = new HashMap();
-            map.put("offset",(page-1)*6);
-            map.put("pageSize",ph.getPageSize());
+            map.put("offset",(ic.getPage()-1)*6);
+            map.put("pageSize",ic.getPageSize());
             List<ItemDto> list = itemService.selectPage(map);
             m.addAttribute("list",list);
             m.addAttribute("ph",ph);
@@ -77,5 +74,9 @@ public class ItemController {
        Map<Integer, List<ItemAttachDto>> map = new HashMap<Integer, List<ItemAttachDto>>();
        list.stream().forEach(ino->map.put(ino, itemService.getAttachList(ino)));
        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+    @GetMapping("/read")
+    public String read(){
+        return "item";
     }
 }

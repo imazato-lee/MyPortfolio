@@ -1,0 +1,446 @@
+item.css
+
+#Detail_wrap {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.xans-product-detail {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 0 0 0;
+}
+.xans-product-detail .imgArea {
+    position: relative;
+    float: left;
+    width: 48%;
+}
+.xans-product-detail .imgArea .thumbnail {
+    position: relative;
+    max-width: 90%;
+    text-align: left;
+}
+.xans-product-detail .imgArea .thumbnail img.thmubs {
+    width: 100%;
+}
+#zoomMouseGiude {
+    display: none!important;
+}
+pre {
+    word-wrap: breack-word;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-break: break-all;
+}
+.xans-product-detail .detailArea {
+    position: relative;
+    float: right;
+    width: 52%;
+    margin-top: -8px;
+}
+.xans-product-detail .headingArea {
+    position: relative;
+    margin: 0px 0 0px;
+}
+.xans-product-detail .infoArea table {
+    margin-bottom: 20px;
+    border: 0;
+    font-size: 11px;
+}
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-indent: initial;
+}
+
+caption {
+    display: none;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.xans-product-detail .infoArea td {
+    padding: 8px 0;
+    vertical-align: middle;
+}
+input, select, textarea, pre {
+    font-family: Arial,malgun gothic,맑은고딕,NanumGothic,dotum,돋움,sans-serif;
+    font-size: 11px;
+    color: #000;
+    vertical-align: middle;
+}
+.xans-product-detail .infoArea img {
+    vertical-align: middle;
+}
+.xans-product-detail .detailArea .xans-product-option .ec-product-button li {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+}
+.xans-product-detail .detailArea .xans-product-option .ec-product-button li:last-child {
+    margin-right: 0;
+}
+.quantity_wrap {
+    margin: 0!important;
+    font-size: 10px!important;
+    color: #ccc!important;
+    padding-left: 5px;
+}
+#totalProducts {
+    margin: 21px 0 0;
+    font-size: 11px;
+    color: #999;
+}
+input[type=text], input[type=password] {
+    height: 18px;
+    line-height: 20px;
+    padding: 2px 4px;
+    border: 1px solid #d5d5d5;
+    color: #353535;
+    font-size: 12px;
+}
+.quantity_wrap input {
+    width: 20px;
+    margin: 0!important;
+    padding: 0!important;
+    border: 0px!important;
+    color: #ccc!important;
+    font-size: 10px!important;
+}
+.quantity_wrap a {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+}
+.xans-product-detail .detailArea .xans-product-option tr td {
+    padding: 1px 0;
+}
+.xans-product-detail .detailArea .xans-product-option .ec-product-button li a {
+    display: block;
+    min-width: 12px;
+    text-align: center;
+    text-decoration: none;
+    word-break: break-all;
+    padding-left: 14px;
+    background-image: url(/img/option_type2_bg.png);
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: 0px 2px;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.xans-product-detail .detailArea .xans-product-option .ec-product-button li a span {
+    display: inline-block;
+    padding: 0 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+th, td {
+    border: 0;
+    vertical-align: top;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.xans-product-detail .detailArea select {
+    width: 70%;
+    height: 24px;
+    line-height: 24px;
+    font-size: 11px;
+    color: #555;
+    padding-left: 3px;
+    background-repeat: no-repeat;
+    background-image: url(/web/upload/option_bg.png);
+    background-position: right bottom;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space-collapse: collapse;
+    text-wrap: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.xans-product-detail .infoArea .guideArea {
+    position: relative;
+}
+.xans-product-detail .infoArea .sizeGuide a {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 0 10px;
+    line-height: 24px;
+}
+#totalProducts table {
+    margin: 0;
+}
+#totalProducts thead th {
+    height: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+}
+#totalProducts th {
+    vertical-align: middle;
+    width: 70px;
+}
+.xans-product-detail .infoArea th {
+    font-weight: normal;
+    color: #353535;
+    width: 115px;
+    padding: 7px 0 8px 9px;
+    text-align: left;
+    vertical-align: middle;
+}
+.xans-product-detail .infoArea .xans-product-action {
+    padding-top: 50px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 26px;
+}
+.xans-product-detail .infoArea .xans-product-action a.first {
+    color: #ff0000;
+}
+.xans-product-detail .infoArea .xans-product-action a {
+    display: inline-block;
+    padding-right: 20px;
+}
+.xans-product-additional #prdDetail {
+    margin: 60px 0;
+    line-height: 18px;
+    text-align: center;
+}
+.xans-product-additional #prdDetail img {
+    max-width: 100%;
+    height: auto!important;
+    margin: 0!important;
+    padding: 0!important;
+}
+.xans-product-relation .xans-product-relationlist {
+    margin: 120px 0;
+    text-align: center;
+}
+.xans-product-relation .xans-product-relationlist h2 {
+    font-size: 11px;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+.xans-product-relation .relation ul.prdList {
+    margin-left: -0.2%;
+    margin-right: -0.5%;
+}
+.xans-product-relation .relation ul.prdList li.item {
+    display: inline-block;
+    width: 20%;
+    margin: 0 -1.3px;
+    vertical-align: top;
+}
+.xans-product-relation .relation ul.prdList li.item .box, .xans-product-relation .relation ul.prdList li.item .box a {
+    color: #888;
+}
+.xans-product-relation .relation ul.prdList li.item .box {
+    width: 95%;
+    margin: 10px auto;
+    font-size: 11px;
+    line-height: 16px;
+}
+.xans-product-relation .relation ul.prdList li.item .thumb {
+    width: 100%;
+    margin: 0 0 8px;
+}
+.xans-product-relation .relation ul.prdList img {
+    vertical-align: middle;
+}
+.ec-base-tab {
+    position: relative;
+}
+.xans-product-additional div.board {
+    padding: 27px 0 46px;
+    color: #353535;
+    line-height: 18px;
+}
+.xans-product-additional .board_top {
+    position: relative;
+    width: 100%;
+}
+.xans-product-additional .board_top li.left {
+    float: left;
+}
+.xans-product-additional .board_top li.right {
+    float: right;
+}
+.text-base-button a {
+    display: inline-block;
+    text-align: center;
+}
+.btn_ccc {
+    display: inline-block;
+    width: 80px;
+    line-height: 24px;
+    border: 1px solid #ccc;
+    color: #999;
+    text-align: center;
+}
+.xans-product-additional .board_top:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-product-additional div.board p.nodata {
+    margin: 15px 0 0;
+    border: 1px solid #d7d5d5;
+    color: #fff;
+    font-size: 0;
+    height: 39px;
+    text-align: center;
+}
+.xans-product-additional .noAccess {
+    margin: 15px 0 10px;
+    border: 1px solid #d7d5d5;
+    line-height: 39px;
+    text-align: center;
+}
+.xans-product-additional .minor {
+    margin: 15px 0 0;
+    padding: 35px 0 24px;
+    border: 1px solid #d7d5d5;
+    font-weight: bold;
+    color: #353535;
+    line-height: 14px;
+    text-align: center;
+}
+.xans-product-additional .minor p:first-child img {
+    margin: -11px 8px 0 0;
+    vertical-align: top;
+}
+.xans-product-additional .minor .button {
+    margin: -7px 0 0;
+}
+.ec-base-table.typeList table {
+    border-top-color: #d7d5d5;
+}
+.ec-base-table table {
+    position: relative;
+    margin: 10px 0 0;
+    border: 1px solid #d7d5d5;
+    border-top-color: #fff;
+    color: #fff;
+    line-height: 1.5;
+}
+.ec-base-table th:first-child {
+    border-left: 0;
+}
+.ec-base-table thead th {
+    padding: 11px 0 10px;
+    border-left: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    color: #999;
+    vertical-align: middle;
+    font-weight: normal;
+}
+.ec-base-table .center {
+    text-align: center;
+}
+.ec-base-table.typeList.gBorder tbody td {
+    border-color: #eee;
+}
+.ec-base-table.typeList .center td.left {
+    padding-left: 10px;
+}
+.ec-base-table.gBorder td {
+    border-left: 1px solid #dfdfdf;
+}
+.ec-base-table.typeList td {
+    padding: 8px 10px 7px;
+}
+.ec-base-table td {
+    padding: 11px 10px 10px;
+    height: 32px;
+    border-top: 1px solid #dfdfdf;
+    color: #353535;
+    vertical-align: middle;
+}
+.ec-base-table .left {
+    text-align: left;
+}
+.ec-base-table.typeList .center td, .ec-base-table.typeList td.center {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.txt11 {
+    font-size: 11px;
+}
+.txtBreak {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.ec-base-paginate1 {
+    margin: 10px 0;
+    text-align: center;
+}
+.ec-base-paginate1 .border {
+    border: 1px solid #ddd;
+    color: #ccc;
+    width: 20px;
+    line-height: 20px;
+}
+.ec-base-paginate1 ol {
+    padding: 0 10px;
+}
+.ec-base-paginate1 ol, .ec-base-paginate1 li, .ec-base-paginate1 a {
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+}
+.ec-base-paginate1 li a {
+    padding: 0 5px;
+    color: #ccc;
+}
+.ec-base-paginate1 li a.this {
+    color: #000;
+}
+#contents:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#contents:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-product-detail:after {
+    content: "";
+    display: block;
+    clear: both;
+}

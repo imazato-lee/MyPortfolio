@@ -17,7 +17,7 @@
 
                     <fieldset>
                         <legend>검색</legend>
-                        <input id="keyword" name="keyword" class="inputTypeText" placeholder="Search" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text">
+                        <input id="keyword" name="keyword" class="inputTypeText" placeholder="Search" value="" type="text">
                         <input type="image" src="<c:url value='/images/ico_search.png'/>" width="15px" height="15px" alt="검색" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;">&nbsp;
                     </fieldset>
                 </li>

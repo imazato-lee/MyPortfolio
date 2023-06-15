@@ -2,10 +2,12 @@ package com.myportfolio.web.domain;
 
 import lombok.Data;
 
+
 @Data
 public class ItemPageHandler {
-    private int page;
-    private int pageSize = 6;
+    // private int page;
+    // private int pageSize = 6;
+    private ItemCondition ic;
     private int totalCnt;
     private int naviSize = 10;
     private int totalPage;
@@ -14,12 +16,17 @@ public class ItemPageHandler {
     private boolean showPrev;
     private boolean showNext;
 
-    public ItemPageHandler(int totalCnt,int page){
+    public ItemPageHandler(int totalCnt,ItemCondition ic){
         this.totalCnt = totalCnt;
-        this.page = page;
+        this.ic = ic;
 
-        totalPage = (int)Math.ceil(totalCnt / (double) pageSize);
-        beginPage = (page-1) / naviSize * naviSize + 1;
+        doPaging(totalCnt,ic);
+    }
+    public void doPaging(int totalCnt, ItemCondition ic){
+        this.totalCnt = totalCnt;
+
+        totalPage = (int)Math.ceil(totalCnt / (double) ic.getPageSize());
+        beginPage = (ic.getPage()-1) / naviSize * naviSize + 1;
         endPage = Math.min(beginPage + (naviSize-1), totalPage);
         showPrev = beginPage != 1;
         showNext = endPage != totalPage;
