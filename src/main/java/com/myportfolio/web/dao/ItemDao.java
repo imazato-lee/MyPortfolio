@@ -1,5 +1,6 @@
 package com.myportfolio.web.dao;
 
+import com.myportfolio.web.domain.ItemCondition;
 import com.myportfolio.web.domain.ItemDto;
 
 import java.util.List;
@@ -20,11 +21,8 @@ public interface ItemDao {
 
     int increaseViewCnt(int ino) throws Exception;
 
-    List<ItemDto> selectPage(Map<String, Object> map) throws Exception;
+    List<ItemDto> selectPage(ItemCondition ic) throws Exception;
 
-    List<ItemDto> selectPageWithCategory(Map<String, Object> map) throws Exception;
+    int resultCnt(ItemCondition ic) throws Exception;
 
-    int selectPageWithCategoryCount(String category) throws Exception;
-
-    List<ItemDto> selectPageWithViewCnt(Map<String, Object> map) throws Exception;
 }

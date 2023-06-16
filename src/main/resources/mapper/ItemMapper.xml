@@ -17,9 +17,9 @@
             select LAST_INSERT_ID()
         </selectKey>
         INSERT INTO item
-            (itemName, category, itemPrice, itemStock, itemDiscount, itemContent)
+        (itemName, category, itemPrice, itemStock, itemDiscount, itemContent)
         VALUES
-            (#{itemName}, #{category}, #{itemPrice}, #{itemStock}, #{itemDiscount}, #{itemContent})
+        (#{itemName}, #{category}, #{itemPrice}, #{itemStock}, #{itemDiscount}, #{itemContent})
     </insert>
     <select id="select" parameterType="int" resultType="ItemDto">
         SELECT ino, itemName, category, itemPrice, itemStock, itemDiscount, itemContent, view_cnt, reg_date, up_date
@@ -44,32 +44,27 @@
         WHERE ino = #{ino}
     </update>
 
-    <select id="selectPage" parameterType="map" resultType="ItemDto">
-        SELECT ino, itemName, category, itemPrice, itemStock, itemDisCount, itemContent, view_cnt, reg_date, up_date
-        FROM item
-        ORDER BY ino ASC
-            LIMIT #{offset}, #{pageSize}
+    <sql id="itemCondition">
+        <choose>
+            <when test="option == 'key'">
+                AND itemName LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test="option == 'best'"> ORDER BY view_cnt DESC </when>
+            <when test="option == 'new'"> ORDER BY reg_date DESC </when>
+            <when test="option == 'cate'"> AND category = #{category} </when>
+        </choose>
+    </sql>
+
+    <select id="selectPage" parameterType="ItemCondition" resultType="ItemDto">
+        SELECT ino, itemName, category, itemPrice, itemStock, itemDisCount,
+        itemContent, view_cnt, reg_date, up_date FROM item WHERE true
+        <include refid="itemCondition" />
+        LIMIT #{offset}, #{pageSize}
     </select>
 
-    <select id="selectPageWithCategory" parameterType="map" resultType="ItemDto">
-        SELECT ino, itemName, category, itemPrice, itemStock, itemDisCount, itemContent, view_cnt, reg_date, up_date
-        FROM item
-        WHERE category = #{category}
-        ORDER BY ino ASC
-            LIMIT #{offset}, #{pageSize}
-    </select>
-    <!-- 종류 별 페이징  -->
-    <select id="selectPageWithCategoryCount" parameterType="String" resultType="int">
-        SELECT count(*)
-        FROM item
-        WHERE category = #{category}
+    <select id="resultCnt" parameterType="ItemCondition" resultType="int">
+        SELECT count(*) FROM item WHERE true
+        <include refid="itemCondition" />
     </select>
 
-    <!-- 조회수 순으로 페이징 -->
-    <select id="selectPageWithViewCnt" parameterType="map" resultType="ItemDto">
-        SELECT ino, itemName, category, itemPrice, itemStock, itemDisCount, itemContent, view_cnt, reg_date, up_date
-        FROM item
-        ORDER BY view_cnt DESC
-            LIMIT #{offset}, #{pageSize}
-    </select>
 </mapper>

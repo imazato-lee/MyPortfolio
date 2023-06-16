@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#searchForm").on("click",function(){
+        let searchBarForm = $("#searchBarForm")
+        searchBarForm.submit();
+    })
+</script>
 <div id="footer_title">아직이름을 못정했어요</div>
 
 <div id="footer">
@@ -10,7 +16,7 @@
         <ul class="sns_list">
             <a href="#" target="blank_">Instagram</a>
         </ul>
-        <form id="searchBarForm" name="" action="/product/search.html" method="get" target="_self" enctype="multipart/form-data">
+        <form id="searchBarForm"  action='<c:url value="/item/list?option=key"/>' method="get">
             <input id="banner_action" name="banner_action" value="" type="hidden">
             <ul class="xans-element- xans-layout xans-layout-searchheader ">
                 <li>
@@ -18,13 +24,13 @@
                     <fieldset>
                         <legend>검색</legend>
                         <input id="keyword" name="keyword" class="inputTypeText" placeholder="Search" value="" type="text">
-                        <input type="image" src="<c:url value='/images/ico_search.png'/>" width="15px" height="15px" alt="검색" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;">&nbsp;
+                        <input type="image" id="searchForm" src="<c:url value='/images/ico_search.png'/>" width="15px" height="15px" alt="검색">&nbsp;
                     </fieldset>
                 </li>
             </ul>
         </form>
         <ul class="shop_info">
-            Company: ID5AGIT . Ceo Cpo : Haninsuk . Address :   615-1, Daemyeong 1-dong, Nam-gu, Daegu, Korea . Business license : 000-0000-0000 . Online business license : 0000-서울서초-0000<br><a href="/member/agreement.html">Agreement</a>　<a href="/shopinfo/guide.html">Guide</a>　<a href="/member/privacy.html">Privacy</a>
+            Company: ID5AGIT . Ceo Cpo : Haninsuk . Address :   615-1, Daemyeong 1-dong, Nam-gu, Daegu, Korea . Business license : 000-0000-0000 . Online business license : 0000-서울서초-0000<br><a href="">Agreement</a>　<a href="">Guide</a>　<a href="">Privacy</a>
         </ul>
     </div>
 </div>
@@ -78,29 +84,6 @@
 </div>
 
 <p id="back-top" style="display: none;"><a href="#top">TOP</a></p>
-
-<!-- 참고: 결제를 위한 필수 영역 -->
-<div id="progressPaybar" style="display:none;">
-    <div id="progressPaybarBackground" class="layerProgress"></div>
-    <div id="progressPaybarView">
-        <div class="box">
-            <p class="graph">
-                <span><img src="https://img.echosting.cafe24.com/skin/base_ko_KR/layout/txt_progress.gif" alt="현재 결제가 진행중입니다."></span>
-                <span><img src="https://img.echosting.cafe24.com/skin/base/layout/img_loading.gif" alt=""></span>
-            </p>
-            <p class="txt">
-                본 결제 창은 결제완료 후 자동으로 닫히며,결제 진행 중에 본 결제 창을 닫으시면<br>
-                주문이 되지 않으니 결제 완료 될 때 까지 닫지 마시기 바랍니다.
-            </p>
-        </div>
-    </div>
-</div>
-<!-- //참고 -->
-
-</span>
-<script type="text/javascript" charset="utf-8"></script>
-
-</script>
 <div id="modalBackpanel"></div>
 <div id="modalContainer"></div>
 

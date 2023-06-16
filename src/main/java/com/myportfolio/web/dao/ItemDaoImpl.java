@@ -1,5 +1,6 @@
 package com.myportfolio.web.dao;
 
+import com.myportfolio.web.domain.ItemCondition;
 import com.myportfolio.web.domain.ItemDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,26 +47,17 @@ public class ItemDaoImpl implements ItemDao {
 
     @Override
     public int increaseViewCnt(int ino) {
-        return session.update(namespace + "updateViewCnt", ino);
+        return session.update(namespace + "increaseViewCnt", ino);
     }
 
     @Override
-    public List<ItemDto> selectPage(Map<String, Object> map) throws Exception {
-        return session.selectList(namespace + "selectPage", map);
+    public List<ItemDto> selectPage(ItemCondition ic) throws Exception {
+        return session.selectList(namespace + "selectPage", ic);
     }
 
     @Override
-    public List<ItemDto> selectPageWithCategory(Map<String, Object> map) throws Exception {
-        return session.selectList(namespace + "selectPageWithCategory", map);
+    public int resultCnt(ItemCondition ic) throws Exception {
+        return session.selectOne(namespace + "resultCnt", ic);
     }
 
-    @Override
-    public int selectPageWithCategoryCount(String category) throws Exception {
-        return session.selectOne(namespace + "selectPageWithCategoryCount", category);
-    }
-
-    @Override
-    public List<ItemDto> selectPageWithViewCnt(Map<String, Object> map) throws Exception {
-        return session.selectList(namespace + "selectPageWithViewCnt", map);
-    }
 }

@@ -2,7 +2,6 @@ package com.myportfolio.web.controller;
 
 import com.myportfolio.web.domain.*;
 import com.myportfolio.web.service.ItemService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -54,10 +53,7 @@ public class ItemController {
         try {
             int totalCnt = itemService.getCount();
             ItemPageHandler ph = new ItemPageHandler(totalCnt,ic);
-            Map map = new HashMap();
-            map.put("offset",(ic.getPage()-1)*6);
-            map.put("pageSize",ic.getPageSize());
-            List<ItemDto> list = itemService.selectPage(map);
+            List<ItemDto> list = itemService.selectPage(ic);
             m.addAttribute("list",list);
             m.addAttribute("ph",ph);
             m.addAttribute("totalCnt",totalCnt);
@@ -76,7 +72,19 @@ public class ItemController {
        return new ResponseEntity<>(map, HttpStatus.OK);
     }
     @GetMapping("/read")
-    public String read(){
+    public String read(Integer ino,Model m, ItemCondition ic, RedirectAttributes rttr){
+        try {
+            ItemDto itemDto = itemService.read(ino);
+            if(itemDto == null || itemDto.getIno() != ino){
+                throw new Exception("ITEM READ ERROR");
+            }
+            m.addAttribute(itemDto);
+            m.addAttribute("ic",ic);
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","READ_ERR");
+            return "redirect:/";
+        }
         return "item";
     }
 }

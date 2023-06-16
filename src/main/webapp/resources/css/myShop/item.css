@@ -136,7 +136,7 @@ input[type=text], input[type=password] {
     text-decoration: none;
     word-break: break-all;
     padding-left: 14px;
-    background-image: url(/img/option_type2_bg.png);
+    background-image: url("/resources/images/option_type2_bg.png");
     background-size: 12px 12px;
     background-repeat: no-repeat;
     background-position: 0px 2px;

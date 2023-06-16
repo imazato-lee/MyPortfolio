@@ -10,5 +10,6 @@
         <typeAlias alias="NoticeDto" type="com.myportfolio.web.domain.NoticeDto"/>
         <typeAlias alias="ItemDto" type="com.myportfolio.web.domain.ItemDto"/>
         <typeAlias alias="ItemAttachDto" type="com.myportfolio.web.domain.ItemAttachDto"/>
+        <typeAlias alias="ItemCondition" type="com.myportfolio.web.domain.ItemCondition"/>
     </typeAliases>
 </configuration>

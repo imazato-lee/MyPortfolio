@@ -1,6 +1,7 @@
 package com.myportfolio.web.service;
 
 import com.myportfolio.web.domain.ItemAttachDto;
+import com.myportfolio.web.domain.ItemCondition;
 import com.myportfolio.web.domain.ItemDto;
 
 import java.util.List;
@@ -20,13 +21,8 @@ public interface ItemService {
 
     int modify(ItemDto itemDto) throws Exception;
 
-    List<ItemDto> selectPage(Map<String, Object> map) throws Exception;
+    List<ItemDto> selectPage(ItemCondition ic) throws Exception;
 
-    List<ItemDto> selectPageWithCategory(Map<String, Object> map) throws Exception;
+    int resultCnt(ItemCondition ic) throws Exception;
 
-    int selectPageWithCategoryCount(String category) throws Exception;
-
-    List<ItemDto> selectPageWithViewCnt(Map<String, Object> map) throws Exception;
-
-    void setItemDao(com.myportfolio.web.dao.ItemDao itemDao) throws Exception;
 }

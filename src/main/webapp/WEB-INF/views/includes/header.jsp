@@ -19,15 +19,16 @@
     <div id="LeftMenu">
         <div class="LeftMenu">
             <ul class="xans-element- xans-layout xans-layout-category">
-                <li class="xans-record-"><a href="/product/list.html?cate_no=24">NEW ARRIVALS</a></li>
-                <li class="xans-record-"><a href='<c:url value="/item/list"/>'>BEST ITEM</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=new"/>'>NEW ARRIVALS</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=best"/>'>BEST ITEM</a></li>
                 <li class="xans-record-"><a href='<c:url value="/item/list"/>'>ALL ITEM</a></li>
                 <li>　</li>
-                <li class="xans-record-"><a href="/product/list.html?cate_no=26">OUTWEARS</a></li>
-                <li class="xans-record-"><a href="/product/list.html?cate_no=27">TOPS</a></li>
-                <li class="xans-record-"><a href="/product/list.html?cate_no=28">BOTTOMS</a></li>
-                <li class="xans-record-"><a href="/product/list.html?cate_no=42">BAG SHOES</a></li>
-                <li class="xans-record-"><a href="/product/list.html?cate_no=43">ACCESSORIES</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=cate&category=OUTWEARS"/>'>OUTWEARS</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=cate&category=TOPS"/>'>TOPS</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=cate&category=BOTTOMS"/>'>BOTTOMS</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=cate&category=BAG"/>'>BAG</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=cate&category=SHOES"/>'>SHOES</a></li>
+                <li class="xans-record-"><a href='<c:url value="/item/list?option=cate&category=ACCESSORIES"/>'>ACCESSORIES</a></li>
                 <li>　</li>
             </ul>
         </div>
@@ -35,37 +36,37 @@
     <div id="header">
         <div class="header">
             <ul class="board_list"><li><a href="<c:url value='/notice/list'/>">Notice</a></li>
-                <li><a href="/front/php/b/board_list.php?board_no=6">Q&amp;A</a></li>
-                <li><a href="/front/php/b/board_list.php?board_no=4">Review</a></li>
+                <li><a href="">Q&amp;A</a></li>
+                <li><a href="">Review</a></li>
                 <li><a href="#dialog" name="modal">About</a></li>
             </ul>
             <ul class="logo"><li><a href="/" style="font-family: 'Oswald', sans-serif;">아직이름을못정했어요</a></li></ul>
             <ul class="membership_list">
                 <li class="xans-element- xans-layout xans-layout-statelogoff ">
-                <c:choose>
-                    <c:when test="${not empty sessionScope.id}">
-                        <a href="<c:url value='/user/logout'/>">Logout</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="<c:url value='/user/login'/>">Log-in</a>
-                    </c:otherwise>
-                </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.id}">
+                            <a href="<c:url value='/user/logout'/>">Logout</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="<c:url value='/user/login'/>">Log-in</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
                 <li class="xans-element- xans-layout xans-layout-statelogoff ">
-                <c:choose>
-                    <c:when test="${not empty sessionScope.id}">
-                        <a href="<c:url value='/user/modify'/>">Modify</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="<c:url value='/user/register'/>">Register</a>
-                    </c:otherwise>
-                </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.id}">
+                            <a href="<c:url value='/user/modify'/>">Modify</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="<c:url value='/user/register'/>">Register</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
                 <li><a href="/myshop/order/list.html">Order</a></li>
                 <li><a href="/myshop/index.html">Mypage</a></li>
-<%--                <c:if test="${sessionScope.id eq 'admin'}">--%>
-                    <li><a href="<c:url value='/item/write'/>">ITEM</a></li>
-<%--                </c:if>--%>
+                <%--                <c:if test="${sessionScope.id eq 'admin'}">--%>
+                <li><a href="<c:url value='/item/write'/>">ITEM</a></li>
+                <%--                </c:if>--%>
             </ul>
         </div>
     </div>

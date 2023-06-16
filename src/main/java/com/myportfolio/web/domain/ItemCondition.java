@@ -13,9 +13,10 @@ public class ItemCondition{
     private Integer pageSize = 6;
     private String option = "";
     private String keyword = "";
+    private String category = "";
 
     public ItemCondition(Integer page, Integer pageSize){
-        this(page, pageSize, "","");
+        this(page, pageSize, "","","");
     }
 
     public Integer getOffset(){

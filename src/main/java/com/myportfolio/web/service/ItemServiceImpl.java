@@ -3,6 +3,7 @@ package com.myportfolio.web.service;
 import com.myportfolio.web.dao.ItemAttachDao;
 import com.myportfolio.web.dao.ItemDao;
 import com.myportfolio.web.domain.ItemAttachDto;
+import com.myportfolio.web.domain.ItemCondition;
 import com.myportfolio.web.domain.ItemDto;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,23 +69,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemDto> selectPage(Map<String, Object> map) throws Exception {
-        return itemDao.selectPage(map);
+    public List<ItemDto> selectPage(ItemCondition ic) throws Exception {
+        return itemDao.selectPage(ic);
     }
 
     @Override
-    public List<ItemDto> selectPageWithCategory(Map<String, Object> map) throws Exception {
-        return itemDao.selectPageWithCategory(map);
+    public int resultCnt(ItemCondition ic) throws Exception {
+        return itemDao.resultCnt(ic);
     }
-
-    @Override
-    public int selectPageWithCategoryCount(String category) throws Exception {
-        return itemDao.selectPageWithCategoryCount(category);
-    }
-
-    @Override
-    public List<ItemDto> selectPageWithViewCnt(Map<String, Object> map) throws Exception {
-        return itemDao.selectPageWithViewCnt(map);
-    }
-
 }
