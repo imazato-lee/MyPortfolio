@@ -1,5 +1,6 @@
 package com.myportfolio.web.controller;
 
+import com.google.gson.Gson;
 import com.myportfolio.web.domain.*;
 import com.myportfolio.web.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
@@ -64,12 +62,22 @@ public class ItemController {
         return "itemList";
     }
 
-    @GetMapping( value = "/getAttachListOnList", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<Integer, List<ItemAttachDto>>> getAttachListOnList(
-            @RequestParam(value = "list[]") List<Integer> list){
-       Map<Integer, List<ItemAttachDto>> map = new HashMap<Integer, List<ItemAttachDto>>();
-       list.stream().forEach(ino->map.put(ino, itemService.getAttachList(ino)));
-       return new ResponseEntity<>(map, HttpStatus.OK);
+//    @GetMapping( value = "/getAttachListOnList", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Map<Integer, List<ItemAttachDto>>> getAttachListOnList(
+//            @RequestParam(value = "list[]") List<Integer> list){
+//       Map<Integer, List<ItemAttachDto>> map = new HashMap<Integer, List<ItemAttachDto>>();
+//       list.stream().forEach(ino->map.put(ino, itemService.getAttachList(ino)));
+//       return new ResponseEntity<>(map, HttpStatus.OK);
+//    }
+    @GetMapping(value = "/getAttachListOnList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<String> getAttachListOnList(@RequestParam(value = "list[]") List<Integer> list){
+        Map<Integer, List<ItemAttachDto>> map = new HashMap<Integer,List<ItemAttachDto>>();
+        for( Integer ino : list) {
+            map.put(ino, itemService.getAttachList(ino));
+        }
+        String gson = new Gson().toJson(map, HashMap.class);
+        return new ResponseEntity<>(gson, HttpStatus.OK);
     }
     @GetMapping("/read")
     public String read(Integer ino,Model m, ItemCondition ic, RedirectAttributes rttr){
@@ -86,5 +94,11 @@ public class ItemController {
             return "redirect:/";
         }
         return "item";
+    }
+
+    @GetMapping(value = "/getAttachList/{ino}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<ItemAttachDto>> getAttachList(@PathVariable Integer ino){
+        return new ResponseEntity<>(itemService.getAttachList(ino), HttpStatus.OK);
     }
 }

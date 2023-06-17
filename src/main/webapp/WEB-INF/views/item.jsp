@@ -7,6 +7,34 @@ change this template use File | Settings | File Templates. --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href='<c:url value="/css/myShop/item.css"/>' />
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script>
+    $(function(){
+        let ino = ${itemDto.ino}
+        $.getJSON("/item/getAttachList/"+ino, function(attachList){
+            console.log(attachList)
+            let str = "";
+            $(attachList).each(function(i, attach){
+                if(attach.fileType){
+                    let fileCallPath = encodeURI(attach.uploadPath + '/' + attach.uuid + "_" + attach.fileName)
+                    str += "<li data-path='" + attach.uploadPath + "'"
+                    str += " data-uuid='" + attach.uuid + "' data-fileName='" + attach.fileName + "' data-type='" + attach.fileType + "'>"
+                    str += "<div>"
+                    str += "<img src='/display?fileName=" + fileCallPath +"' style=\"width: -webkit-fill-available;\">"
+                    str += "</div>"
+                    str += "</li>"
+                } else {
+                    str += "<li data-path='" + attach.uploadPath + "'"
+                    str += " data-uuid='" + attach.uuid + "' data-fileName='" + attach.fileName + "' data-type='" + attach.fileType + "'>"
+                    str += "<div>"
+                    str += "<img src='/resources/images/attach.png'>"
+                    str += "</div>"
+                    str += "</li>"
+                }
+            })
+            $(".uploadResult").html(str);
+        })
+    })
+</script>
 <div id="contents_wrap" style="">
     <div id="container">
         <div id="contents">
@@ -16,11 +44,9 @@ change this template use File | Settings | File Templates. --%>
                     <!-- 이미지 영역 -->
                     <div class="xans-element- xans-product xans-product-image imgArea">
                         <div class="thumbnail">
-                            <img
-                                    src="//ecudemo97964.cafe24.com/web/product/big/201806/16_shop1_15297539878515.jpg"
-                                    alt="SAMPLE PRODUCT"
-                                    class="BigImage thmubs"
-                            />
+                            <ul class="uploadResult">
+
+                            </ul>
                             <!-- 실제 사진 들어가야함  -->
                         </div>
                     </div>
@@ -35,44 +61,18 @@ change this template use File | Settings | File Templates. --%>
                                     </caption>
                                     <tbody>
                                     <tr class="xans-record-">
-                                        <td>
-                        <span style="font-size: 14px; color: #000000">
-                          <!-- SAMPLE PRODUCT -->
-                          ${itemDto.itemName} </span
-                        ><br /><br />
+                                        <td><span style="font-size: 14px; color: #000000">${itemDto.itemName} </span><br/><br/>
                                         </td>
                                     </tr>
                                     <tr class="xans-record-">
                                         <td>
-                        <pre><span style="font-size:12px;color:#000000;">
-                                  <!-- 오버한 핏의 베이직 니트입니다.
-                                  성별 상관없이 입을 수 있는 프리 사이즈로 제작되었고,
-                                  우측 소매에 새겨진 자수는 니트를 좀 더 위트있게 연출해주네요.
-                                  바바리 코트와 함께 착용했을 때 좀 더 무드있게 느껴졌고,
-                                  보풀이 거의 일어나지 않는 제품이기 때문에 데일리로 착용하시기에도 좋습니다.
-
-                                  FABRIC : 폴리65% 레이온31% 스판4%
-                                  SIZE : 총장 75 | 어깨 45 | 가슴 49 | 팔길이 55 -->
-                                  ${itemDto.itemContent}
-                                </span></pre>
+                                            <pre><span style="font-size:12px;color:#000000;">${itemDto.itemContent}</span></pre>
                                         </td>
                                     </tr>
                                     <tr class="xans-record-">
-                                        <td>
-                        <span style="font-size: 14px; color: #000000"
-                        ><strong id="span_product_price_text">
-                            <!-- 78,000 -->
-                            <fmt:formatNumber
-                                    value="${itemDto.itemPrice}"
-                                    pattern="##,###"
-                            />
-                          </strong>
-                          <input
-                                  id="product_price"
-                                  name="product_price"
-                                  value=""
-                                  type="hidden"
-                          /></span>
+                                        <td><span style="font-size: 14px; color: #000000">
+                                            <strong id="span_product_price_text"><fmt:formatNumber value="${itemDto.itemPrice}" pattern="##,###"/></strong>
+                                        <input id="product_price" name="product_price" value="" type="hidden"/></span>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -81,109 +81,54 @@ change this template use File | Settings | File Templates. --%>
 
                             <!-- //상세정보 내역 -->
 
-                            <div id="totalProducts" class="quantity_wrap">
-                                <div class="displaynone">
+                            <div id="totalProduct" class="quantity_wrap">
+                                <div class="">
                                     <ul>
-                                        <li>
-                      <span class="quantity">
-                        <input
-                                id="quantity"
-                                name="quantity_name"
-                                style=""
-                                value="0"
-                                type="text"
-                        /><a href="#"
-                      ><img
-                              src="<c:url value='/images/detail_qty_up.jpg'/>"
-                              alt="QTY증가"
-                              class="QuantityUp up"
-                      /></a>
-                        <a href="#"
-                        ><img
-                                src="<c:url value='/images/detail_qty_down.jpg'/>"
-                                alt="QTY감소"
-                                class="QuantityDown down"
-                        /></a>
-                      </span>
+                                        <li><span class="quantity">
+                                            <input id="quantity" name="quantity_name" style="" value="0" type="text"/>
+                                            <a href="#">
+                                                <img src="<c:url value='/images/detail_qty_up.jpg'/>" alt="QTY증가" class="QuantityUp up"/>
+                                            </a>
+                                            <a href="#">
+                                                <img src="<c:url value='/images/detail_qty_down.jpg'/>" alt="QTY감소" class="QuantityDown down"/>
+                                            </a></span>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
 
-                            <table
-                                    border="1"
-                                    summary=""
-                                    class="xans-element- xans-product xans-product-option xans-record-"
-                            >
+                            <table border="1" summary="" class="xans-element- xans-product xans-product-option xans-record-">
                                 <caption>
                                     상품 옵션
                                 </caption>
                                 <tbody></tbody>
-                                <tbody
-                                        class="xans-element- xans-product xans-product-option xans-record-"
-                                >
-                                <tr>
-                                    <td>
-                                        <ul
-                                                option_product_no="16"
-                                                option_select_element="ec-option-select-finder"
-                                                option_sort_no="1"
-                                                option_type="T"
-                                                item_listing_type="S"
-                                                option_title="COLOR"
-                                                product_type="product_option"
-                                                product_option_area="product_option_16_0"
-                                                option_style="button"
-                                                ec-dev-id="product_option_id1"
-                                                ec-dev-name="option1"
-                                                ec-dev-class="ProductOption0"
-                                                class="ec-product-button"
-                                                required="true"
-                                        >
-                                            <li
-                                                    class=""
-                                                    option_value="Beige"
-                                                    link_image=""
-                                                    title="Beige"
-                                            >
-                                                <a href="#"><span>Beige</span></a>
-                                            </li>
-                                            <li
-                                                    class=""
-                                                    option_value="Grey"
-                                                    link_image=""
-                                                    title="Grey"
-                                            >
-                                                <a href="#"><span>Grey</span></a>
-                                            </li>
-                                        </ul>
-                                        <select
-                                                required="true"
-                                                product_option_area_select="product_option_16_0"
-                                                id="product_option_id1"
-                                                name="option1"
-                                                option_title="COLOR"
-                                                option_type="T"
-                                                item_listing_type="S"
-                                                class="ProductOption0 displaynone"
-                                        >
-                                            <option value="*">empty</option>
-                                            <option value="Beige">Beige</option>
-                                            <option value="Grey">Grey</option>
-                                        </select>
-                                    </td>
-                                </tr>
+                                <tbody class="xans-element- xans-product xans-product-option xans-record-">
+                                    <tr>
+                                        <td>
+                                            <ul class="ec-product-button">
+                                                <li class="" title="Beige">
+                                                    <a href="#"><span>Beige</span></a>
+                                                </li>
+                                                <li class="" title="Grey">
+                                                    <a href="#"><span>Grey</span></a>
+                                                </li>
+                                            </ul>
+                                            <select id="product_option_id1" name="option1" class="ProductOption0 displaynone">
+                                                <option value="*">empty</option>
+                                                <option value="Beige">Beige</option>
+                                                <option value="Grey">Grey</option>
+                                            </select>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tbody>
-                                <tr class="displaynone" id="">
-                                    <td class="selectButton">
-                                        <a href="#" onclick=""
-                                        ><img
-                                                src="<c:url value='/images/btn_manual_select.gif'/>"
-                                                alt="옵션 선택"
-                                        /></a>
-                                    </td>
-                                </tr>
+                                    <tr class="" id="">
+                                        <td class="selectButton">
+                                            <a href="#" onclick="">
+                                                <img src="<c:url value='/images/btn_manual_select.gif'/>" alt="옵션 선택"/>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
 
@@ -231,10 +176,7 @@ change this template use File | Settings | File Templates. --%>
                             <img src="<c:url value='/images/sample_page.jpg'/>" />
                         </div>
                     </div>
-                    <div
-                            id="prdRelated"
-                            class="xans-element- xans-product xans-product-relation xans-record-"
-                    >
+                    <div id="prdRelated" class="xans-element- xans-product xans-product-relation xans-record-">
                         <div class="relation">
                             <div class="xans-element- xans-product xans-product-relationlist">
                                 <h2>RELATED PRODUCTS</h2>
@@ -243,21 +185,14 @@ change this template use File | Settings | File Templates. --%>
                                         <div class="box">
                                             <ul>
                                                 <li>
-                                                    <a
-                                                            href="/product/sample-product/13/category/28/display/1/"
-                                                    ><img
-                                                            src="<c:url value='/images/sample_bg1.jpg'/>"
-                                                            alt="SAMPLE PRODUCT"
-                                                            class="thumb"
-                                                    /></a>
+                                                    <a href="#">
+                                                        <img src="<c:url value='/images/test1.jpeg'/>" alt="SAMPLE PRODUCT" class="thumb"/>
+                                                    </a>
                                                 </li>
                                             </ul>
                                             <ul>
                                                 <li>
-                                                    <a
-                                                            href="/product/sample-product/13/category/28/display/1/"
-                                                    >SAMPLE PRODUCT</a
-                                                    >
+                                                    <a href="#">SAMPLE PRODUCT</a>
                                                 </li>
                                             </ul>
                                             <ul>
@@ -270,21 +205,14 @@ change this template use File | Settings | File Templates. --%>
                                         <div class="box">
                                             <ul>
                                                 <li>
-                                                    <a
-                                                            href="/product/sample-product/14/category/28/display/1/"
-                                                    ><img
-                                                            src="<c:url value='/images/sample_bg3.jpg'/>"
-                                                            alt="SAMPLE PRODUCT"
-                                                            class="thumb"
-                                                    /></a>
+                                                    <a href="#">
+                                                        <img src="<c:url value='/images/test2.jpeg'/>" alt="SAMPLE PRODUCT" class="thumb"/>
+                                                    </a>
                                                 </li>
                                             </ul>
                                             <ul>
                                                 <li>
-                                                    <a
-                                                            href="/product/sample-product/14/category/28/display/1/"
-                                                    >SAMPLE PRODUCT</a
-                                                    >
+                                                    <a href="#">SAMPLE PRODUCT</a>
                                                 </li>
                                             </ul>
                                             <ul>
@@ -304,16 +232,8 @@ change this template use File | Settings | File Templates. --%>
                                 <ul>
                                     <li class="left">REVIEW</li>
                                     <li class="right">
-                                        <a
-                                                href="/board/product/write.html?board_no=4&amp;product_no=16&amp;cate_no=25&amp;display_group=1"
-                                                class="btn_ccc"
-                                        >후기작성</a
-                                        >
-                                        <a
-                                                href="/board/product/list.html?board_no=4"
-                                                class="btn_ccc"
-                                        >모두보기</a
-                                        >
+                                        <a href="#" class="btn_ccc">후기작성</a>
+                                        <a href="#" class="btn_ccc">모두보기</a>
                                     </li>
                                 </ul>
                             </div>
@@ -329,16 +249,8 @@ change this template use File | Settings | File Templates. --%>
                                 <ul>
                                     <li class="left">Q&amp;A</li>
                                     <li class="right">
-                                        <a
-                                                href="/board/product/write.html?board_no=6&amp;product_no=16&amp;cate_no=25&amp;display_group=1"
-                                                class="btn_ccc"
-                                        >문의작성</a
-                                        >
-                                        <a
-                                                href="/board/product/list.html?board_no=6"
-                                                class="btn_ccc"
-                                        >모두보기</a
-                                        >
+                                        <a href="#" class="btn_ccc">문의작성</a>
+                                        <a href="#" class="btn_ccc">모두보기</a>
                                     </li>
                                 </ul>
                             </div>
@@ -359,34 +271,29 @@ change this template use File | Settings | File Templates. --%>
                                             <col style="width: 100px" />
                                         </colgroup>
                                         <thead>
-                                        <tr>
-                                            <th scope="col">NO</th>
-                                            <th scope="col">TITLE</th>
-                                            <th scope="col">POSTED BY</th>
-                                            <th scope="col">DATE</th>
-                                        </tr>
+                                            <tr>
+                                                <th scope="col">NO</th>
+                                                <th scope="col">TITLE</th>
+                                                <th scope="col">POSTED BY</th>
+                                                <th scope="col">DATE</th>
+                                            </tr>
                                         </thead>
                                         <tbody class="center">
-                                        <tr class="xans-record-">
-                                            <td>1</td>
-                                            <td class="subject left txtBreak">
-                                                <a
-                                                        href="/article/qa/6/6/?no=6&amp;board_no=6&amp;spread_flag=T"
-                                                >상품문의</a
-                                                >
-                                                <span class="txtWarn"></span>
-                                            </td>
-                                            <td>환이</td>
-                                            <td class="txtInfo txt11">2018-06-24</td>
-                                        </tr>
+                                            <tr class="xans-record-">
+                                                <td>1</td>
+                                                <td class="subject left txtBreak">
+                                                    <a href="#">상품문의</a>
+                                                    <span class="txtWarn"></span>
+                                                </td>
+                                                <td>두용</td>
+                                                <td class="txtInfo txt11">2023-06-17</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
 
-                            <div
-                                    class="xans-element- xans-product xans-product-qnapaging ec-base-paginate1 typeSub"
-                            >
+                            <div class="xans-element- xans-product xans-product-qnapaging ec-base-paginate1 typeSub">
                                 <a href="#" class="border">&lt;&lt;</a>
                                 <a href="#" class="border">&lt;</a>
                                 <ol>
