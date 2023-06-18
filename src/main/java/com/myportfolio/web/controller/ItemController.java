@@ -47,7 +47,6 @@ public class ItemController {
     @GetMapping("/list")
     public String list(ItemCondition ic, Model m){
 
-
         try {
             int totalCnt = itemService.getCount();
             ItemPageHandler ph = new ItemPageHandler(totalCnt,ic);
@@ -91,7 +90,7 @@ public class ItemController {
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("msg","READ_ERR");
-            return "redirect:/";
+            return "redirect:/item/read"+ic.getQueryString();
         }
         return "item";
     }
@@ -100,5 +99,23 @@ public class ItemController {
     @ResponseBody
     public ResponseEntity<List<ItemAttachDto>> getAttachList(@PathVariable Integer ino){
         return new ResponseEntity<>(itemService.getAttachList(ino), HttpStatus.OK);
+    }
+
+    @GetMapping("/modify")
+    public String modify(Integer ino,ItemCondition ic, Model m,RedirectAttributes rttr){
+        try {
+            ItemDto itemDto = itemService.read(ino);
+            if(itemDto == null){
+                throw new Exception("ITEM MODIFY ERROR");
+            }
+            m.addAttribute(itemDto);
+            m.addAttribute("ic",ic);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","ITEM_MOD_ERR");
+            return "redirect:/item/read"+ic.getQueryString()+"&ino="+ino;
+        }
+        return "itemModify";
     }
 }

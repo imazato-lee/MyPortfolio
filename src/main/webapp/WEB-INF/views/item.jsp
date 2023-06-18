@@ -34,6 +34,7 @@ change this template use File | Settings | File Templates. --%>
             $(".uploadResult").html(str);
         })
     })
+
 </script>
 <div id="contents_wrap" style="">
     <div id="container">
@@ -105,14 +106,14 @@ change this template use File | Settings | File Templates. --%>
                                 <tbody class="xans-element- xans-product xans-product-option xans-record-">
                                     <tr>
                                         <td>
-                                            <ul class="ec-product-button">
-                                                <li class="" title="Beige">
-                                                    <a href="#"><span>Beige</span></a>
-                                                </li>
-                                                <li class="" title="Grey">
-                                                    <a href="#"><span>Grey</span></a>
-                                                </li>
-                                            </ul>
+<%--                                            <ul class="ec-product-button">--%>
+<%--                                                <li class="" title="Beige">--%>
+<%--                                                    <a href="#"><span>Beige</span></a>--%>
+<%--                                                </li>--%>
+<%--                                                <li class="" title="Grey">--%>
+<%--                                                    <a href="#"><span>Grey</span></a>--%>
+<%--                                                </li>--%>
+<%--                                            </ul>--%>
                                             <select id="product_option_id1" name="option1" class="ProductOption0 displaynone">
                                                 <option value="*">empty</option>
                                                 <option value="Beige">Beige</option>
@@ -124,9 +125,12 @@ change this template use File | Settings | File Templates. --%>
                                 <tbody>
                                     <tr class="" id="">
                                         <td class="selectButton">
-                                            <a href="#" onclick="">
-                                                <img src="<c:url value='/images/btn_manual_select.gif'/>" alt="옵션 선택"/>
-                                            </a>
+                                            <a href="#" class="btn_ccc">옵션선택</a>
+                                            <a href='<c:url value="/item/modify${ic.getQueryString()}&ino=${itemDto.ino}"/>' class="btn_ccc" id="ItemModBtn">MODIFY</a>
+
+<%--                                            <a href="#" onclick="">--%>
+<%--                                                <img src="<c:url value='/images/btn_manual_select.gif'/>" alt="옵션 선택"/>--%>
+<%--                                            </a>--%>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -173,7 +177,7 @@ change this template use File | Settings | File Templates. --%>
                     <!-- 상품상세정보 -->
                     <div id="prdDetail">
                         <div class="cont">
-                            <img src="<c:url value='/images/sample_page.jpg'/>" />
+                            <img src="<c:url value='/images/sample_page.jpeg'/>" />
                         </div>
                     </div>
                     <div id="prdRelated" class="xans-element- xans-product xans-product-relation xans-record-">

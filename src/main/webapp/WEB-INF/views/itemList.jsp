@@ -56,14 +56,13 @@
                         <c:forEach items="${list}" var="itemDto">
                         <li id="anchorBoxId_16" class="xans-record-">
                             <div class="thumbnail">
-                                <a href="<c:url value='/item/read?ino=${itemDto.ino}'/>" id="<c:out value='${itemDto.ino}'/>">
-
+                                <a href="<c:url value='/item/read${ph.ic.getQueryString()}&ino=${itemDto.ino}'/>" id="<c:out value='${itemDto.ino}'/>">
                                 </a>
                             </div>
                             <div class="description">
                                 <ul class="name">
                                     <li class="item_name">
-                                        <a href="<c:url value='/item/read?ino=${itemDto.ino}'/>" class="">
+                                        <a href="<c:url value='/item/read${ph.ic.getQueryString()}&ino=${itemDto.ino}'/>" class="">
                                             <span style="font-size:12px;color:#555555;">${itemDto.itemName}</span>
                                         </a>
                                     </li>
@@ -83,15 +82,15 @@
             <div class="xans-element- xans-product xans-product-normalpaging ec-base-paginate-text">
                 <c:if test="${totalCnt!=null && totalCnt !=0}">
                     <c:if test="${ph.showPrev}">
-                        <a href="<c:url value='/item/list?page=${ph.beginPage-1}'/>">PREV</a>
+                        <a href="<c:url value="/item/list${ph.ic.getQueryString(ph.beginPage-1)}"/>">PREV</a>
                     </c:if>
                     <ol>
                         <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-                            <li class="xans-record-"><a href="<c:url value='/item/list?page=${i}'/>" class="this"> ${i} </a></li>
+                            <li class="xans-record-"><a href="<c:url value='/item/list${ph.ic.getQueryString(i)}'/>" class="this"> ${i} </a></li>
                         </c:forEach>
                     </ol>
                     <c:if test="${ph.showNext}">
-                        <a href="<c:url value='/item/list?page=${ph.endPage+1}'/>">NEXT</a>
+                        <a href="<c:url value='/item/list${ph.ic.getQueryString(ph.endPage+1)}'/>">NEXT</a>
                     </c:if>
                 </c:if>
             </div>
