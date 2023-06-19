@@ -25,4 +25,6 @@ public interface ItemDao {
 
     int resultCnt(ItemCondition ic) throws Exception;
 
+
+
 }

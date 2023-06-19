@@ -12,17 +12,18 @@ public interface ItemService {
 
     int getCount() throws Exception;
 
-    int remove(int ino) throws Exception;
+    boolean remove(int ino) throws Exception;
 
     int write(ItemDto itemDto) throws Exception;
     List<ItemAttachDto> getAttachList(Integer ino);
 
     ItemDto read(int ino) throws Exception;
 
-    int modify(ItemDto itemDto) throws Exception;
+    boolean modify(ItemDto itemDto) throws Exception;
 
     List<ItemDto> selectPage(ItemCondition ic) throws Exception;
 
     int resultCnt(ItemCondition ic) throws Exception;
+
 
 }

@@ -12,6 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -117,5 +121,58 @@ public class ItemController {
             return "redirect:/item/read"+ic.getQueryString()+"&ino="+ino;
         }
         return "itemModify";
+    }
+
+    @PostMapping("/modify")
+    public String modify(ItemDto dto,ItemCondition ic,RedirectAttributes rttr){
+        try {
+            if(!itemService.modify(dto)){
+                throw new Exception("MODIFY_ERROR");
+            }
+            rttr.addFlashAttribute("msg","MOD_OK");
+            return "redirect:/item/read" + ic.getQueryString() + "&ino=" + dto.getIno();
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","MOD_ERR");
+            return "redirect:/item/modify"+ ic.getQueryString() +"&ino="+dto.getIno();
+        }
+    }
+
+    @PostMapping("/remove")
+    public String remove(Integer ino,ItemCondition ic, RedirectAttributes rttr){
+        List<ItemAttachDto> attachList = itemService.getAttachList(ino);
+        try {
+            if(!itemService.remove(ino)){
+                throw new Exception("ITEM REMOVE ERROR");
+            }
+            deleteFiles(attachList);
+            rttr.addFlashAttribute("msg","REM_OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","REM_ERR");
+            return "redirect:/item/modify" + ic.getQueryString() + "&ino=" + ino;
+        }
+        return "redirect:/item/list" + ic.getQueryString();
+    }
+
+    private void deleteFiles(List<ItemAttachDto> attachList){
+        if(attachList == null || attachList.size() == 0) return;
+
+        for(ItemAttachDto attachDto : attachList){
+            try {
+                Path file = Paths.get("/Users/sehyeon/upload/" + attachDto.getUploadPath() +
+                        "/" + attachDto.getUuid() + "_" + attachDto.getFileName());
+                Files.deleteIfExists(file);
+                if(Files.probeContentType(file).startsWith("image")){
+                    Path thumbNail = Paths.get("/Users/sehyeon/upload/" + attachDto.getUploadPath() +
+                            "/s_" + attachDto.getUuid() + "_" + attachDto.getFileName());
+                    Files.delete(thumbNail);
+                }
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+        }
+
+
     }
 }

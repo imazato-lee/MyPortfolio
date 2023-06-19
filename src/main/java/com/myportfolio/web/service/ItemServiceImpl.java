@@ -59,13 +59,25 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public int remove(int ino) throws Exception {
-        return itemDao.delete(ino);
+    public boolean remove(int ino) throws Exception {
+        return itemDao.delete(ino) ==1;
     }
 
     @Override
-    public int modify(ItemDto itemDto) throws Exception {
-        return itemDao.update(itemDto);
+    @Transactional
+    public boolean modify(ItemDto itemDto) throws Exception {
+        itemAttachDao.deleteAll(itemDto.getIno());
+
+        boolean modifyResult = itemDao.update(itemDto) == 1;
+
+        List<ItemAttachDto> list = itemDto.getAttachList();
+        if(modifyResult && list != null){
+            for(ItemAttachDto dto : list){
+                dto.setIno(itemDto.getIno());
+                itemAttachDao.insert(dto);
+            }
+        }
+        return modifyResult;
     }
 
     @Override

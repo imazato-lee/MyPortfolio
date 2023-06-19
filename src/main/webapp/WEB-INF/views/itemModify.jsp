@@ -88,9 +88,7 @@
         });
 
         function showUploadResult(result) {
-            if (!result || result.length === 0) {
-                return;
-            }
+            if (!result || result.length === 0) {return;}
             let uploadUL = $(".uploadResult ul");
             let str = "";
             $(result).each(function (i, obj) {
@@ -110,7 +108,7 @@
                     str += "<li data-path='" + obj.uploadPath + "'";
                     str += " data-uuid='" + obj.uuid + "' data-fileName='" + obj.fileName + "' data-type='" + obj.image + "'>";
                     str += " <div>";
-                    str += " <span> " + obj.fileName + "</span>";
+                    // str += " <span> " + obj.fileName + "</span>";
                     str += " <button type='button' data-file='" + fileCallPath + "' ";
                     str += " data-type='file' class='btn btn-warning btn-circle'><i class='fas fa-times'></i></button><br>";
                     str += " <img src='/images/attach.png'>";
@@ -127,9 +125,26 @@
                 targetLi.remove();
             }
         });
-        $("#submit").on("click", function (e) {
-
+        $("#modify").on("click", function (e) {
+            e.preventDefault()
+            let str = "";
+            let formObj = $("#ItemRegisterForm")
+            $(".uploadResult ul li").each(function(i, listItem){
+                let liObj = $(listItem);
+                str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + liObj.data("filename") + "'>"
+                str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + liObj.data("uuid") + "'>"
+                str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" +liObj.data("path") + "'>"
+                str += "<input type='hidden' name='attachList[" + i + "].fileType' value='" + liObj.data("type") + "'>"
+            })
+            formObj.attr("action","<c:url value='/item/modify'/>")
+            formObj.append(str).submit()
         });
+        $("#delete").on("click", function(e){
+            e.preventDefault()
+            let formObj = $("#ItemRegisterForm")
+            formObj.attr("action",'<c:url value="/item/remove"/>')
+            formObj.submit();
+        })
     })
 </script>
 <div id="contents_wrap">
@@ -138,7 +153,8 @@
             <div class="titleArea">
                 <h2>ITEM MODIFY</h2>
             </div>
-            <form id="ItemRegisterForm" method="POST" action="<c:url value='/item/write'/>">
+            <form id="ItemRegisterForm" method="POST">
+                <input type="hidden" name="ino" value="${itemDto.ino}">
                 <div class="xans-element- xans-member xans-member-join">
                     <div class="ec-base-box typeProduct uploadResult">
                         <ul>
@@ -224,7 +240,9 @@
                         </table>
                     </div>
                     <div class="text-button-center">
-                        <a href="#" id="submit" class="btn_1000">SUBMIT</a>
+                        <a href='<c:url value="/item/read${ic.getQueryString()}&ino=${itemDto.ino}"/>' id="list" class="btn_ccc">LIST</a>
+                        <a href="#" id="modify" class="btn_ccc">MODIFY</a>
+                        <a href="#" id="delete" class="btn_ccc">DELETE</a>
                     </div>
                 </div>
             </form>

@@ -22,4 +22,9 @@ public class ItemAttachDaoImple implements ItemAttachDao {
     public List<ItemAttachDto> findByIno(Integer ino) {
         return session.selectList(namespace + "findByIno", ino);
     }
+
+    @Override
+    public void deleteAll(Integer ino) throws Exception {
+        session.delete(namespace + "deleteAll" , ino);
+    }
 }

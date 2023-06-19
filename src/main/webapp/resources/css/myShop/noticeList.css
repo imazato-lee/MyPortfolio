@@ -145,3 +145,34 @@ select {
     color: #a5a0a0;
     font-family: 'Oswald';
 }
+.board_footer {
+    border: 1px solid #ccc;
+    border-top: 0px;
+    padding: 15px 15px;
+}
+.xans-board-buttonlist a {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 100px;
+    line-height: 28px;
+    border: 1px solid #000;
+    color: #000;
+    text-align: center;
+}
+.board_footer:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-board-search {
+    float: left;
+    color: #2e2e2e;
+    font-size: 12px;
+    padding-top: 4px;
+}
+.xans-board-buttonlist a:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s;
+}

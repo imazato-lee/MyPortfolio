@@ -8,4 +8,5 @@ public interface ItemAttachDao {
     void insert(ItemAttachDto dto);
 
     List<ItemAttachDto> findByIno(Integer ino);
+    void deleteAll(Integer ino) throws Exception;
 }

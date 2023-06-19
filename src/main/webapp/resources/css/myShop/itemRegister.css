@@ -545,3 +545,18 @@ input[type=file]::file-selector-button{
     right: 10px;
     border: none;
 }
+.btn_ccc {
+    display: inline-block;
+    width: 120px;
+    line-height: 30px;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+.btn_ccc:hover{
+    transition: all 0.5s;
+    background-color: black;
+    color: white;
+}

@@ -70,8 +70,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="board_footer" style="padding-top: 30px;">
-                        <form id="search-form" action="<c:url value='/notice/list'/>" method="get" style="width: 90%;  float: left;">
+                    <div class="board_footer" >
+                        <form id="search-form" action="<c:url value='/notice/list'/>" method="get" style="width: 70%;  float: left;">
+                            <div class="xans-element- xans-board xans-board-search-4 xans-board-search xans-board-4 ">
                             <fieldset class="boardSearch">
                                 <legend>게시물 검색</legend>
                                 <p>
@@ -84,6 +85,7 @@
                                         <a href="#" onclick="searchFormSubmit();">SEARCH</a>
                                 </p>
                             </fieldset>
+                            </div>
                         </form>
                         <div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002  " style="float: right;padding-right: 20px;">
                             <a href="<c:url value='/notice/write${ph.sc.getQueryString()}'/>">WRITE</a>

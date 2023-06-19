@@ -10,4 +10,7 @@
     <select id="findByIno" resultType="ItemAttachDto">
         select * from attach where ino = #{ino}
     </select>
+    <delete id="deleteAll" parameterType="int">
+        delete from attach where ino = #{ino}
+    </delete>
 </mapper>

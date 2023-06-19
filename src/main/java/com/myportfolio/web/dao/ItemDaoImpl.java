@@ -60,4 +60,6 @@ public class ItemDaoImpl implements ItemDao {
         return session.selectOne(namespace + "resultCnt", ic);
     }
 
+
+
 }
