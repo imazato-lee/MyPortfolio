@@ -10,17 +10,19 @@
 <div id="footer_title">아직이름을 못정했어요</div>
 
 <div id="footer">
-    <div class="xans-element- xans-layout xans-layout-footer footer "><ul class="xans-element- xans-layout xans-layout-info footer_cs "><li><pre>070-0000-0000　Mon-Fri: 11am-6pm　Sat.Sun.Holiday OFF
-    NH 351-0894-7969-53　Account holder : ID5AGIT</pre></li>
-    </ul>
+    <div class="xans-element- xans-layout xans-layout-footer footer ">
+        <ul class="xans-element- xans-layout xans-layout-info footer_cs ">
+            <li>
+                <pre>070-0000-0000　Mon-Fri: 11am-6pm　Sat.Sun.Holiday OFF
+    NH 351-0894-7969-53　Account holder : ID5AGIT</pre>
+            </li>
+        </ul>
         <ul class="sns_list">
             <a href="#" target="blank_">Instagram</a>
         </ul>
         <form id="searchBarForm"  action='<c:url value="/item/list?option=key"/>' method="get">
-            <input id="banner_action" name="banner_action" value="" type="hidden">
             <ul class="xans-element- xans-layout xans-layout-searchheader ">
                 <li>
-
                     <fieldset>
                         <legend>검색</legend>
                         <input id="keyword" name="keyword" class="inputTypeText" placeholder="Search" value="" type="text">
@@ -30,7 +32,10 @@
             </ul>
         </form>
         <ul class="shop_info">
-            Company: ID5AGIT . Ceo Cpo : Haninsuk . Address :   615-1, Daemyeong 1-dong, Nam-gu, Daegu, Korea . Business license : 000-0000-0000 . Online business license : 0000-서울서초-0000<br><a href="">Agreement</a>　<a href="">Guide</a>　<a href="">Privacy</a>
+            Company: ID5AGIT . Ceo Cpo : Haninsuk . Address :   615-1, Daemyeong 1-dong, Nam-gu, Daegu, Korea . Business license : 000-0000-0000 . Online business license : 0000-서울서초-0000<br>
+            <a href="#">Agreement</a>　
+            <a href="#">Guide</a>　
+            <a href="#">Privacy</a>
         </ul>
     </div>
 </div>
@@ -83,7 +88,9 @@
     <div id="mask"></div>
 </div>
 
-<p id="back-top" style="display: none;"><a href="#top">TOP</a></p>
+<p id="back-top" style="display: none;">
+    <a href="#top">TOP</a>
+</p>
 <div id="modalBackpanel"></div>
 <div id="modalContainer"></div>
 

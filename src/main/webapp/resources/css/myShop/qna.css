@@ -1,0 +1,265 @@
+input,
+select,
+textarea,
+pre {
+    font-family: Arial, "malgun gothic", 맑은고딕, NanumGothic, dotum, 돋움, sans-serif;
+    font-size: 11px;
+    color: rgb(0, 0, 0);
+    vertical-align: middle;
+}
+.xans-board-read {
+    position: relative;
+    border: 1px solid rgb(221, 221, 221);
+    margin-bottom: 30px;
+}
+.xans-board-read::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-board-read .board_wrap {
+    position: relative;
+    width: 92%;
+    margin: 40px auto;
+}
+.xans-board-read .board_wrap .board_top {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    vertical-align: bottom;
+    padding-bottom: 40px;
+}
+.xans-board-read .board_wrap .board_top::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-board-read .board_wrap .board_top ul.left {
+    float: left;
+    width: 50%;
+}
+.xans-board-read .board_wrap .board_top ul.left .subject {
+    font-size: 14px;
+    padding-bottom: 30px;
+}
+.xans-board-read .board_wrap .board_top ul.left .etc p {
+    display: inline-block;
+    padding-right: 20px;
+}
+img,
+fieldset {
+    border: none;
+    vertical-align: top;
+}
+.xans-board-read .board_wrap .board_top ul.right {
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out 0s;
+    vertical-align: bottom;
+    float: right;
+    width: 48%;
+    text-align: right;
+    overflow: hidden;
+}
+.xans-board-read .board_wrap .board_top ul.right li {
+    display: inline-block;
+    vertical-align: bottom;
+}
+.xans-board-read .board_wrap .board_top ul.right li.thubm {
+    margin-left: 10px;
+}
+.xans-board-read .board_wrap .board_top ul.right li.thubm img {
+    height: 85px;
+}
+.xans-board-read .board_wrap .detail {
+    padding: 80px 0px;
+    font-size: 12px;
+    line-height: 180%;
+}
+.fr-view {
+    word-wrap: break-word;
+}
+.fr-view:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-board-read .board_wrap .board_footer {
+    padding-top: 40px;
+}
+.xans-board-read .board_wrap .board_footer::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.xans-board-read .board_wrap .board_footer ul.left {
+    float: left;
+    text-align: right;
+}
+.xans-board-read .board_wrap .board_footer ul.left li {
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+.xans-board-read .board_wrap .board_footer ul.left li strong {
+    font-weight: 500;
+    color: rgb(153, 153, 153);
+}
+.xans-board-read .board_wrap .board_footer ul.left li input {
+    border: 0px;
+}
+.xans-board-read .board_wrap .board_footer ul.right {
+    float: right;
+}
+.xans-board-read .board_wrap .board_footer ul.right a {
+    margin-bottom: 5px;
+}
+.btn_000 {
+    display: inline-block;
+    width: 80px;
+    line-height: 24px;
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+.displaynone {
+    display: none;
+}
+.xans-board-read .board_wrap .board_footer ul.right a {
+    margin-bottom: 5px;
+}
+.btn_ccc {
+    display: inline-block;
+    width: 80px;
+    line-height: 24px;
+    border: 1px solid rgb(204, 204, 204);
+    color: rgb(153, 153, 153);
+    text-align: center;
+}
+.xans-board-commentform {
+    margin: 10px 20px;
+    padding: 5px 20px 20px;
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(53, 53, 53);
+}
+.xans-board-commentform legend {
+    visibility: hidden;
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+    font-size: 0px;
+    line-height: 0;
+}
+legend {
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 0px;
+    height: 0px;
+    line-height: 0;
+}
+.xans-board-commentform p {
+    margin: 10px 0px 0px;
+}
+.xans-board-commentform input[type="text"],
+.xans-board-commentform input[type="password"] {
+    width: 135px;
+    margin: 0px 10px 0px 9px;
+}
+.xans-board-commentform .secret {
+    margin: 0px 20px 0px 10px;
+}
+label {
+    cursor: default;
+}
+.xans-board-commentform .view {
+    position: relative;
+    margin: 10px 0px 0px;
+    padding: 0px 180px 0px 0px;
+}
+.xans-board-commentform textarea {
+    width: 100%;
+    height: 44px;
+    padding: 2px 2px 2px 4px;
+}
+.xans-board-commentform .submit {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.btn_ccc_box {
+    display: inline-block;
+    width: 78px;
+    line-height: 48px;
+    border: 1px solid rgb(204, 204, 204);
+    color: rgb(153, 153, 153);
+    text-align: center;
+}
+.xans-board-commentform p {
+    margin: 10px 0px 0px;
+}
+.xans-board-commentformsecret {
+    margin: 10px 25px 0px 0px;
+    padding: 20px 15px;
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(53, 53, 53);
+}
+.xans-board-commentformsecret input {
+    margin-right: 10px;
+}
+.xans-board-commentwrite {
+    margin: 30px 0px 0px;
+    padding: 5px 20px 20px;
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(53, 53, 53);
+}
+.xans-board-commentwrite legend {
+    visibility: hidden;
+    overflow: hidden;
+    width: 0px;
+    height: 0px;
+    font-size: 0px;
+    line-height: 0;
+}
+.xans-board-commentwrite p {
+    margin: 10px 0px 0px;
+}
+.xans-board-commentwrite .secret {
+    margin: 0px 20px 0px 10px;
+}
+.btn_ccc_100 {
+    margin: 1px 0px;
+    padding: 0px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid rgb(204, 204, 204);
+    color: rgb(153, 153, 153);
+    width: 98px;
+    height: 24px;
+    line-height: 24px;
+}
+board-commentwrite .view {
+    position: relative;
+    margin: 10px 0px 0px;
+    padding: 0px 95px 0px 0px;
+}
+.xans-board-commentwrite p {
+    margin: 10px 0px 0px;
+}
+.xans-board-commentwrite p.captcha {
+    border-top: 1px solid rgb(233, 233, 233);
+    padding: 15px 0px 0px;
+    color: rgb(117, 117, 117);
+}
+span.ec-base-help,
+p.ec-base-help,
+ul.ec-base-help li {
+    margin: 2px 9px;
+    padding: 0px 0px 0px 11px;
+    line-height: 1.4;
+    background: url(//img.echosting.cafe24.com/skin/base/common/ico_dash.gif) 0px 7px no-repeat;
+}
+.txtInfo {
+    color: rgb(112, 112, 112);
+}
+.xans-board-commentwrite .submit {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

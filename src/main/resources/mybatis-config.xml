@@ -11,5 +11,7 @@
         <typeAlias alias="ItemDto" type="com.myportfolio.web.domain.ItemDto"/>
         <typeAlias alias="ItemAttachDto" type="com.myportfolio.web.domain.ItemAttachDto"/>
         <typeAlias alias="ItemCondition" type="com.myportfolio.web.domain.ItemCondition"/>
+        <typeAlias alias="QnaDto" type="com.myportfolio.web.domain.QnaDto"/>
+        <typeAlias alias="QnaItemDto" type="com.myportfolio.web.domain.QnaItemDto"/>
     </typeAliases>
 </configuration>

@@ -14,7 +14,14 @@
     <title>Document</title>
 </head>
 <body>
-<div id="skipNavigation"><p><a href="#category">전체상품목록 바로가기</a></p><p><a href="#contents">본문 바로가기</a></p></div>
+<div id="skipNavigation">
+    <p>
+        <a href="#">전체상품목록 바로가기</a>
+    </p>
+    <p>
+        <a href="#">본문 바로가기</a>
+    </p>
+</div>
 <div id="wrap">
     <div id="LeftMenu">
         <div class="LeftMenu">
@@ -36,7 +43,7 @@
     <div id="header">
         <div class="header">
             <ul class="board_list"><li><a href="<c:url value='/notice/list'/>">Notice</a></li>
-                <li><a href="">Q&amp;A</a></li>
+                <li><a href="<c:url value='/qna/list'/>">Q&amp;A</a></li>
                 <li><a href="">Review</a></li>
                 <li><a href="#dialog" name="modal">About</a></li>
             </ul>

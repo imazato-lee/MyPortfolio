@@ -1,0 +1,215 @@
+.xans-board-listpackage {
+    margin: 0 0 10px;
+}
+.xans-board-title {
+    text-align: center;
+    font-family: Libre Baskerville, Arial, malgun gothic, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif;
+}
+.xans-board-title .title_text {
+    font-size: 12px;
+    padding-bottom: 40px;
+}
+font{
+    color: rgb(51, 51, 51);
+}
+.xans-board-listpackage .ec-base-table {
+    clear: both;
+}
+.ec-base-table.typeList table {
+    border-top-color: #d7d5d5;
+}
+.xans-board-listpackage .ec-base-table table {
+    border-collapse: collapse;
+}
+.ec-base-table table {
+    position: relative;
+    margin: 10px 0 0;
+    border: 1px solid #d7d5d5;
+    border-top-color: #fff;
+    color: #fff;
+    line-height: 1.5;
+}
+caption {
+    display: none;
+}
+colgroup {
+    display: table-column-group;
+}
+col {
+    display: table-column;
+}
+.displaynone {
+    display: none;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.ec-base-table th:first-child {
+    border-left: 0;
+}
+.ec-base-table thead th {
+    padding: 11px 0 10px;
+    border-left: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    color: #999;
+    vertical-align: middle;
+    font-weight: normal;
+}
+.ec-base-table .center {
+    text-align: center;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.ec-base-table.typeList.gBorder tbody td {
+    border-color: #eee;
+}
+.ec-base-table.typeList .center td,
+.ec-base-table.typeList td.center {
+    padding-left: 0;
+    padding-right: 0;
+}
+.ec-base-table.gBorder td:first-child {
+    border-left: 0;
+}
+.ec-base-table.typeList td {
+    padding: 8px 10px 7px;
+}
+.ec-base-table td {
+    padding: 11px 10px 10px;
+    height: 32px;
+    border-top: 1px solid #dfdfdf;
+    color: #353535;
+    vertical-align: middle;
+}
+.xans-board-listpackage .ec-base-table .thumb a {
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 16px;
+    color: #888;
+}
+.xans-board-listpackage .ec-base-table .thumb span {
+    float: left;
+    width: 110px;
+    padding: 0 0 0 8px;
+    text-align: left;
+    font-size: 10px;
+}
+.ec-base-table.typeList .center td.left {
+    padding-left: 10px;
+}
+.xans-board-listpackage .ec-base-table .subject img {
+    margin: 0 1px;
+}
+.ec-base-table img {
+    vertical-align: middle;
+}
+.txtNum {
+    font-size: 11px;
+    color: #939393;
+}
+.board_footer {
+    border: 1px solid #ccc;
+    border-top: 0px;
+    padding: 15px 15px;
+}
+.xans-board-search {
+    float: left;
+    color: #2e2e2e;
+    font-size: 12px;
+    padding-top: 4px;
+}
+.xans-board-search select#search_date {
+    margin: 0 2px 0 2px;
+}
+.xans-board-search select {
+    margin: 0 2px 0 0;
+    width: 72px;
+}
+select {
+    height: 24px;
+    border: 1px solid #d5d5d5;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+input[type=text],
+input[type=password] {
+    height: 18px;
+    line-height: 20px;
+    padding: 2px 4px;
+    border: 1px solid #d5d5d5;
+    color: #353535;
+    font-size: 12px;
+}
+.xans-board-search a {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    color: #999;
+    padding: 0 5px;
+}
+.xans-board-listpackage .ec-base-table .thumb img {
+    width: 40px;
+    float: left;
+}
+.ec-base-table table+.message {
+    margin: -1px 0 0;
+}
+.ec-base-table .message {
+    border: 1px solid #d7d5d5;
+    padding: 50px 0;
+    text-align: center;
+    color: #757575;
+    font-weight: bold;
+}
+.xans-board-buttonlist {
+    float: right;
+}
+.xans-board-buttonlist a {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 100px;
+    line-height: 28px;
+    border: 1px solid #000;
+    color: #000;
+    text-align: center;
+}
+img,
+fieldset {
+    border: none;
+    vertical-align: top;
+}
+.board_footer:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.ec-base-table table {
+    position: relative;
+    margin: 10px 0 0;
+    border: 1px solid #d7d5d5;
+    border-top-color: #fff;
+    color: #fff;
+    line-height: 1.5;
+}
+.ec-base-table.gBorder td {
+    border-left: 1px solid #dfdfdf;
+}
+.ec-base-table .left {
+    text-align: left;
+}

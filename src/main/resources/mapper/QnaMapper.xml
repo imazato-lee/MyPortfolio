@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myportfolio.web.dao.QnaMapper">
+    <!-- 상품 상세페이지 count 출력  -->
+    <select id="count" resultType="int">
+        select count(*) from qna where ino = #{ino}
+    </select>
+    <!-- 이름, 이메일 이중 확인을 하면 좋겠다. -->
+    <delete id="delete" parameterType="qnaDto">
+        DELETE FROM qna WHERE qno = #{qno} and writer = #{writer}
+    </delete>
+
+    <insert id="insert" parameterType="qnaDto">
+        INSERT INTO qna
+            (ino, title, content, writer)
+        VALUES
+            (#{ino}, #{title}, #{content}, #{writer})
+    </insert>
+
+    <update id="update" parameterType="qnaDto">
+        UPDATE qna
+        SET   title = #{title}
+          , content = #{content}
+          , up_date = now()
+        WHERE qno = #{qno}
+    </update>
+    <!-- 댓글은 운영자와 글쓴이만 쓸수 있게 할 것.
+    만약 운영자가 댓글을 달면 그때 adminReplyed 값을 1로 변환해준다.
+    아직 댓글 안달아준것들만 따로 전체 확인할 수 있게 하기 위함. -->
+    <update id="adminReplyed" parameterType="qnaDto">
+        UPDATE qna
+        SET admin_reply = ${admin_reply}
+        WHERE qno = #{qno}
+    </update>
+
+    <select id="select" parameterType="int" resultType="qnaDto">
+        SELECT qno, ino, title, content, writer, comment_cnt, admin_reply, reg_date, up_date
+        FROM qna
+        WHERE qno = #{qno}
+    </select>
+    <!-- 댓글 작성, 삭제 시 comment_cnt열의 숫자에 +1, -1 해준다. -->
+    <update id="updateCommentCnt" parameterType="map">
+        UPDATE qna
+        SET   comment_cnt = comment_cnt + #{cnt}
+        WHERE qno = #{qno}
+    </update>
+
+    <!-- 제목 조회, 글쓴이 조회, 상품명 조회, 내용조회, 답글작성유무별 조회 -->
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="title"'>
+                AND title LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="writer"'>
+                AND writer LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="itemName"'>
+                AND itemName LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="content"'>
+                AND content LIKE concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="adminReply"'>
+                AND adminReply == 0
+            </when>
+        </choose>
+    </sql>
+    <!-- 상세페이지에서 페이징 -->
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="qnaDto">
+        SELECT qno, ino, title, content, writer, comment_cnt, admin_reply, reg_date, up_date
+        FROM  qna
+        WHERE true
+        <include refid="searchCondition"/>
+        ORDER BY reg_date DESC, qno DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+    <!-- 조건별 총 갯수  -->
+    <select id="resultCnt" parameterType="SearchCondition" resultType="int">
+        SELECT count(*)
+        FROM  qna
+        WHERE true
+        <include refid="searchCondition"/>
+    </select>
+
+    <!-- Q&A 전체 조회에서 페이징 -->
+    <select id="searchAllSelectPage" parameterType="SearchCondition" resultType="qnaItemDto">
+        SELECT q.qno, q.ino, i.itemName, q.title, q.content, q.writer, q.comment_cnt, q.reg_date, q.up_date
+        FROM qna q
+        JOIN item i ON q.ino = i.ino
+        WHERE true
+        <include refid="searchCondition"/>
+        ORDER BY q.reg_date DESC, q.qno DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!-- Q&A 전체 조회에서 선택 -->
+    <select id="selectQna" parameterType="int" resultType="qnaItemDto">
+        SELECT q.qno, q.ino, i.itemName, q.title, q.content, q.writer, q.comment_cnt, q.reg_date, q.up_date
+        FROM qna q
+        JOIN item i ON q.ino = i.ino
+        WHERE q.qno = #{qno}
+        <include refid="searchCondition"/>
+    </select>
+</mapper>
