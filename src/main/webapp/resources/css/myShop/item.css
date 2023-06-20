@@ -116,9 +116,9 @@ input[type=text], input[type=password] {
     width: 20px;
     margin: 0!important;
     padding: 0!important;
-    border: 0px!important;
+    border: 0px !important;
     color: #ccc!important;
-    font-size: 10px!important;
+    font-size: 15px !important;
 }
 .quantity_wrap a {
     opacity: 0.4;

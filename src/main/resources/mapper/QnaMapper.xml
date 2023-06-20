@@ -85,7 +85,7 @@
 
     <!-- Q&A 전체 조회에서 페이징 -->
     <select id="searchAllSelectPage" parameterType="SearchCondition" resultType="qnaItemDto">
-        SELECT q.qno, q.ino, i.itemName, q.title, q.content, q.writer, q.comment_cnt, q.reg_date, q.up_date
+        SELECT q.qno, q.ino, i.itemName, i.itemPrice, q.title, q.content, q.writer, q.comment_cnt, q.reg_date, q.up_date
         FROM qna q
         JOIN item i ON q.ino = i.ino
         WHERE true
@@ -96,10 +96,9 @@
 
     <!-- Q&A 전체 조회에서 선택 -->
     <select id="selectQna" parameterType="int" resultType="qnaItemDto">
-        SELECT q.qno, q.ino, i.itemName, q.title, q.content, q.writer, q.comment_cnt, q.reg_date, q.up_date
+        SELECT q.qno, q.ino, i.itemName, i.itemPrice, q.title, q.content, q.writer, q.comment_cnt, q.reg_date, q.up_date
         FROM qna q
         JOIN item i ON q.ino = i.ino
         WHERE q.qno = #{qno}
-        <include refid="searchCondition"/>
     </select>
 </mapper>

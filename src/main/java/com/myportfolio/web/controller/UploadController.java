@@ -71,7 +71,7 @@ public class UploadController {
                 if(checkImageType(saveFile)){
                     attachDto.setImage(true);
                     FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-                    Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+                    Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 130, 130);
                     thumbnail.close();
                 }
                 // add to list

@@ -9,7 +9,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/css/myShop/qnaList.css'/>">
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script>
+  $(function(){
+    let list = new Array()
+    <c:forEach items="${list}" var="qnaItemDto">
+      list.push(<c:out value="${qnaItemDto.ino}"/>);
+    </c:forEach>
+    $.getJSON("/item/getAttachListOnList", {list : list},
+            function(data){
+              console.log(data);
+              var html = "";
+              var keys = Object.keys(data).sort((a, b) => Number(b)-Number(a))
+              $(keys).each(
+                      function(i,ino){
+                        var attach = data[ino];
+                        console.log(ino)
+                        if(attach[0] != null){
+                          if(attach[0].fileType){
+                            var fileCallPath = encodeURI(attach[0].uploadPath + '/' + attach[0].uuid + "_" + attach[0].fileName) //원본
+                            // var fileCallPath = encodeURI(attach[0].uploadPath + '/s_' + attach[0].uuid + "_" + attach[0].fileName) //썸네일
+                            html = "<img src='/display?fileName=" + fileCallPath + "'>"
+                          } else {
+                            html = "<img src='/resources/images/attach.png'>"
+                          }
+                          $("#"+ino).html(html);
+                        }
+                      })
+            })
+  })
 
+  let addZero = function(value=1){
+    return value > 9 ? value : "0"+value;
+  }
+
+  let dateToString = function(ms) {
+    let date = new Date(ms);
+
+    let yyyy = date.getFullYear();
+    let mm = addZero(date.getMonth() + 1);
+    let dd = addZero(date.getDate());
+    return yyyy+"-"+mm+"-"+dd
+  }
+</script>
 <div id="contents_wrap">
   <div id="container">
     <div id="contents">
@@ -42,133 +84,29 @@
               </tr>
             </thead>
             <tbody class="xans-element- xans-board xans-board-list-4 xans-board-list xans-board-4 center">
+              <c:forEach items="${list}" var="qnaItemDto">
               <tr class="xans-record-">
-                <td> 6</td>
-                <td class="thumb left"><a href="/product/$1/$2/"><span></span></a></td>
+                <td>${qnaItemDto.qno}</td>
+                <td class="thumb left">
+                  <a href="<c:url value='/item/read${ph.sc.getQueryString()}&ino=${qnaItemDto.ino}' />" id="<c:out value='${qnaItemDto.ino}' />"></a>
+                  <span>${qnaItemDto.itemName}</span>
+                </td>
                 <td class="displaynone"></td>
                 <td class="subject left txtBreak">
-                  <span class="displaynone">
+                  <c:if test="${qnaItemDto.admin_reply eq true}">
+                  <span>
                     <a href="#" onclick="">
-                      <img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기">
+                      <img src="<c:url value='/images/replied.gif'/>" alt="내용 보기">
                     </a>
                   </span>
-                  <a href="">기타문의</a>
+                  </c:if>
+                  <a href="<c:url value='/qna/read${ph.sc.getQueryString()}&qno=${qnaItemDto.qno}'/>">${qnaItemDto.title}</a>
                   <span class="txtEm"></span>
                 </td>
-                <td>아영</td>
-                <td class=""><span class="txtNum">2018-06-24</span></td>
+                <td>${qnaItemDto.writer}</td>
+                <td class=""><span class="txtNum"><script>document.write(dateToString(${qnaItemDto.reg_date.time}))</script></span></td>
               </tr>
-              <tr class="xans-record-">
-                <td> 5</td>
-                <td class="thumb left">
-                  <a href="/product/sample-product/11/">
-                    <img src="//ecudemo97964.cafe24.com/web/product/tiny/201806/11_shop1_15297538936011.jpg" border="0" alt="">
-                    <span>SAMPLE PRODUCT</span>
-                  </a>
-                </td>
-                <td class="displaynone"></td>
-                <td class="subject left txtBreak">
-                  <span class="displaynone">
-                    <a href="#" onclick="">
-                      <img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기">
-                    </a>
-                  </span>
-                  <a href="">배송문의</a>
-                  <span class="txtEm"></span>
-                </td>
-                <td>이화영</td>
-                <td class=""><span class="txtNum">2018-06-24</span></td>
-                <td class="displaynone"><span class="txtNum">97</span></td>
-                <td class="displaynone"><span class="txtNum">0</span></td>
-                <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
-              </tr>
-              <tr class="xans-record-">
-                <td> 4</td>
-                <td class="thumb left">
-                  <a href="/product/sample-product/12/">
-                    <img src="//ecudemo97964.cafe24.com/web/product/tiny/201806/12_shop1_15297539280848.jpg" border="0" alt="">
-                    <span>SAMPLE PRODUCT</span>
-                  </a>
-                </td>
-                <td class="displaynone"></td>
-                <td class="subject left txtBreak">
-                  <span class="displaynone">
-                    <a href="#" onclick="">
-                      <img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기">
-                    </a>
-                  </span>
-                  <a href="#">상품문의</a><span class="txtEm"></span>
-                </td>
-                <td>김하늘</td>
-                <td class=""><span class="txtNum">2018-06-24</span></td>
-                <td class="displaynone"><span class="txtNum">75</span></td>
-                <td class="displaynone"><span class="txtNum">0</span></td>
-                <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
-              </tr>
-              <tr class="xans-record-">
-                <td> 3</td>
-                <td class="thumb left">
-                  <a href="#">
-                    <img src="//ecudemo97964.cafe24.com/web/product/tiny/201806/16_shop1_15297539878515.jpg" border="0" alt="">
-                    <span>SAMPLE PRODUCT</span>
-                  </a>
-                </td>
-                <td class="displaynone"></td>
-                <td class="subject left txtBreak">
-                  <span class="displaynone">
-                    <a href="#" onclick="">
-                      <img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기">
-                    </a>
-                  </span>
-                  <a href="#">상품문의</a> <span class="txtEm"></span>
-                </td>
-                <td>환이</td>
-                <td class=""><span class="txtNum">2018-06-24</span></td>
-                <td class="displaynone"><span class="txtNum">67</span></td>
-                <td class="displaynone"><span class="txtNum">0</span></td>
-                <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
-              </tr>
-              <tr class="xans-record-">
-                <td> 2</td>
-                <td class="thumb left"><a href="/product/$1/$2/"><span></span></a></td>
-                <td class="displaynone"></td>
-                <td class="subject left txtBreak">
-                  <span class="displaynone">
-                    <a href="#" onclick="">
-                      <img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기">
-                    </a>
-                  </span>
-                  <a href="#">상품문의</a> <span class="txtEm"></span>
-                </td>
-                <td>대이영</td>
-                <td class=""><span class="txtNum">2018-06-24</span></td>
-                <td class="displaynone"><span class="txtNum">44</span></td>
-                <td class="displaynone"><span class="txtNum">0</span></td>
-                <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
-              </tr>
-              <tr class="xans-record-">
-                <td> 1</td>
-                <td class="thumb left">
-                  <a href="#">
-                    <img src="//ecudemo97964.cafe24.com/web/product/tiny/201806/15_shop1_15297539710464.jpg" border="0" alt="">
-                    <span>SAMPLE PRODUCT</span>
-                  </a>
-                </td>
-                <td class="displaynone"></td>
-                <td class="subject left txtBreak">
-                  <span class="displaynone">
-                    <a href="#" onclick="">
-                      <img src="//img.echosting.cafe24.com/skin/base/board/btn_unfold.gif" alt="내용 보기">
-                    </a>
-                  </span>
-                  <a href="#">상품문의</a> <span class="txtEm"></span>
-                </td>
-                <td>김이설</td>
-                <td class=""><span class="txtNum">2018-06-24</span></td>
-                <td class="displaynone"><span class="txtNum">75</span></td>
-                <td class="displaynone"><span class="txtNum">0</span></td>
-                <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
-              </tr>
+              </c:forEach>
             </tbody>
           </table>
           <p class="xans-element- xans-board xans-board-empty-4 xans-board-empty xans-board-4 message displaynone "></p>
@@ -187,7 +125,7 @@
                     <option value="month3">세달</option>
                     <option value="all">전체</option>
                   </select>
-                  <select id="search_key" name="search_key">
+                  <select id="search_key" name="option">
                     <option value="subject">제목</option>
                     <option value="content">내용</option>
                     <option value="writer_name">글쓴이</option>
@@ -195,26 +133,26 @@
                     <option value="nick_name">별명</option>
                     <option value="product">상품정보</option>
                   </select>
-                  <input id="search" name="search" class="inputTypeText" placeholder="" value="" type="text">
+                  <input id="search" name="keyword" class="inputTypeText" placeholder="" value="" type="text">
                   <a href="#" onclick="">SEARCH</a>
                 </p>
               </fieldset>
             </div>
           </form>
-          <div class="xans-element- xans-board xans-board-buttonlist-4 xans-board-buttonlist xans-board-4  ">
+          <div class="xans-element- xans-board xans-board-buttonlist-4 xans-board-buttonlist xans-board-4">
             <a href="#" class="">WRITE</a>
           </div>
         </div>
         <!--// board_footer -->
-        </div>
-
-        <div class="xans-element- xans-board xans-board-paging-4 xans-board-paging xans-board-4 ec-base-paginate-text">
-          <a href="#">PREV</a>
-          <ol>
-            <li class="xans-record-"><a href="#" class="this">1</a></li>
-          </ol>
-          <a href="#">NEXT</a>
-        </div>
       </div>
+
+      <div class="xans-element- xans-board xans-board-paging-4 xans-board-paging xans-board-4 ec-base-paginate-text">
+        <a href="#">PREV</a>
+        <ol>
+          <li class="xans-record-"><a href="#" class="this">1</a></li>
+        </ol>
+        <a href="#">NEXT</a>
+      </div>
+    </div>
 
 <%@ include file="includes/footer.jsp"%>

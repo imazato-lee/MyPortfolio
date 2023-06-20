@@ -19,16 +19,16 @@
           <div class="board_wrap">
             <div class="board_top ">
               <ul class="left">
-                <li class="subject">배송문의</li>
-                <li class="writer">POSTED BY :  이화영  </li>
+                <li class="subject">${qnaItemDto.title}</li>
+                <li class="writer">POSTED BY :  ${qnaItemDto.writer}  </li>
                 <li class="etc">
-                  <p class="">2018-06-24</p>
+                  <p class="">${qnaItemDto.reg_date}</p>
                 </li>
               </ul>
               <ul class="xans-element- xans-board xans-board-product-4 xans-board-product xans-board-4 right ">
                 <li>
-                  <p><a href="/product/sample-product/11/">SAMPLE PRODUCT</a></p>
-                  <p><a href="/product/sample-product/11/">78,000</a></p>
+                  <p><a href="#">${qnaItemDto.itemName}</a></p>
+                  <p><a href="#">${qnaItemDto.itemPrice}</a></p>
                 </li>
                 <li class="thubm">
                   <a href="">
@@ -44,7 +44,7 @@
                 <br style="color: rgb(0, 0, 0); text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">
                 <span style="color: rgb(0, 0, 0); text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; word-spacing: 0px; float: none; display: inline !important; white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">CREATIVE DESIGNI D5AGIT</span>
                 <br style="color: rgb(0, 0, 0); text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">
-                <a style="transition:0.3s; color: rgb(0, 0, 0); text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; text-decoration: none; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px;" href="http://www.id5agit.com/">WWW.ID5AGIT.COM</a>
+                <a style="transition:0.3s; color: rgb(0, 0, 0); text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; text-decoration: none; word-spacing: 0px; white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px;" href="#">WWW.ID5AGIT.COM</a>
               </div>
             </div>
             <div class="board_footer ">

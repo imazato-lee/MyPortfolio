@@ -11,6 +11,7 @@ public class QnaItemDto {
     private Integer qno;
     private Integer ino;
     private String itemName;
+    private Integer itemPrice;
     private String title;
     private String content;
     private String writer;

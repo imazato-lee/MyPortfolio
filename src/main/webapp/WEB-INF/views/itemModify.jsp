@@ -240,10 +240,10 @@
                         </table>
                     </div>
                     <div class="text-button-center">
-                        <a href='<c:url value="/item/read${ic.getQueryString()}&ino=${itemDto.ino}"/>' id="list" class="btn_ccc">LIST</a>
+                        <a href='<c:url value="/item/read${ic.getQueryString()}&ino=${itemDto.ino}"/>' id="list" class="btn_ccc">RETURN</a>
                         <a href="#" id="modify" class="btn_ccc">MODIFY</a>
                         <a href="#" id="delete" class="btn_ccc">DELETE</a>
-                    </div>
+                    </div>z
                 </div>
             </form>
         </div>

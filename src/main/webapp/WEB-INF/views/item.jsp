@@ -33,6 +33,22 @@ change this template use File | Settings | File Templates. --%>
             })
             $(".uploadResult").html(str);
         })
+
+        $("#quantityUp").on("click",function(){
+            let quantity = parseInt($("#quantity").val())
+            quantity = quantity + 1
+            $("#quantity").val(quantity)
+        })
+
+        $("#quantityDown").on("click",function(){
+            let quantity = parseInt($("#quantity").val())
+            quantity = quantity -1
+            if(quantity < 0 ){
+                alert("올바르지 않는 값입니다.")
+                return;
+            }
+            $("#quantity").val(quantity);
+        })
     })
 
 </script>
@@ -87,10 +103,10 @@ change this template use File | Settings | File Templates. --%>
                                     <ul>
                                         <li><span class="quantity">
                                             <input id="quantity" name="quantity_name" style="" value="0" type="text"/>
-                                            <a href="#">
+                                            <a href="#" id="quantityUp">
                                                 <img src="<c:url value='/images/detail_qty_up.jpg'/>" alt="QTY증가" class="QuantityUp up"/>
                                             </a>
-                                            <a href="#">
+                                            <a href="#" id="quantityDown">
                                                 <img src="<c:url value='/images/detail_qty_down.jpg'/>" alt="QTY감소" class="QuantityDown down"/>
                                             </a></span>
                                         </li>
@@ -253,7 +269,7 @@ change this template use File | Settings | File Templates. --%>
                                 <ul>
                                     <li class="left">Q&amp;A</li>
                                     <li class="right">
-                                        <a href="#" class="btn_ccc">문의작성</a>
+                                        <a href="<c:url value='/qna/write${ic.getQueryString()}&ino=${itemDto.ino}'/>" class="btn_ccc">문의작성</a>
                                         <a href="#" class="btn_ccc">모두보기</a>
                                     </li>
                                 </ul>
