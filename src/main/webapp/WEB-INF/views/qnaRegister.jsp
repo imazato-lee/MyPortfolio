@@ -8,6 +8,7 @@
 <%@ include file="includes/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="<c:url value='/css/myShop/qnaRegister.css'/>">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<c:url value="/ckeditor/ckeditor.js"/>"></script>
@@ -62,21 +63,36 @@
           </p>
           <p class="imgArea"></p>
         </div>
-        <form id="qnaWriteForm" action="<c:url value='/qna/write'/>" method="post">
+        <c:if test="${mode ne 'modify'}">
+          <form id="qnaWriteForm" action="<c:url value='/qna/write'/>" method="post">
+        </c:if>
+        <c:if test="${mode eq 'modify'}">
+          <form id="qnaWriteForm" action="<c:url value='/qna/modify'/>" method="post">
+        </c:if>
+         <c:if test="${mode eq 'modify'}">
+              <input type="hidden" name="qno" value="${itemDto.qno}">
+          </c:if>
           <input id="ino" name="ino" value="${itemDto.ino}" type="hidden">
           <div class="xans-element- xans-board xans-board-write-4 xans-board-write xans-board-4">
             <!-- 상품정보선택 -->
             <div class="ec-base-box typeProduct">
               <p class="thumbnail">
 <%--                <a href="#">--%>
-<%--                  <img id="iPrdImg" src="//ecudemo97964.cafe24.com/web/product/tiny/201806/15_shop1_15297539710464.jpg">--%>
+<%--                  <img id="iPrdImg" src="">--%>
 <%--                </a>--%>
               </p>
               <div class="information">
                 <p class="name"><a href="#" id="aPrdNameLink"><span id="sPrdName">${itemDto.itemName}</span></a></p>
-                <p class="price"><span id="sPrdPrice">${itemDto.itemPrice}</span></p>
+                <p class="price"><span id="sPrdPrice"><fmt:formatNumber value="${itemDto.itemPrice}" pattern="##,###"/>원</span></p>
                 <p class="button">
-                  <span id="iPrdView" class=""><a href="<c:url value='/item/read${ic.getQueryString()}&ino=${itemDto.ino}'/>" id="aPrdLink" class="btn_ccc_100">상품상세보기</a></span>
+                  <span id="iPrdView" class="">
+                      <c:if test="${mode eq 'modify'}">
+                          <a href="<c:url value='/item/read${sc.getQueryString()}&ino=${itemDto.ino}'/>" id="aPrdLink" class="btn_ccc_100">상품상세보기</a>
+                      </c:if>
+                      <c:if test="${mode ne 'modify'}">
+                          <a href="<c:url value='/item/read${ic.getQueryString()}&ino=${itemDto.ino}'/>" id="aPrdLink" class="btn_ccc_100">상품상세보기</a>
+                      </c:if>
+                  </span>
                 </p>
               </div>
             </div>
@@ -107,12 +123,12 @@
                   </tr>
                   <tr style="height: 250px;">
                     <td colspan="2" class="clear">
-                      <textarea id="content" name="content" style="width: 95%; height: 100%; border: none;"></textarea>
+                      <textarea id="content" name="content" style="width: 95%; height: 100%; border: none;">${mode eq 'modify' ? itemDto.content : ""}</textarea>
                     </td>
                   </tr>
                 </tbody>
                 <tbody>
-                  <tr class="agree ">
+                  <tr class="agree">
                     <th scope="row">개인정보 수집 및 <br>이용 동의</th>
                     <td>
                         <textarea id="privacy_agreement" name="privacy_agreement">■ 개인정보의 수집·이용 목적
@@ -123,8 +139,8 @@
 
 ■ 개인정보의 보유 및 이용 기간
 회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외없이 해당정보를 파기합니다. </textarea><br>
-                    개인정보 수집 및 이용에 동의하십니까? <input id="privacy_agree_radio0" type="radio"><label for="privacy_agree_radio0">동의함</label>
-                    <input id="privacy_agree_radio1"  type="radio" checked="checked"><label for="privacy_agree_radio1">동의안함</label>
+                    개인정보 수집 및 이용에 동의하십니까? <input id="privacy_agree_radio0" name="privacy_agree_radio" type="radio"><label for="privacy_agree_radio0">동의함</label>
+                    <input id="privacy_agree_radio1"  name="privacy_agree_radio" type="radio" checked="checked"><label for="privacy_agree_radio1">동의안함</label>
                     </td>
                   </tr>
                 </tbody>
@@ -135,8 +151,13 @@
                 <span class="">
                   <a href="#" onclick="" class="btn_ccc_100">관리자답변보기</a>
                 </span>
-                <a href="<c:url value='/item/read${ic.getQueryString()}&ino=${itemDto.ino}'/>" class="btn_ccc">LIST</a>
-              </span>
+                  <c:if test="${mode eq 'modify'}">
+                      <a href="<c:url value='/qna/list${sc.getQueryString()}'/>" class="btn_ccc">LIST</a>
+                  </c:if>
+                  <c:if test="${mode ne 'modify'}">
+                      <a href="<c:url value='/item/read${ic.getQueryString()}&ino=${itemDto.ino}'/>" class="btn_ccc">LIST</a>
+                  </c:if>
+             </span>
               <span class="gRight">
                 <a href="#" id="submitForm" class="btn_000">등록</a>
               </span>

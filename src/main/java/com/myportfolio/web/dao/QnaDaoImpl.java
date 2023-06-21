@@ -43,8 +43,8 @@ public class QnaDaoImpl implements QnaDao {
     }
 
     // 조회
-    public QnaDto select(int qno) throws Exception {
-        return session.selectOne(NAMESPACE + "select", qno);
+    public List<QnaDto> select(Map map) throws Exception {
+        return session.selectList(NAMESPACE + "select", map);
     }
 
     // 댓글 카운트 업데이트

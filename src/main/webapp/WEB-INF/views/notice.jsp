@@ -267,6 +267,7 @@ function showCommentList(list){
           <!-- //board_wrap -->
           </div>
         </form>
+
         <div class="xans-element- xans-board  xans-board-commentpackage">
           <!-- 코멘트 리스트 -->
           <div class="xans-element- xans-board xans-board-commentlist">

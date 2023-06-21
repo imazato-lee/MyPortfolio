@@ -17,26 +17,32 @@
       list.push(<c:out value="${qnaItemDto.ino}"/>);
     </c:forEach>
     $.getJSON("/item/getAttachListOnList", {list : list},
-            function(data){
-              console.log(data);
-              var html = "";
-              var keys = Object.keys(data).sort((a, b) => Number(b)-Number(a))
-              $(keys).each(
-                      function(i,ino){
-                        var attach = data[ino];
-                        console.log(ino)
-                        if(attach[0] != null){
-                          if(attach[0].fileType){
-                            var fileCallPath = encodeURI(attach[0].uploadPath + '/' + attach[0].uuid + "_" + attach[0].fileName) //원본
-                            // var fileCallPath = encodeURI(attach[0].uploadPath + '/s_' + attach[0].uuid + "_" + attach[0].fileName) //썸네일
-                            html = "<img src='/display?fileName=" + fileCallPath + "'>"
-                          } else {
-                            html = "<img src='/resources/images/attach.png'>"
-                          }
-                          $("#"+ino).html(html);
-                        }
-                      })
-            })
+      function(data){
+        console.log(data);
+        var html = "";
+        var keys = Object.keys(data).sort((a, b) => Number(b)-Number(a))
+        $(keys).each(
+          function(i,ino){
+            var attach = data[ino];
+            console.log(ino)
+            if(attach[0] != null){
+              if(attach[0].fileType){
+                var fileCallPath = encodeURI(attach[0].uploadPath + '/' + attach[0].uuid + "_" + attach[0].fileName) //원본
+                // var fileCallPath = encodeURI(attach[0].uploadPath + '/s_' + attach[0].uuid + "_" + attach[0].fileName) //썸네일
+                html = "<img src='/display?fileName=" + fileCallPath + "'>"
+              } else {
+                html = "<img src='/resources/images/attach.png'>"
+              }
+              $("#"+ino).html(html);
+            }
+      })
+    })
+    $("#formSubmit").on("click",function(e){
+      e.preventDefault()
+      let qnaSearchForm = $("#qnaSearchForm")
+      qnaSearchForm.submit()
+    })
+
   })
 
   let addZero = function(value=1){
@@ -112,29 +118,27 @@
           <p class="xans-element- xans-board xans-board-empty-4 xans-board-empty xans-board-4 message displaynone "></p>
         </div>
         <div class="board_footer">
-          <form id="boardSearchForm" name="" action="" method="get">
-            <input id="board_no" name="board_no" value="6" type="hidden">
+          <form id="qnaSearchForm" name="" action="<c:url value='/qna/list'/>" method="get">
             <div class="xans-element- xans-board xans-board-search-4 xans-board-search xans-board-4 ">
               <fieldset class="boardSearch">
                 <legend>게시물 검색</legend>
                 <p class="category displaynone"></p>
                 <p>
-                  <select id="search_date" name="search_date">
-                    <option value="week">일주일</option>
-                    <option value="month">한달</option>
-                    <option value="month3">세달</option>
-                    <option value="all">전체</option>
+                  <select id="search_date" name="time">
+                    <option value="all" >전체</option>
+                    <option value="week" ${ph.sc.time=='week' ? "selected" : ""}>일주일</option>
+                    <option value="month" ${ph.sc.time=='month' ? "selected" : ""}>한달</option>
+                    <option value="month3" ${ph.sc.time=='month3' ? "selected" : ""}>세달</option>
                   </select>
                   <select id="search_key" name="option">
-                    <option value="subject">제목</option>
-                    <option value="content">내용</option>
-                    <option value="writer_name">글쓴이</option>
-                    <option value="member_id">아이디</option>
-                    <option value="nick_name">별명</option>
-                    <option value="product">상품정보</option>
+                    <option value="title" ${ph.sc.option=='title' ? "selected" : ""}>제목</option>
+                    <option value="content" ${ph.sc.option=='content' ? "selected" : ""}>내용</option>
+                    <option value="writer" ${ph.sc.option=='writer' ? "selected" : ""}>글쓴이</option>
+                    <option value="itemName" ${ph.sc.option=='itemName' ? "selected" : ""}>상품명</option>
+                    <option value="adminReply" ${ph.sc.option=='adminReply' ? "selected" : ""}>관리자댓글용</option>
                   </select>
                   <input id="search" name="keyword" class="inputTypeText" placeholder="" value="" type="text">
-                  <a href="#" onclick="">SEARCH</a>
+                  <a href="#" id="formSubmit">SEARCH</a>
                 </p>
               </fieldset>
             </div>
@@ -147,11 +151,19 @@
       </div>
 
       <div class="xans-element- xans-board xans-board-paging-4 xans-board-paging xans-board-4 ec-base-paginate-text">
-        <a href="#">PREV</a>
+      <c:if test="${totalCnt!=null && totalCnt!=0}">
+        <c:if test="${ph.showPrev}">
+        <a href="<c:url value="/qna/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">PREV</a>
+        </c:if>
         <ol>
-          <li class="xans-record-"><a href="#" class="this">1</a></li>
+          <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+          <li class="xans-record-"><a href="<c:url value="/qna/list${ph.sc.getQueryString(i)}"/>" class="this">${i}</a></li>
+          </c:forEach>
         </ol>
-        <a href="#">NEXT</a>
+        <c:if test="${ph.showNext}">
+        <a href="<c:url value="/qna/list${ph.sc.getQueryString(ph.endPage+1)}"/>">NEXT</a>
+        </c:if>
+      </c:if>
       </div>
     </div>
 

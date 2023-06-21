@@ -65,9 +65,9 @@ fieldset {
 .xans-board-read .board_wrap .board_top ul.right li.thubm {
     margin-left: 10px;
 }
-.xans-board-read .board_wrap .board_top ul.right li.thubm img {
-    height: 85px;
-}
+/*.xans-board-read .board_wrap .board_top ul.right li.thubm img {*/
+/*    height: 85px;*/
+/*}*/
 .xans-board-read .board_wrap .detail {
     padding: 80px 0px;
     font-size: 12px;
@@ -262,4 +262,7 @@ ul.ec-base-help li {
     position: absolute;
     top: 0px;
     right: 0px;
+}
+.xans-board-read .board_wrap .board_top ul.right:hover {
+    opacity: 1;
 }

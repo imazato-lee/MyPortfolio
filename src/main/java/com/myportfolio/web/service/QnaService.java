@@ -15,7 +15,7 @@ public interface QnaService {
 
     int update(QnaDto dto) throws Exception;
 
-    QnaDto select(int qno) throws Exception;
+    public List<QnaDto> select(int page, int pageSize, int ino) throws Exception;
 
     int updateCommentCount(int qno, int cnt) throws Exception;
 

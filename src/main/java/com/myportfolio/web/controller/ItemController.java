@@ -3,6 +3,8 @@ package com.myportfolio.web.controller;
 import com.google.gson.Gson;
 import com.myportfolio.web.domain.*;
 import com.myportfolio.web.service.ItemService;
+import com.myportfolio.web.service.QnaService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,9 +23,11 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/item/*")
 public class ItemController {
-    @Autowired
+
+    private QnaService qnaService;
     private ItemService itemService;
     @GetMapping("/write")
     public String write(){
@@ -52,7 +56,7 @@ public class ItemController {
     public String list(ItemCondition ic, Model m){
 
         try {
-            int totalCnt = itemService.getCount();
+            int totalCnt = itemService.resultCnt(ic);
             ItemPageHandler ph = new ItemPageHandler(totalCnt,ic);
             List<ItemDto> list = itemService.selectPage(ic);
             m.addAttribute("list",list);

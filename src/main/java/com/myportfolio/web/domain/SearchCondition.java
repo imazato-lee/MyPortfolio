@@ -14,16 +14,18 @@ public class SearchCondition {
     //    private Integer offset = 0;   //offset은 page와 pageSize로 계산되는 값이기 때문에 굳이 iv로 저장할 필요 x
     private String keyword ="";
     private String option ="";
+    private String time = "";
 
     public SearchCondition(Integer page, Integer pageSize) {
-        this(page, pageSize, "", "");
+        this(page, pageSize, "", "", "");
     }
 
-    public SearchCondition(Integer page, Integer pageSize, String option, String keyword) {
+    public SearchCondition(Integer page, Integer pageSize, String option, String keyword, String time) {
         this.page = page;
         this.pageSize = pageSize;
         this.option = option;
         this.keyword = keyword;
+        this.time = time;
     }
 
     public Integer getOffset(){
@@ -35,6 +37,7 @@ public class SearchCondition {
         return UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("pageSize", pageSize)
+                .queryParam("time",time)
                 .queryParam("option", option)
                 .queryParam("keyword", keyword)
                 .build().toString();

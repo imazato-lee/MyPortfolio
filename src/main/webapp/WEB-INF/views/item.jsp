@@ -88,7 +88,7 @@ change this template use File | Settings | File Templates. --%>
                                     </tr>
                                     <tr class="xans-record-">
                                         <td><span style="font-size: 14px; color: #000000">
-                                            <strong id="span_product_price_text"><fmt:formatNumber value="${itemDto.itemPrice}" pattern="##,###"/></strong>
+                                            <strong id="span_product_price_text"><fmt:formatNumber value="${itemDto.itemPrice}" pattern="##,###"/>원</strong>
                                         <input id="product_price" name="product_price" value="" type="hidden"/></span>
                                         </td>
                                     </tr>
@@ -270,7 +270,7 @@ change this template use File | Settings | File Templates. --%>
                                     <li class="left">Q&amp;A</li>
                                     <li class="right">
                                         <a href="<c:url value='/qna/write${ic.getQueryString()}&ino=${itemDto.ino}'/>" class="btn_ccc">문의작성</a>
-                                        <a href="#" class="btn_ccc">모두보기</a>
+                                        <a href="<c:url value='/qna/list'/>" class="btn_ccc">모두보기</a>
                                     </li>
                                 </ul>
                             </div>
@@ -298,17 +298,59 @@ change this template use File | Settings | File Templates. --%>
                                                 <th scope="col">DATE</th>
                                             </tr>
                                         </thead>
+
                                         <tbody class="center">
                                             <tr class="xans-record-">
                                                 <td>1</td>
                                                 <td class="subject left txtBreak">
-                                                    <a href="#">상품문의</a>
-                                                    <span class="txtWarn"></span>
+                                                    <a href="">상품문의</a>
+                                                    <span class="txtWarn">[1]</span>
                                                 </td>
-                                                <td>두용</td>
-                                                <td class="txtInfo txt11">2023-06-17</td>
+                                                <td> 환이</td>
+                                                <td class="txtInfo txt11">2018-06-24</td>
+                                            </tr>
+                                            <tr id="product-qna-read" style="">
+                                                <td colspan="4">
+                                                    <div class="view">
+                                                        <p></p>
+                                                        <div class="fr-view fr-view-article">
+                                                            <p>
+                                                                <span style="color: rgb(0, 0, 0); text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; word-spacing: 0px; float: none; display: inline !important; white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">크리에이티브 디자인 아이디오아지트</span>
+                                                            </p>
+                                                        </div>
+                                                        <p></p>
+                                                        <p></p>
+                                                        <p class="ec-base-button">
+                                                            <span class="gLeft"></span>
+                                                        </p>
+                                                    </div>
+
+                                                    <ul class="boardComment">   <%--댓글 출력--%>
+                                                        <li>
+                                                            <strong class="name"> 이세현</strong>
+                                                            <span class="date">2023-06-21</span>
+                                                            <p class="comment">
+                                                                <span id="comment_contents8">gg</span>
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+
+                                                    <form name="commentWriteForm_6" id="commentWriteForm_6">
+                                                        <div class="memoCont">
+                                                            <div class="writer">
+                                                                <p class="user">
+                                                                    <span class="nameArea">이름 <input id="comment_name" name="comment_name" class="inputTypeText" placeholder="" value="" type="text"></span>
+                                                                </p>
+                                                                <div class="view">
+                                                                    <textarea id="comment" name="comment" ></textarea><a href="#" id="addComment" class="submit btn_ccc_box" style="margin-left: 5px;">확인</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </tbody>
+
                                     </table>
                                 </div>
                             </div>

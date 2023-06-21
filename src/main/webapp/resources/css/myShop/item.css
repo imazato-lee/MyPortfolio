@@ -444,3 +444,89 @@ option {
     display: block;
     clear: both;
 }
+.xans-product-additional div.board td .view {
+    padding: 16px 25px;
+    line-height: 18px;
+    text-align: left;
+}
+.ec-base-button {
+    padding: 10px 0;
+    text-align: center;
+}
+.ec-base-button .gLeft {
+    float: left;
+    text-align: left;
+}
+.ec-base-table img {
+    vertical-align: middle;
+}
+.xans-product-additional .boardComment {
+    padding: 0 19px;
+}
+.xans-product-additional .boardComment li:first-child {
+    margin-top: 0;
+}
+.xans-product-additional .boardComment li {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0 0 0;
+    padding: 12px 0 0;
+    border-top: 1px solid #d7d5d6;
+    color: #353535;
+    text-align: left;
+    line-height: 14px;
+}
+.xans-product-additional .boardComment li .name {
+    margin: 0 21px 0 0;
+}
+.xans-product-additional .boardComment li .date {
+    margin: 0 10px 0 0;
+    font-size: 11px;
+}
+.xans-product-additional .boardComment li .comment {
+    margin: 9px 0 0;
+    padding: 16px 0 15px 9px;
+    border-top: 1px solid #e9e9e9;
+    line-height: 18px;
+    word-break: break-all;
+}
+.xans-product-additional .memoCont {
+    margin: 20px 15px;
+    padding: 10px 20px 15px 20px;
+    border: 1px solid #e9e9e9;
+    color: #353535;
+    text-align: left;
+}
+.xans-product-additional .memoCont .user {
+    overflow: hidden;
+}
+.xans-product-additional .memoCont .user textarea {
+    float: left;
+    width: 100%;
+    padding: 2px 0;
+    height: 44px;
+    text-indent: 4px;
+    *margin-right: 10px;
+}
+.xans-board-commentwrite .submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.btn_ccc_box {
+    display: inline-block;
+    width: 78px;
+    line-height: 48px;
+    border: 1px solid rgb(204, 204, 204);
+    color: rgb(153, 153, 153);
+    text-align: center;
+}
+#comment{
+    float: left;
+    width: 85%;
+    padding: 2px 0;
+    height: 44px;
+    text-indent: 4px;
+    *margin-right: 10px;
+    border: 1px solid rgb(204, 204, 204);
+}

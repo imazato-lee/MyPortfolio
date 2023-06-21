@@ -18,7 +18,7 @@ public interface QnaDao {
 
     int updateAdminReplyed(QnaDto qnaDto) throws Exception;
 
-    QnaDto select(int qno) throws Exception;
+    List<QnaDto> select(Map map) throws Exception;
 
     int updateCommentCount(Map map) throws Exception;
 

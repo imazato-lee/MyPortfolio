@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -92,6 +93,59 @@ public class QnaController {
             e.printStackTrace();
             rttr.addFlashAttribute("msg","QNA_READ_ERR");
             return "redirect:/qna/list";
+        }
+    }
+
+    @GetMapping("/modify")
+    public String modify(Integer qno, SearchCondition sc, Model m, RedirectAttributes rttr){
+        try {
+            QnaItemDto qnaItemDto = qnaService.selectQna(qno);
+            if(qnaItemDto == null){
+                throw new Exception("Q&A MODIFY ERROR");
+            }
+            m.addAttribute("itemDto",qnaItemDto);
+            m.addAttribute("sc",sc);
+            m.addAttribute("mode","modify");
+
+            return "qnaRegister";
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","QNA_MOD_ERR");
+            return "redirect:/qna/list" +sc.getQueryString();
+        }
+    }
+
+    @PostMapping("/modify")
+    public String modify(QnaDto qnoDto, SearchCondition sc, Model m, RedirectAttributes rttr){
+        try {
+            int rowCnt = qnaService.update(qnoDto);
+            if(rowCnt != 1){
+                m.addAttribute("itemDto", qnaService.selectQna(qnoDto.getQno()));
+                throw new Exception("QNA MODIFY ERROR");
+            }
+            return "redirect:/qna/read" + sc.getQueryString() + "&qno=" + qnoDto.getQno();
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","QNA_MOD_ERR");
+            return "qnaRegister";
+        }
+    }
+
+    @PostMapping("/remove")
+    public String remove(Integer qno, SearchCondition sc, RedirectAttributes rttr, HttpSession session){
+        QnaDto qnaDto = new QnaDto();
+        qnaDto.setQno(qno);
+        qnaDto.setWriter((String)session.getAttribute("name"));
+        try {
+            int rowCnt = qnaService.delete(qnaDto);
+            if(rowCnt != 1){
+                throw new Exception("QNA REMOVE ERROR");
+            }
+            return "redirect:/qna/list" +sc.getQueryString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","QNA_DEL_ERR");
+            return "redirect:/qna/read" +sc.getQueryString() + "&qno=" + qnaDto.getQno();
         }
     }
 

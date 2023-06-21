@@ -6,6 +6,7 @@
     <select id="count" resultType="int">
         select count(*) from qna where ino = #{ino}
     </select>
+
     <!-- 이름, 이메일 이중 확인을 하면 좋겠다. -->
     <delete id="delete" parameterType="qnaDto">
         DELETE FROM qna WHERE qno = #{qno} and writer = #{writer}
@@ -33,11 +34,13 @@
         SET admin_reply = ${admin_reply}
         WHERE qno = #{qno}
     </update>
-
-    <select id="select" parameterType="int" resultType="qnaDto">
+    <!-- 상품상세페이지에서 사용할 정렬기준 -->
+    <select id="select" parameterType="map" resultType="qnaDto">
         SELECT qno, ino, title, content, writer, comment_cnt, admin_reply, reg_date, up_date
         FROM qna
-        WHERE qno = #{qno}
+        WHERE ino = #{ino}
+        ORDER BY reg_date DESC, qno DESC
+        LIMIT #{offset}, #{pageSize}
     </select>
     <!-- 댓글 작성, 삭제 시 comment_cnt열의 숫자에 +1, -1 해준다. -->
     <update id="updateCommentCnt" parameterType="map">
@@ -66,6 +69,23 @@
             </when>
         </choose>
     </sql>
+    <!-- 날짜별 조회  -->
+    <sql id="searchByTime">
+        <choose>
+            <!-- 일주일 전 검색 -->
+            <when test='option=="week"'>
+                AND reg_date >= DATE_SUB(NOW(), INTERVAL 1 WEEK)
+            </when>
+            <!-- 한 달 전 검색 -->
+            <when test='option=="month"'>
+                AND reg_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+            </when>
+            <!-- 세 달 전 검색 -->
+            <when test='option=="month3"'>
+                AND reg_date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+            </when>
+        </choose>
+    </sql>
     <!-- 상세페이지에서 페이징 -->
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="qnaDto">
         SELECT qno, ino, title, content, writer, comment_cnt, admin_reply, reg_date, up_date
@@ -78,17 +98,37 @@
     <!-- 조건별 총 갯수  -->
     <select id="resultCnt" parameterType="SearchCondition" resultType="int">
         SELECT count(*)
-        FROM  qna
+        FROM  qna q
+        JOIN item i ON q.ino = i.ino
         WHERE true
+        <if test="option == 'week'">
+            AND reg_date >= DATE_SUB(NOW(), INTERVAL 1 WEEK)
+        </if>
+        <if test="option == 'month'">
+            AND reg_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+        </if>
+        <if test="option == 'month3'">
+            AND reg_date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+        </if>
         <include refid="searchCondition"/>
     </select>
 
+
     <!-- Q&A 전체 조회에서 페이징 -->
     <select id="searchAllSelectPage" parameterType="SearchCondition" resultType="qnaItemDto">
-        SELECT q.qno, q.ino, i.itemName, i.itemPrice, q.title, q.content, q.writer, q.comment_cnt, q.reg_date, q.up_date
+        SELECT q.qno, q.ino, i.itemName, i.itemPrice, q.title, q.content, q.writer, q.comment_cnt, q.admin_reply, q.reg_date, q.up_date
         FROM qna q
         JOIN item i ON q.ino = i.ino
         WHERE true
+        <if test='time=="week"'>
+            AND q.reg_date >= DATE_SUB(NOW(), INTERVAL 1 WEEK)
+        </if>
+        <if test='time=="month"'>
+            AND q.reg_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+        </if>
+        <if test='time=="month3"'>
+            AND q.reg_date >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+        </if>
         <include refid="searchCondition"/>
         ORDER BY q.reg_date DESC, q.qno DESC
         LIMIT #{offset}, #{pageSize}
