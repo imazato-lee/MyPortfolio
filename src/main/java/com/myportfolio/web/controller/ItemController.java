@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +86,17 @@ public class ItemController {
         }
         String gson = new Gson().toJson(map, HashMap.class);
         return new ResponseEntity<>(gson, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/getAttachListOnQnaList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<List<ItemAttachDto>>> getAttachListOnQnaList(@RequestParam(value = "list[]") List<Integer> list) {
+        List<List<ItemAttachDto>> resultList = new ArrayList<>();
+        for (Integer ino : list) {
+            List<ItemAttachDto> attachList = itemService.getAttachList(ino);
+            resultList.add(attachList);
+        }
+        return new ResponseEntity<>(resultList, HttpStatus.OK);
     }
     @GetMapping("/read")
     public String read(Integer ino,Model m, ItemCondition ic, RedirectAttributes rttr){
@@ -176,7 +188,21 @@ public class ItemController {
                e.printStackTrace();
             }
         }
+    }
 
+    @GetMapping(value = "/{ino}/{page}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public ResponseEntity<List<QnaDto>> getPage(@PathVariable Integer ino, @PathVariable Integer page){
+        try {
+            List<QnaDto> list = qnaService.select(page,10,ino);
+            if(list == null || list.size() == 0){
+                throw new Exception("Q&A PAGE ROAD ERROR");
+            }
 
+            return new ResponseEntity<>(list,HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

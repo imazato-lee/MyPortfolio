@@ -42,7 +42,7 @@ public class QnaServiceImpl implements QnaService {
     @Override
     public List<QnaDto> select(int page, int pageSize, int ino) throws Exception {
         Map map = new HashMap();
-        map.put("page",page);
+        map.put("offset",(page-1)*10);
         map.put("pageSize",pageSize);
         map.put("ino",ino);
         return qnaDao.select(map);

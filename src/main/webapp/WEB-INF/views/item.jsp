@@ -8,6 +8,20 @@ change this template use File | Settings | File Templates. --%>
 <link rel="stylesheet" href='<c:url value="/css/myShop/item.css"/>' />
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script>
+    let addZero = function(value=1){
+        return value > 9 ? value : "0"+value;
+    }
+
+    let dateToString = function(ms) {
+        let date = new Date(ms);
+
+        let yyyy = date.getFullYear();
+        let mm = addZero(date.getMonth() + 1);
+        let dd = addZero(date.getDate());
+
+        return yyyy+"-"+mm+"-"+dd
+    }
+    let page = 1;
     $(function(){
         let ino = ${itemDto.ino}
         $.getJSON("/item/getAttachList/"+ino, function(attachList){
@@ -34,6 +48,19 @@ change this template use File | Settings | File Templates. --%>
             $(".uploadResult").html(str);
         })
 
+        $.ajax({
+            url: "/item/" + ino + "/" + page ,
+            type: "GET",
+            dataType: "json",
+            success: function (list) {
+                console.log(list)
+                showQnaList(list)
+            },
+            error: function (xhr, status, error) {
+                console.log("Q&A LIST READ ERR")
+            }
+        })
+
         $("#quantityUp").on("click",function(){
             let quantity = parseInt($("#quantity").val())
             quantity = quantity + 1
@@ -51,6 +78,26 @@ change this template use File | Settings | File Templates. --%>
         })
     })
 
+    function showQnaList(list) {
+        let str = "";
+        let center = $(".center");
+        if (list == null || list.length === 0) {
+            center.html(str);
+            return;
+        }
+        for (var i = 0, len = list.length || 0; i < len; i++) {
+            str += '<tr class="xans-record-">';
+            str += '<td>' + (i+1) + '</td>';
+            str += '<td class="subject left txtBreak">';
+            str += '<a href="#">' + list[i].title + '</a>';
+            str += '<span class="txtWarn">[' + list[i].comment_cnt + ']</span>';
+            str += '</td>';
+            str += '<td>' + list[i].writer + '</td>';
+            str += '<td class="txtInfo txt11">' + dateToString(list[i].reg_date) + '</td>';
+            str += '</tr>';
+        }
+        center.html(str);
+    }
 </script>
 <div id="contents_wrap" style="">
     <div id="container">
@@ -291,64 +338,64 @@ change this template use File | Settings | File Templates. --%>
                                             <col style="width: 100px" />
                                         </colgroup>
                                         <thead>
-                                            <tr>
-                                                <th scope="col">NO</th>
-                                                <th scope="col">TITLE</th>
-                                                <th scope="col">POSTED BY</th>
-                                                <th scope="col">DATE</th>
-                                            </tr>
+                                        <tr>
+                                            <th scope="col">NO</th>
+                                            <th scope="col">TITLE</th>
+                                            <th scope="col">POSTED BY</th>
+                                            <th scope="col">DATE</th>
+                                        </tr>
                                         </thead>
 
                                         <tbody class="center">
-                                            <tr class="xans-record-">
-                                                <td>1</td>
-                                                <td class="subject left txtBreak">
-                                                    <a href="">상품문의</a>
-                                                    <span class="txtWarn">[1]</span>
-                                                </td>
-                                                <td> 환이</td>
-                                                <td class="txtInfo txt11">2018-06-24</td>
-                                            </tr>
-                                            <tr id="product-qna-read" style="">
-                                                <td colspan="4">
-                                                    <div class="view">
-                                                        <p></p>
-                                                        <div class="fr-view fr-view-article">
-                                                            <p>
-                                                                <span style="color: rgb(0, 0, 0); text-transform: none; text-indent: 0px; letter-spacing: normal; font-family: Go, Arial, &quot;malgun gothic&quot;, 맑은고딕, NanumGothic, dotum, 돋움, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; word-spacing: 0px; float: none; display: inline !important; white-space: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">크리에이티브 디자인 아이디오아지트</span>
-                                                            </p>
-                                                        </div>
-                                                        <p></p>
-                                                        <p></p>
-                                                        <p class="ec-base-button">
-                                                            <span class="gLeft"></span>
+<%--                                        <tr class="xans-record-">--%>
+<%--                                            <td>1</td>--%>
+<%--                                            <td class="subject left txtBreak">--%>
+<%--                                                <a href="">상품문의</a>--%>
+<%--                                                <span class="txtWarn">[1]</span>--%>
+<%--                                            </td>--%>
+<%--                                            <td>세현</td>--%>
+<%--                                            <td class="txtInfo txt11">2023-06-21</td>--%>
+<%--                                        </tr>--%>
+                                        <tr id="product-qna-read" style=" display: none">
+                                            <td colspan="4">
+                                                <div class="view">
+                                                    <p></p>
+                                                    <div class="fr-view fr-view-article">
+                                                        <p>
+                                                            <span>크리에이티브 디자인 아이디오아지트</span>
                                                         </p>
                                                     </div>
+                                                    <p></p>
+                                                    <p></p>
+                                                    <p class="ec-base-button">
+                                                        <span class="gLeft"></span>
+                                                    </p>
+                                                </div>
 
-                                                    <ul class="boardComment">   <%--댓글 출력--%>
-                                                        <li>
-                                                            <strong class="name"> 이세현</strong>
-                                                            <span class="date">2023-06-21</span>
-                                                            <p class="comment">
-                                                                <span id="comment_contents8">gg</span>
+                                                <ul class="boardComment">   <%--댓글 출력--%>
+                                                    <li>
+                                                        <strong class="name"> 이세현</strong>
+                                                        <span class="date">2023-06-21</span>
+                                                        <p class="comment">
+                                                            <span id="comment_contents8">gg</span>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+
+                                                <form name="commentWriteForm_6" id="commentWriteForm_6">
+                                                    <div class="memoCont">
+                                                        <div class="writer">
+                                                            <p class="user">
+                                                                <span class="nameArea">이름 <input id="comment_name" name="comment_name" class="inputTypeText" placeholder="" value="" type="text"></span>
                                                             </p>
-                                                        </li>
-                                                    </ul>
-
-                                                    <form name="commentWriteForm_6" id="commentWriteForm_6">
-                                                        <div class="memoCont">
-                                                            <div class="writer">
-                                                                <p class="user">
-                                                                    <span class="nameArea">이름 <input id="comment_name" name="comment_name" class="inputTypeText" placeholder="" value="" type="text"></span>
-                                                                </p>
-                                                                <div class="view">
-                                                                    <textarea id="comment" name="comment" ></textarea><a href="#" id="addComment" class="submit btn_ccc_box" style="margin-left: 5px;">확인</a>
-                                                                </div>
+                                                            <div class="view">
+                                                                <textarea id="comment" name="comment" ></textarea><a href="#" id="addComment" class="submit btn_ccc_box" style="margin-left: 5px;">확인</a>
                                                             </div>
                                                         </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
                                         </tbody>
 
                                     </table>

@@ -15,6 +15,7 @@
     let list = new Array()
     <c:forEach items="${list}" var="qnaItemDto">
       list.push(<c:out value="${qnaItemDto.ino}"/>);
+      console.log("list: " + list)
     </c:forEach>
     $.getJSON("/item/getAttachListOnList", {list : list},
       function(data){
@@ -33,10 +34,12 @@
               } else {
                 html = "<img src='/resources/images/attach.png'>"
               }
-              $("#"+ino).html(html);
+              $("a[data-ino='" + ino + "']").html(html);
+              html = "";
             }
       })
     })
+
     $("#formSubmit").on("click",function(e){
       e.preventDefault()
       let qnaSearchForm = $("#qnaSearchForm")
@@ -94,7 +97,8 @@
               <tr class="xans-record-">
                 <td>${qnaItemDto.qno}</td>
                 <td class="thumb left">
-                  <a href="<c:url value='/item/read${ph.sc.getQueryString()}&ino=${qnaItemDto.ino}' />" id="<c:out value='${qnaItemDto.ino}' />"></a>
+<%--                  <a href="<c:url value='/item/read${ph.sc.getQueryString()}&ino=${qnaItemDto.ino}' />" id="<c:out value='${qnaItemDto.ino}' />"></a>--%>
+                  <a href="<c:url value='/item/read${ph.sc.getQueryString()}&ino=${qnaItemDto.ino}' />" data-ino="<c:out value='${qnaItemDto.ino}' />"></a>
                   <span>${qnaItemDto.itemName}</span>
                 </td>
                 <td class="displaynone"></td>
