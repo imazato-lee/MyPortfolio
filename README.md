@@ -16,8 +16,10 @@
 
 #### 홈 화면
 * 2023/6/22 기준 구현된 기능(빨간박스처리)
+* DB테이블
 <p>
 <img width="33%" alt="home" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/4ea6725e-01fb-4e1f-8067-546b8b040b94"/>
+ <img width="30%" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/eb380ec5-3b1f-42d2-a819-94b49d2c2a6d">
 </p>
 
 #### 회원가입
