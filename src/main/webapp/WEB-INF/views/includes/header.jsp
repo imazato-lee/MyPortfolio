@@ -44,10 +44,10 @@
         <div class="header">
             <ul class="board_list"><li><a href="<c:url value='/notice/list'/>">Notice</a></li>
                 <li><a href="<c:url value='/qna/list'/>">Q&amp;A</a></li>
-                <li><a href="">Review</a></li>
-                <li><a href="#dialog" name="modal">About</a></li>
+                <li><a href="#">Review</a></li>
+                <li><a href="#" name="modal">About</a></li>
             </ul>
-            <ul class="logo"><li><a href="/" style="font-family: 'Oswald', sans-serif;">아직이름을못정했어요</a></li></ul>
+            <ul class="logo"><li><a href="/" style="font-family: 'Oswald', sans-serif;">SHOPPING MALL</a></li></ul>
             <ul class="membership_list">
                 <li class="xans-element- xans-layout xans-layout-statelogoff ">
                     <c:choose>
@@ -69,11 +69,11 @@
                         </c:otherwise>
                     </c:choose>
                 </li>
-                <li><a href="/myshop/order/list.html">Order</a></li>
-                <li><a href="/myshop/index.html">Mypage</a></li>
-                <%--                <c:if test="${sessionScope.id eq 'admin'}">--%>
+                <li><a href="#">Order</a></li>
+                <li><a href="#">Mypage</a></li>
+                <c:if test="${sessionScope.id eq 'admin'}">
                 <li><a href="<c:url value='/item/write'/>">ITEM</a></li>
-                <%--                </c:if>--%>
+                </c:if>
             </ul>
         </div>
     </div>

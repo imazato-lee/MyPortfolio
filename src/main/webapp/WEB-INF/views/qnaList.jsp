@@ -15,7 +15,6 @@
     let list = new Array()
     <c:forEach items="${list}" var="qnaItemDto">
       list.push(<c:out value="${qnaItemDto.ino}"/>);
-      console.log("list: " + list)
     </c:forEach>
     $.getJSON("/item/getAttachListOnList", {list : list},
       function(data){

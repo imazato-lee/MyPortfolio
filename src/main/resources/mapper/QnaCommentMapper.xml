@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myportfolio.web.dao.QnaCommentMapper">
+    <delete id="deleteAll" parameterType="int">
+        DELETE FROM qna_comment
+        WHERE  qno = #{qno}
+    </delete>
+
+    <select id="count" parameterType="int" resultType="int">
+        SELECT count(*) FROM qna_comment
+        WHERE  qno = #{qno}
+    </select>
+
+    <delete id="delete" parameterType="map">
+        DELETE FROM qna_comment WHERE cno = #{cno} and commenter = #{commenter}
+    </delete>
+    <insert id="insert" parameterType="QnaCommentDto">
+        INSERT INTO qna_comment
+            (qno,  comment, commenter)
+        VALUES
+            (#{qno}, #{comment}, #{commenter})
+    </insert>
+
+    <select id="selectAll" parameterType="int" resultType="QnaCommentDto">
+        SELECT cno, qno, comment, commenter, reg_date, up_date
+        FROM qna_comment
+        WHERE qno = #{qno}
+        ORDER BY cno asc;
+    </select>
+
+    <select id="select" parameterType="int" resultType="QnaCommentDto">
+        SELECT cno, qno, comment, commenter, reg_date, up_date
+        FROM qna_comment
+        WHERE cno = #{cno}
+    </select>
+
+    <update id="update" parameterType="QnaCommentDto">
+        UPDATE qna_comment
+        SET comment = #{comment}
+          , up_date = now()
+        WHERE cno = #{cno} and commenter = #{commenter}
+    </update>
+
+    <select id="selectPage" parameterType="map" resultType="QnaCommentDto">
+        SELECT cno, qno, comment, commenter, reg_date, up_date
+        FROM qna_comment where qno = #{qno}
+        ORDER BY cno asc
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+</mapper>

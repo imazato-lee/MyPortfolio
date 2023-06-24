@@ -107,6 +107,6 @@
                 </script>
             </div>
         </div>
-        <div id="footer_title">아직이름을 못정했어요</div>
+        <div id="footer_title">SHOPPING MALL</div>
 </body>
 </html>

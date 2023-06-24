@@ -60,4 +60,5 @@ public class CommentDaoImpl implements CommentDao {
     public List<CommentDto> selectPage(Map map) throws Exception{
         return session.selectList(namespace+"selectPage",map);
     }
+
 }

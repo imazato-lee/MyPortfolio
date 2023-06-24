@@ -46,7 +46,7 @@
     <select id="selectPage" parameterType="map" resultType="CommentDto">
         SELECT cno, nno, comment, commenter, reg_date, up_date
         FROM comment_tbl where nno = #{nno}
-        ORDER BY nno asc
+        ORDER BY cno asc
             LIMIT #{offset}, #{pageSize}
     </select>
 

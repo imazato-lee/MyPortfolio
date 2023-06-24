@@ -88,16 +88,6 @@ public class ItemController {
         return new ResponseEntity<>(gson, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/getAttachListOnQnaList", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<List<List<ItemAttachDto>>> getAttachListOnQnaList(@RequestParam(value = "list[]") List<Integer> list) {
-        List<List<ItemAttachDto>> resultList = new ArrayList<>();
-        for (Integer ino : list) {
-            List<ItemAttachDto> attachList = itemService.getAttachList(ino);
-            resultList.add(attachList);
-        }
-        return new ResponseEntity<>(resultList, HttpStatus.OK);
-    }
     @GetMapping("/read")
     public String read(Integer ino,Model m, ItemCondition ic, RedirectAttributes rttr){
         try {
