@@ -24,29 +24,29 @@ change this template use File | Settings | File Templates. --%>
     let page = 1;
     $(function(){
         let ino = ${itemDto.ino}
-        $.getJSON("/item/getAttachList/"+ino, function(attachList){
-            console.log(attachList)
-            let str = "";
-            $(attachList).each(function(i, attach){
-                if(attach.fileType){
-                    let fileCallPath = encodeURI(attach.uploadPath + '/' + attach.uuid + "_" + attach.fileName)
-                    str += "<li data-path='" + attach.uploadPath + "'"
-                    str += " data-uuid='" + attach.uuid + "' data-fileName='" + attach.fileName + "' data-type='" + attach.fileType + "'>"
-                    str += "<div>"
-                    str += "<img src='/display?fileName=" + fileCallPath +"' style=\"width: -webkit-fill-available;\">"
-                    str += "</div>"
-                    str += "</li>"
-                } else {
-                    str += "<li data-path='" + attach.uploadPath + "'"
-                    str += " data-uuid='" + attach.uuid + "' data-fileName='" + attach.fileName + "' data-type='" + attach.fileType + "'>"
-                    str += "<div>"
-                    str += "<img src='/resources/images/attach.png'>"
-                    str += "</div>"
-                    str += "</li>"
-                }
+            $.getJSON("/item/getAttachList/"+ino, function(attachList){
+                console.log(attachList)
+                let str = "";
+                $(attachList).each(function(i, attach){
+                    if(attach.fileType){
+                        let fileCallPath = encodeURI(attach.uploadPath + '/' + attach.uuid + "_" + attach.fileName)
+                        str += "<li data-path='" + attach.uploadPath + "'"
+                        str += " data-uuid='" + attach.uuid + "' data-fileName='" + attach.fileName + "' data-type='" + attach.fileType + "'>"
+                        str += "<div>"
+                        str += "<img src='/display?fileName=" + fileCallPath +"' style=\"width: -webkit-fill-available;\">"
+                        str += "</div>"
+                        str += "</li>"
+                    } else {
+                        str += "<li data-path='" + attach.uploadPath + "'"
+                        str += " data-uuid='" + attach.uuid + "' data-fileName='" + attach.fileName + "' data-type='" + attach.fileType + "'>"
+                        str += "<div>"
+                        str += "<img src='/resources/images/attach.png'>"
+                        str += "</div>"
+                        str += "</li>"
+                    }
+                })
+                $(".uploadResult").html(str);
             })
-            $(".uploadResult").html(str);
-        })
 
         $.ajax({
             url: "/item/" + ino + "/" + page ,
@@ -167,35 +167,35 @@ change this template use File | Settings | File Templates. --%>
                                 </caption>
                                 <tbody></tbody>
                                 <tbody class="xans-element- xans-product xans-product-option xans-record-">
-                                    <tr>
-                                        <td>
-<%--                                            <ul class="ec-product-button">--%>
-<%--                                                <li class="" title="Beige">--%>
-<%--                                                    <a href="#"><span>Beige</span></a>--%>
-<%--                                                </li>--%>
-<%--                                                <li class="" title="Grey">--%>
-<%--                                                    <a href="#"><span>Grey</span></a>--%>
-<%--                                                </li>--%>
-<%--                                            </ul>--%>
-                                            <select id="product_option_id1" name="option1" class="ProductOption0 displaynone">
-                                                <option value="*">empty</option>
-                                                <option value="Beige">Beige</option>
-                                                <option value="Grey">Grey</option>
-                                            </select>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        <%--                                            <ul class="ec-product-button">--%>
+                                        <%--                                                <li class="" title="Beige">--%>
+                                        <%--                                                    <a href="#"><span>Beige</span></a>--%>
+                                        <%--                                                </li>--%>
+                                        <%--                                                <li class="" title="Grey">--%>
+                                        <%--                                                    <a href="#"><span>Grey</span></a>--%>
+                                        <%--                                                </li>--%>
+                                        <%--                                            </ul>--%>
+                                        <select id="product_option_id1" name="option1" class="ProductOption0 displaynone">
+                                            <option value="*">empty</option>
+                                            <option value="Beige">Beige</option>
+                                            <option value="Grey">Grey</option>
+                                        </select>
+                                    </td>
+                                </tr>
                                 </tbody>
                                 <tbody>
-                                    <tr class="" id="">
-                                        <td class="selectButton">
-                                            <a href="#" class="btn_ccc">옵션선택</a>
-                                            <a href='<c:url value="/item/modify${ic.getQueryString()}&ino=${itemDto.ino}"/>' class="btn_ccc" id="ItemModBtn">MODIFY</a>
+                                <tr class="" id="">
+                                    <td class="selectButton">
+                                        <a href="#" class="btn_ccc">옵션선택</a>
+                                        <a href='<c:url value="/item/modify${ic.getQueryString()}&ino=${itemDto.ino}"/>' class="btn_ccc" id="ItemModBtn">MODIFY</a>
 
-<%--                                            <a href="#" onclick="">--%>
-<%--                                                <img src="<c:url value='/images/btn_manual_select.gif'/>" alt="옵션 선택"/>--%>
-<%--                                            </a>--%>
-                                        </td>
-                                    </tr>
+                                        <%--                                            <a href="#" onclick="">--%>
+                                        <%--                                                <img src="<c:url value='/images/btn_manual_select.gif'/>" alt="옵션 선택"/>--%>
+                                        <%--                                            </a>--%>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
@@ -347,15 +347,15 @@ change this template use File | Settings | File Templates. --%>
                                         </thead>
 
                                         <tbody class="center">
-<%--                                        <tr class="xans-record-">--%>
-<%--                                            <td>1</td>--%>
-<%--                                            <td class="subject left txtBreak">--%>
-<%--                                                <a href="">상품문의</a>--%>
-<%--                                                <span class="txtWarn">[1]</span>--%>
-<%--                                            </td>--%>
-<%--                                            <td>세현</td>--%>
-<%--                                            <td class="txtInfo txt11">2023-06-21</td>--%>
-<%--                                        </tr>--%>
+                                        <%--                                        <tr class="xans-record-">--%>
+                                        <%--                                            <td>1</td>--%>
+                                        <%--                                            <td class="subject left txtBreak">--%>
+                                        <%--                                                <a href="">상품문의</a>--%>
+                                        <%--                                                <span class="txtWarn">[1]</span>--%>
+                                        <%--                                            </td>--%>
+                                        <%--                                            <td>세현</td>--%>
+                                        <%--                                            <td class="txtInfo txt11">2023-06-21</td>--%>
+                                        <%--                                        </tr>--%>
                                         <tr id="product-qna-read" style=" display: none">
                                             <td colspan="4">
                                                 <div class="view">
