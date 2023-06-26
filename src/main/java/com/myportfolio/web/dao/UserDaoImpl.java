@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserDaoImpl implements UserDao {
     //throws Exception 하는 이유?
@@ -37,5 +39,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int update(UserDto dto) throws Exception {
         return session.update(namespace+"update", dto);
-    } // int update(String statement, Object parameter)
+    }
+
+    @Override
+    public List<UserDto> selectForIdCheck(UserDto dto) throws Exception {
+        return session.selectList( namespace + "selectForIdCheck", dto);
+    }
 }

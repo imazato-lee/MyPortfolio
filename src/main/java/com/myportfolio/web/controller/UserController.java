@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user/*")
@@ -121,4 +122,37 @@ public class UserController {
         }
     }
 
+    @GetMapping("/idCheck")
+    public String idCheck(Model m){
+        m.addAttribute("mode","GET");
+        return "idCheck";
+    }
+    @PostMapping("/idCheck")
+    public String idCheck(UserDto userDto,Model m,RedirectAttributes rttr){
+        try {
+            List<UserDto> list = userService.selectForIdCheck(userDto);
+            if(list.size() == 0){
+                throw new Exception("ID CHECK FAILED");
+            }
+
+            for (int i = 0; i < list.size(); i++) {
+                UserDto dto = list.get(i);
+                dto.setId(maskId(dto.getId()));
+            }
+
+            m.addAttribute(userDto);
+            m.addAttribute("list",list);
+            m.addAttribute("totalCnt",list.size());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","error");
+        }
+        return "idCheck";
+    }
+
+    private String maskId(String id) {
+        //아이디 가공 : 마지막 3글자만 '*'로 가려주기
+        return id.substring(0, id.length() - 3) + "*".repeat(3);
+    }
 }

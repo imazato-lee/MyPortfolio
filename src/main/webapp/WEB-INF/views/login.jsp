@@ -5,13 +5,11 @@
     <link rel="stylesheet" href='<c:url value="/css/myShop/login.css"/>'>
     <script>
         function submitForm() {
-            // form 요소 동적 생성
             var form = $('<form>').attr({
                 method: 'POST',
-                action: '<c:url value="/user/login"/>' // 컨트롤러 URL을 여기에 입력하세요
+                action: '<c:url value="/user/login"/>'
             });
 
-            // 히든 필드 생성 및 값을 설정
             var id = $('input[name=id]').val();
             var pwd = $('input[name=pwd]').val();
             form.append($('<input>').attr({
@@ -25,7 +23,6 @@
                 value: pwd
             }));
 
-            // form을 body에 추가하고 전송
             $('body').append(form);
             form.submit();
         }
@@ -48,18 +45,12 @@
                                     <ul>
                                         <li class="left">
                                             <a href="<c:url value='/user/register'/>">REGISTER</a>
-                                            <a href="/member/id/find_id.html">FORGOT ID</a>
-                                            <a href="/member/passwd/find_passwd_info.html">FORGOT PW</a>
+                                            <a href="<c:url value='/user/idCheck'/>">FORGOT ID</a>
+                                            <a href="#">FORGOT PW</a>
                                         </li>
                                         <li class="right">
-                                            <a href="#none" onclick="submitForm()">LOGIN</a>
+                                            <a href="#" onclick="submitForm()">LOGIN</a>
                                         </li>
-                                    </ul>
-                                    <ul class="sns_login">
-                                        <li class="displaynone"><a href="#none" onclick="" class="btn_facebook">FACEBOOK LOGIN</a></li>
-                                        <li class="displaynone"><a href="#none" onclick="" class="btn_naver">NAVER LOGIN</a></li>
-                                        <li class="displaynone"><a href="#none" onclick="" class="btn_google">GOOGLE LOGIN</a></li>
-                                        <li class="displaynone"><a href="#none" onclick="" class="btn_kakao">KAKAOTALK LOGIN</a></li>
                                     </ul>
                                 </div>
                             </fieldset>
