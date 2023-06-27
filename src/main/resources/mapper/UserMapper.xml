@@ -6,8 +6,11 @@
 	<select id = "select" parameterType="String" resultType= "UserDto">
 		select id, pwd, name, email, birth, mobile, reg_date from user where id = #{id}
 	</select>
-	<select id = "selectForIdCheck" parameterType="UserDto" resultType="UserDto">
+	<select id = "selectWithNameEmail" parameterType="UserDto" resultType="UserDto">
 		select id, pwd, name, email, birth, mobile, reg_date from user where name = #{name} and email = #{email}
+	</select>
+	<select id = "selectWithNameMobile" parameterType="UserDto" resultType="UserDto">
+		select id, pwd, name, email, birth, mobile, reg_date from user where name = #{name} and mobile = #{mobile}
 	</select>
 	<insert id = "insert" parameterType = "UserDto">
 		insert into user

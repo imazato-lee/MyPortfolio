@@ -41,6 +41,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> selectForIdCheck(UserDto dto) throws Exception{
-        return userDao.selectForIdCheck(dto);
+        if(dto.getMobile() == null){
+            return userDao.selectWithNameEmail(dto);
+        } else {
+            return userDao.selectWithNameMobile(dto);
+        }
     }
 }

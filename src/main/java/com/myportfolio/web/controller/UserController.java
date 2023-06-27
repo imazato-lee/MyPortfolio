@@ -129,6 +129,7 @@ public class UserController {
     }
     @PostMapping("/idCheck")
     public String idCheck(UserDto userDto,Model m,RedirectAttributes rttr){
+        System.out.println("userDto = " + userDto);
         try {
             List<UserDto> list = userService.selectForIdCheck(userDto);
             if(list.size() == 0){
@@ -147,6 +148,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("msg","error");
+            return "redirect:/user/idCheck";
         }
         return "idCheck";
     }

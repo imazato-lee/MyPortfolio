@@ -28,8 +28,28 @@
     }
 
     $(function(){
+        $('.mobile').hide();
+
+        $('input[name="check_method"]').change(function() {
+            var selected = $(this).val();
+
+            if (selected === "1") {
+                $('.email').show();
+                $('.mobile').hide();
+            } else if (selected === "2") {
+                $('.email').hide();
+                $('.mobile').show();
+            }
+        });
+
         $("#submit").on("click",function(e){
             e.preventDefault()
+
+            if ($("#check_method2").is(":checked")) {
+                let mobile = $("#mobile1").val() + $("#mobile2").val() + $("#mobile3").val();
+                let input = $("<input>").attr("type", "hidden").attr("name", "mobile").val(mobile);
+                $("#findIdForm").append(input);
+            }
             let findIdForm = $("#findIdForm")
             findIdForm.submit();
         })
@@ -50,13 +70,9 @@
 
                             <ul class="find_form">
                                 <li class="method">
-                                    <input id="check_method0" name="check_method" value="1" type="radio" style="display: none;">
-                                    <label for="check_method0" style="display: none;">
-                                        <span id="ssn_lable" style="display: none;"></span>
-                                    </label>
-                                    <input id="check_method1" name="check_method" value="2" type="radio" checked="checked">
+                                    <input id="check_method1" name="check_method" value="1" type="radio" checked="checked">
                                     <label for="check_method1">이메일</label>
-                                    <input id="check_method2" name="check_method" value="3" type="radio">
+                                    <input id="check_method2" name="check_method" value="2" type="radio">
                                     <label for="check_method2">
                                         <span id="search_type_mobile_lable" style="display:inline;">휴대폰번호</span>
                                     </label>
@@ -68,7 +84,7 @@
                                     <strong>E MAIL</strong>
                                     <input id="email" name="email" class="lostInput" placeholder="이메일을 입력하세요." value="" type="text">
                                 </li>
-                                <li class="mobile" style="display:none;">
+                                <li class="mobile" style="">
                                     <strong>MOBILE</strong>
                                     <input id="mobile1" name="mobile1" class="mobile1" placeholder="" maxlength="3" value="" type="text"> ― <input id="mobile2" name="mobile2" class="mobile2" placeholder="" maxlength="4" value="" type="text"> ― <input id="mobile3" name="mobile3" class="mobile2" placeholder="" maxlength="4" value="" type="text">
                                 </li>
@@ -93,10 +109,18 @@
                             <strong>NAME</strong>
                             <span>${userDto.name}</span>
                         </li>
+                        <c:if test = "${not empty userDto.email}">
                         <li>
                             <strong>이메일 </strong>
                             <span>${userDto.email}</span>
                         </li>
+                        </c:if>
+                        <c:if test = "${not empty userDto.mobile}">
+                        <li>
+                            <strong>휴대폰번호 </strong>
+                            <span>${userDto.mobile}</span>
+                        </li>
+                        </c:if>
                         <li>
                             <c:forEach items="${list}" var="userDto" varStatus="loop">
                             <label>
@@ -117,6 +141,11 @@
             </c:if>
         </div>
     </div>
+    <script>
+        <c:if test="${msg == 'error'}">
+            alert("입력하신 정보로 가입 된 회원 아이디는 존재하지 않습니다.");
+        </c:if>
+    </script>
 
 
 <%@ include file="includes/footer.jsp"%>

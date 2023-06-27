@@ -42,7 +42,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<UserDto> selectForIdCheck(UserDto dto) throws Exception {
-        return session.selectList( namespace + "selectForIdCheck", dto);
+    public List<UserDto> selectWithNameEmail(UserDto dto) throws Exception {
+        return session.selectList( namespace + "selectWithNameEmail", dto);
+    }
+
+    @Override
+    public List<UserDto> selectWithNameMobile(UserDto dto) throws Exception {
+        return session.selectList( namespace + "selectWithNameMobile", dto);
     }
 }

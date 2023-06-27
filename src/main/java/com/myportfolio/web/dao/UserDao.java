@@ -15,5 +15,7 @@ public interface UserDao {
 
     int update(UserDto dto) throws Exception;
 
-    List<UserDto> selectForIdCheck(UserDto dto) throws Exception;
+    List<UserDto> selectWithNameEmail(UserDto dto) throws Exception;
+
+    List<UserDto> selectWithNameMobile(UserDto dto) throws Exception;
 }
