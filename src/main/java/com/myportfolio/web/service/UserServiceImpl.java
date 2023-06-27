@@ -47,4 +47,13 @@ public class UserServiceImpl implements UserService {
             return userDao.selectWithNameMobile(dto);
         }
     }
+
+    @Override
+    public UserDto selectForPwdCheck(UserDto dto) throws Exception {
+        if(dto.getMobile() == null){
+            return userDao.selectWithIdNameEmail(dto);
+        } else {
+            return userDao.selectWithIdNameMobile(dto);
+        }
+    }
 }

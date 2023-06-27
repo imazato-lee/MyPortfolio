@@ -16,4 +16,6 @@ public interface UserService {
     int update(UserDto dto) throws Exception;
 
     List<UserDto> selectForIdCheck(UserDto dto) throws Exception;
+
+    UserDto selectForPwdCheck(UserDto dto) throws Exception;
 }

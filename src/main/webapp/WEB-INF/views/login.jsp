@@ -46,7 +46,7 @@
                                         <li class="left">
                                             <a href="<c:url value='/user/register'/>">REGISTER</a>
                                             <a href="<c:url value='/user/idCheck'/>">FORGOT ID</a>
-                                            <a href="#">FORGOT PW</a>
+                                            <a href="<c:url value='/user/pwdCheck'/>">FORGOT PW</a>
                                         </li>
                                         <li class="right">
                                             <a href="#" onclick="submitForm()">LOGIN</a>

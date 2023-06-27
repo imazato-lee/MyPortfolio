@@ -153,6 +153,31 @@ public class UserController {
         return "idCheck";
     }
 
+    @GetMapping("/pwdCheck")
+    public String pwdCheck(Model m){
+        m.addAttribute("mode","GET");
+        return "pwdCheck";
+    }
+
+    @PostMapping("/pwdCheck")
+    public String pwdCheck(UserDto userDto, Model m, RedirectAttributes rttr){
+        try {
+            UserDto existUser = userService.selectForPwdCheck(userDto);
+            if(existUser == null || existUser.getReg_date() == null) {
+                throw new Exception("DATA CHECK FAILED");
+            }
+
+//            m.addAttribute("userDto",existUser);
+            System.out.println("userDto = " + userDto);
+            m.addAttribute(userDto);
+            return "pwdCheck";
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","error");
+            return "redirect:/user/pwdCheck";
+        }
+    }
+
     private String maskId(String id) {
         //아이디 가공 : 마지막 3글자만 '*'로 가려주기
         return id.substring(0, id.length() - 3) + "*".repeat(3);

@@ -6,11 +6,19 @@
 	<select id = "select" parameterType="String" resultType= "UserDto">
 		select id, pwd, name, email, birth, mobile, reg_date from user where id = #{id}
 	</select>
+	<!-- id찾기용	-->
 	<select id = "selectWithNameEmail" parameterType="UserDto" resultType="UserDto">
 		select id, pwd, name, email, birth, mobile, reg_date from user where name = #{name} and email = #{email}
 	</select>
 	<select id = "selectWithNameMobile" parameterType="UserDto" resultType="UserDto">
 		select id, pwd, name, email, birth, mobile, reg_date from user where name = #{name} and mobile = #{mobile}
+	</select>
+	<!-- pwd찾기용 -->
+	<select id = "selectWithIdNameEmail" parameterType="UserDto" resultType="UserDto">
+		select id, pwd, name, email, birth, mobile, reg_date from user where id = #{id} and name = #{name} and email = #{email}
+	</select>
+	<select id = "selectWithIdNameMobile" parameterType="UserDto" resultType="UserDto">
+		select id, pwd, name, email, birth, mobile, reg_date from user where id = #{id} and name = #{name} and mobile = #{mobile}
 	</select>
 	<insert id = "insert" parameterType = "UserDto">
 		insert into user

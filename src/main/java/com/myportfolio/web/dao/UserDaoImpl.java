@@ -50,4 +50,14 @@ public class UserDaoImpl implements UserDao {
     public List<UserDto> selectWithNameMobile(UserDto dto) throws Exception {
         return session.selectList( namespace + "selectWithNameMobile", dto);
     }
+    @Override
+    public UserDto selectWithIdNameEmail(UserDto dto) throws Exception {
+        return session.selectOne(namespace + "selectWithIdNameEmail", dto);
+    }
+
+    @Override
+    public UserDto selectWithIdNameMobile(UserDto dto) throws Exception {
+        return session.selectOne(namespace + "selectWithIdNameMobile", dto);
+    }
+
 }
