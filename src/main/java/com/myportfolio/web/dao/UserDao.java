@@ -22,4 +22,6 @@ public interface UserDao {
     UserDto selectWithIdNameEmail(UserDto dto) throws Exception;
 
     UserDto selectWithIdNameMobile(UserDto dto) throws Exception;
+
+    int updateTempPwd(UserDto dto) throws Exception;
 }

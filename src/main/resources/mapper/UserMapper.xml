@@ -28,6 +28,10 @@
 	<update id = "update" parameterType = "UserDto">
 		update user set pwd = #{pwd}, email = #{email}, birth = #{birth}, mobile = #{mobile} where id = #{id}
 	</update>
+	<!-- 임시비밀번호 발급용 -->
+	<update id = "updateTempPwd" parameterType="UserDto">
+		update user set pwd = #{pwd} where id = #{id}
+	</update>
 	<delete id = "delete" parameterType = "String">
 		delete from user where id = #{id}
 	</delete>

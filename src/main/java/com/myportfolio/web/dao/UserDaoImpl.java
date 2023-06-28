@@ -60,4 +60,8 @@ public class UserDaoImpl implements UserDao {
         return session.selectOne(namespace + "selectWithIdNameMobile", dto);
     }
 
+    @Override
+    public int updateTempPwd(UserDto dto) throws Exception {
+        return session.update(namespace + "updateTempPwd", dto);
+    }
 }

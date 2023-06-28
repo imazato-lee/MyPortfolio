@@ -39,6 +39,13 @@
       let findPasswdForm = $("#findPasswdForm")
       findPasswdForm.submit();
     })
+
+    $("#sendToEmail").on("click",function(e){
+      e.preventDefault()
+      let findPasswordMethod = $("#findPasswdMethod")
+      findPasswordMethod.submit()
+
+    })
   })
 </script>
 
@@ -86,11 +93,12 @@
       </form>
       </c:if>
       <c:if test="${mode ne 'GET'}">
-        <form id="findPasswdMethod" name="" action="" method="post">
+        <form id="findPasswdMethod" name="" action="<c:url value='/user/tempPwd'/>" method="post">
+          <input type="hidden" name="id" value="${userDto.id}">
+
           <div class="xans-element- xans-member xans-member-findpasswdmethod ">
             <div class="inner">
               <h1>비밀번호 찾기</h1>
-
               <fieldset>
                 <legend>임시 비밀번호 전송</legend>
                 <ul class="find_form">
@@ -116,7 +124,14 @@
                   </c:if>
                 </ul>
                 <ul class="button">
-                  <a href="#">임시 비밀번호 전송</a>
+                  <c:if test="${not empty userDto.email.trim()}">
+                    <input type="hidden" name="email" value="${userDto.email}"/>
+                    <a href="#" id="sendToEmail">임시 비밀번호 전송</a>
+                  </c:if>
+                  <c:if test="${not empty userDto.mobile.trim()}">
+                    <input type="hidden" name="mobile" value="${userDto.mobile}"/>
+                    <a href="#" id="sendToMobile">임시 비밀번호 전송</a>
+                  </c:if>
                 </ul>
               </fieldset>
             </div>

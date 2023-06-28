@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -168,7 +169,6 @@ public class UserController {
             }
 
 //            m.addAttribute("userDto",existUser);
-            System.out.println("userDto = " + userDto);
             m.addAttribute(userDto);
             return "pwdCheck";
         } catch (Exception e) {
@@ -176,6 +176,23 @@ public class UserController {
             rttr.addFlashAttribute("msg","error");
             return "redirect:/user/pwdCheck";
         }
+    }
+
+    @PostMapping("/tempPwd")
+    public String tempPwd(UserDto userDto, Model m, RedirectAttributes rttr){
+        //휴대폰인증까지 구현하려면 처음에 userDto에 이메일입력인지, 휴대폰입력인지 확인하기.
+        try {
+            if(!userService.updateTempPwd(userDto)){
+                throw new Exception("UPDATE TEMPORARY PASSWORD ERROR");
+            }
+            m.addAttribute(userDto);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            rttr.addFlashAttribute("msg","tempPwdError");
+            return "redirect:/user/pwdCheck";
+        }
+        return "tempPwd";
     }
 
     private String maskId(String id) {

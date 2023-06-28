@@ -18,4 +18,6 @@ public interface UserService {
     List<UserDto> selectForIdCheck(UserDto dto) throws Exception;
 
     UserDto selectForPwdCheck(UserDto dto) throws Exception;
+
+    boolean updateTempPwd(UserDto dto) throws Exception;
 }
