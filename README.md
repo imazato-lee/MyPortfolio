@@ -40,7 +40,7 @@
 <p align="left">
   <img width="30%" alt="login" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/4b18d1be-d56e-4514-a362-8763a8561d92">
   <img width="30%" alt="user_modify" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/85eb3c1b-2f99-4fed-bacb-bdb2b9b62d74">
-  <img width="1728" alt="임시비밀번호" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/cd911771-d4c6-41e3-aad4-8ba02c8edf15">
+  <img width="30%" alt="임시비밀번호" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/cd911771-d4c6-41e3-aad4-8ba02c8edf15">
 
 
 </p>
