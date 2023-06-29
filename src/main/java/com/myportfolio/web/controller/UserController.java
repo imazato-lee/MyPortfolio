@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/user/*")
@@ -180,7 +181,6 @@ public class UserController {
 
     @PostMapping("/tempPwd")
     public String tempPwd(UserDto userDto, Model m, RedirectAttributes rttr){
-        //휴대폰인증까지 구현하려면 처음에 userDto에 이메일입력인지, 휴대폰입력인지 확인하기.
         try {
             if(!userService.updateTempPwd(userDto)){
                 throw new Exception("UPDATE TEMPORARY PASSWORD ERROR");
@@ -193,6 +193,37 @@ public class UserController {
             return "redirect:/user/pwdCheck";
         }
         return "tempPwd";
+    }
+
+    @GetMapping("/sendSMS")
+    @ResponseBody
+    public ResponseEntity<String> sendSMS(String mobile){
+        int randomNum = (int)(Math.random()* (9999 - 1000 +1) + 1000);
+        userService.certifiedPhoneNumber(mobile, randomNum);
+
+        return ResponseEntity.ok(String.valueOf(randomNum));
+    }
+
+    @GetMapping("/newPassword")
+    public String newPassword(String id, Model m){
+        m.addAttribute("id",id);
+        return "newPassword";
+    }
+
+    @PostMapping("/newPassword")
+    public String newPassword(UserDto userDto,Model m,RedirectAttributes rttr){
+        try {
+            if(!userService.updateNewPwd(userDto)){
+                throw new Exception("NEW PASSWORD UPDATE FAILED");
+            }
+            rttr.addFlashAttribute("msg","PASSWORD_UPDATE_OK");
+            return "redirect:/";
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("id",userDto.getId());
+            rttr.addFlashAttribute("msg","PASSWORD_UPDATE_FAILED");
+            return "redirect:/user/newPassword";
+        }
     }
 
     private String maskId(String id) {

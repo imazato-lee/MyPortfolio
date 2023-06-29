@@ -20,4 +20,8 @@ public interface UserService {
     UserDto selectForPwdCheck(UserDto dto) throws Exception;
 
     boolean updateTempPwd(UserDto dto) throws Exception;
+
+    boolean updateNewPwd(UserDto dto);
+
+    void certifiedPhoneNumber(String mobile, int randomNumber);
 }

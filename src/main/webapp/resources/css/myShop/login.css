@@ -187,3 +187,9 @@ input[type="password"] {
     margin: 0px;
     border: 0px;
 }
+p.text_guide {
+    display: block;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    color: rgb(153, 153, 153);
+}

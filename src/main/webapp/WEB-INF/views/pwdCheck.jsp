@@ -15,6 +15,8 @@
 <script>
   $(function(){
     $('.mobile').hide();
+    $("#certify_info").hide()
+    $("#certificate").hide()
 
     $('input[name="check_method"]').change(function() {
       var selected = $(this).val();
@@ -44,7 +46,40 @@
       e.preventDefault()
       let findPasswordMethod = $("#findPasswdMethod")
       findPasswordMethod.submit()
+    })
 
+    let certifyNum = "";
+    $("#sendToMobile").on("click",function(e){
+      e.preventDefault()
+      let mobile = $("input[name=mobile]").val()
+      $.ajax({
+        type : "GET",
+        url : "/user/sendSMS",
+        data : {
+          "mobile" : mobile
+        },
+      success: function(data){
+        alert("인증번호 발송이 완료되었습니다.")
+        console.log("data: " + data);
+        $("#certify_info").show()
+        $("#certificate").show()
+        $("#sendToMobile").hide()
+        certifyNum = data;
+
+      }
+      })
+    })
+
+    $("#certificate").on("click",function(e){
+      e.preventDefault()
+      let certInput = $("#certInput").val()
+      console.log("certifyNum: " + certifyNum)
+      if(certInput !== certifyNum){
+        alert("승인번호가 일치하지 않습니다.")
+        return;
+      }
+      let newPasswordForm = $("#newPasswordForm")
+      newPasswordForm.submit();
     })
   })
 </script>
@@ -122,6 +157,10 @@
                     <strong>휴대폰 번호</strong><span>${userDto.mobile}</span>
                   </li>
                   </c:if>
+                  <li id="certify_info" class="">
+                    <strong>인증 번호</strong><span><input type="text" id="certInput" maxlength="4" style="width: 40px"/></span><br>
+                    <span class="certificationMsg"></span>
+                  </li>
                 </ul>
                 <ul class="button">
                   <c:if test="${not empty userDto.email.trim()}">
@@ -130,8 +169,9 @@
                   </c:if>
                   <c:if test="${not empty userDto.mobile.trim()}">
                     <input type="hidden" name="mobile" value="${userDto.mobile}"/>
-                    <a href="#" id="sendToMobile">임시 비밀번호 전송</a>
+                    <a href="#" id="sendToMobile" class="">인증번호 전송</a>
                   </c:if>
+                  <a href="#" id="certificate" class="">인증하기</a>
                 </ul>
               </fieldset>
             </div>
@@ -139,6 +179,9 @@
         </form>
       </c:if>
     </div>
+    <form id="newPasswordForm" action='<c:url value="/user/newPassword"/>' method="GET">
+      <input type="hidden" name="id" value="${userDto.id}">
+    </form>
     <script>
       <c:if test="${msg == 'error'}">
       alert("입력하신 정보로 가입 된 회원은 존재하지 않습니다.");
