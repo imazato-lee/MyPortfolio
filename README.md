@@ -36,13 +36,13 @@
 * 로그인 시 네비게이션바 login->logout, register->modify로 변경
 * 로그인 시 아이디, 이름 세션에 저장
 * admin 계정으로 로그인 시 상품등록을 위한 item 활성화
-* 비밀번호 찾기 - 임시비밀번호를 메일로 전달
+* 비밀번호 찾기 (commons_email 사용하여 메일로 임시비밀번호 전달, coolsms 사용하여 인증번호 메시지전달, 인증번호 입력시 새 비밀번호 입력하게 구현)
 <p align="left">
   <img width="30%" alt="login" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/4b18d1be-d56e-4514-a362-8763a8561d92">
   <img width="30%" alt="user_modify" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/85eb3c1b-2f99-4fed-bacb-bdb2b9b62d74">
-  <img width="30%" alt="임시비밀번호" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/cd911771-d4c6-41e3-aad4-8ba02c8edf15">
-
-
+  <img width="30%" alt="forgot_pwd" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/2e37018e-58b4-4693-9e8e-9a5871aaa373">
+  <img width="30%" alt="commons_email" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/595e2a2a-ce29-4616-b714-a430df3b6a98">
+  <img width="10%" alt="coolsms" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/8d7514bd-17f8-4184-bbde-c8da9835a864">
 </p>
 
 #### 로그아웃
