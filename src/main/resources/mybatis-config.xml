@@ -14,5 +14,6 @@
         <typeAlias alias="QnaDto" type="com.myportfolio.web.domain.QnaDto"/>
         <typeAlias alias="QnaItemDto" type="com.myportfolio.web.domain.QnaItemDto"/>
         <typeAlias alias="QnaCommentDto" type="com.myportfolio.web.domain.QnaCommentDto"/>
+        <typeAlias alias="CartDto" type="com.myportfolio.web.domain.CartDto"/>
     </typeAliases>
 </configuration>

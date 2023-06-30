@@ -59,7 +59,7 @@
     width: 80px;
 }
 .myshop_bankbook {
-    width: 900px;
+    width: 100%;
     margin: 60px auto 0px;
     text-align: center;
     font-size: 12px;
@@ -94,7 +94,7 @@
 }
 .mypage_wrap ul li {
     float: left;
-    width: 16.6667%;
+    width: 20%;
     margin-left: -1px;
     margin-top: -1px;
 }

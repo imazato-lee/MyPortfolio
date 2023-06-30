@@ -70,7 +70,7 @@
                     </c:choose>
                 </li>
                 <li><a href="#">Order</a></li>
-                <li><a href="#">Mypage</a></li>
+                <li><a href="<c:url value='/cart/myPage'/>">Mypage</a></li>
                 <c:if test="${sessionScope.id eq 'admin'}">
                 <li><a href="<c:url value='/item/write'/>">ITEM</a></li>
                 </c:if>

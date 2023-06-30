@@ -99,6 +99,38 @@ change this template use File | Settings | File Templates. --%>
         center.html(str);
     }
 </script>
+<script>
+    $(function(){
+        $("#cart").on("click",function(e){
+            e.preventDefault()
+            let quantity = $("#quantity").val()
+            if(quantity <= 0){
+                alert("갯수를 올바르게 입력해주세요")
+                return
+            }
+            let CartDto = {
+                id : "${sessionScope.id}",
+                ino : ${itemDto.ino},
+                itemCount : quantity
+            }
+
+            $.ajax({
+                url: "/cart/new",
+                type: "POST",
+                data: JSON.stringify(CartDto),
+                contentType: "application/json",
+                success: function(response) {
+                    console.log(response);
+                    alert("카트 등록 성공!")
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert("이미 카트에 존재합니다")
+                }
+            });
+        })
+    })
+</script>
 <div id="contents_wrap" style="">
     <div id="container">
         <div id="contents">
@@ -226,7 +258,7 @@ change this template use File | Settings | File Templates. --%>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="#" class="first" onclick="">BUY</a>
-                                        <a href="#" class="" onclick="">CART</a>
+                                        <a href="#" class="" id="cart">CART</a>
                                         <a href="#" onclick="" class="">WISH</a>
                                     </c:otherwise>
                                 </c:choose>

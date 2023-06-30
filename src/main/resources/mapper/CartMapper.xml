@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myportfolio.web.dao.CartMapper">
+    <!-- 카트 추가 -->
+    <insert id="addCart" parameterType="CartDto">
+        insert into cart (id, ino, itemCount) values (#{id}, #{ino}, #{itemCount})
+    </insert>
+
+    <!-- 카트 삭제 -->
+    <delete id="deleteCart" parameterType="int">
+        delete from cart where cano = #{cano}
+    </delete>
+
+    <!-- 카트 수량 수정 -->
+    <update id="modifyCount" parameterType="CartDto">
+        update cart set itemCount = #{itemCount} where cano = #{cano}
+    </update>
+
+    <!-- 카트 목록 -->
+    <select id="getCart" parameterType="String" resultType="CartDto">
+        select c.cano, c.id, c.ino, c.itemCount, i.itemName, i.itemPrice, i.itemDiscount
+        from cart c left outer join item i on c.ino = i.ino
+        where id = #{id}
+    </select>
+</mapper>
