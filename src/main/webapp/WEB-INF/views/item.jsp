@@ -121,11 +121,11 @@ change this template use File | Settings | File Templates. --%>
                 contentType: "application/json",
                 success: function(response) {
                     console.log(response);
-                    alert("카트 등록 성공!")
+                    alert("장바구니 등록 성공!")
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
-                    alert("이미 카트에 존재합니다")
+                    alert("이미 장바구니에 존재합니다")
                 }
             });
         })

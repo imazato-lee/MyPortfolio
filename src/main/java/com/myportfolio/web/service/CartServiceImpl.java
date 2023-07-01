@@ -29,6 +29,10 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartDto> getCart(String id) throws Exception {
-        return cartDao.getCart(id);
+        List<CartDto> list = cartDao.getCart(id);
+        for(CartDto dto : list){
+                dto.initSaleTotal();
+        }
+        return list;
     }
 }

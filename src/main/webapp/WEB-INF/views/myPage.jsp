@@ -70,7 +70,7 @@
             </li>
             <li>
             <p class="title">CART</p>
-            <p class="data"><a href="#">3</a></p>
+            <p class="data"><a href="<c:url value='/cart/list'/>">${cartCnt}</a></p>
             </li>
           </ul>
           <ul class="">
