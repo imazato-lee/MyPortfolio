@@ -61,7 +61,115 @@
         $(".deliveryPrice_span").text(deliveryPrice.toLocaleString());
         $(".finalTotalPrice_span").text((totalPrice + deliveryPrice).toLocaleString());
 
+
+        $(".delBtn").on("click",function(e){
+            e.preventDefault()
+            let cano = $(this).parent().data("cano")
+            // form 요소 생성
+            let form = $('<form></form>');
+            form.attr('method', 'post');
+            form.attr('action', '/cart/delete');
+            // input 요소 생성 및 값 설정
+            let input = $('<input />');
+            input.attr('type', 'hidden');
+            input.attr('name', 'cano');
+            input.attr('value', cano);
+
+            // form에 input 요소 추가
+            form.append(input);
+
+            // form을 body에 추가하고 전송
+            form.appendTo('body').submit();
+        })
+
+        $(".upBtn").on("click",function(e){
+            e.preventDefault()
+            let itemCountInput = $(this).prev('input');
+            let quantity = parseInt(itemCountInput.val());
+            itemCountInput.val(++quantity);
+            let cano = $(this).data("cano")
+
+            modifyQuantity(cano, quantity);
+        })
+
+        $(".downBtn").on("click",function(e){
+            e.preventDefault()
+            let itemCountInput = $(this).prev().prev('input');
+            let quantity = parseInt(itemCountInput.val());
+            if(quantity > 1){
+                itemCountInput.val(--quantity);
+            }
+            let cano = $(this).data("cano")
+
+            modifyQuantity(cano, quantity);
+        })
+
+        $(".modBtn").on("click",function(e){
+            e.preventDefault()
+            let itemCountInput = $(this).parent().find('input');
+            let quantity = parseInt(itemCountInput.val());
+            let cano = $(this).data("cano");
+
+            modifyQuantity(cano, quantity);
+
+        })
+
+        function modifyQuantity(cano, quantity) {
+            let form = $('<form></form>');
+            form.attr('method', 'post');
+            form.attr('action', '/cart/modify');
+
+            let input1 = $('<input />');
+            input1.attr('type', 'hidden');
+            input1.attr('name', 'itemCount');
+            input1.attr('value', quantity);
+
+            let input2 = $('<input />');
+            input2.attr('type', 'hidden');
+            input2.attr('name', 'cano');
+            input2.attr('value', cano);
+
+            form.append(input1);
+            form.append(input2);
+
+            form.appendTo('body').submit();
+        }
+
+        $(".selectedDelete").on("click",function(e){
+            e.preventDefault()
+
+            let selectedCanos = [];
+            $(".basket_chk:checked").each(function() {
+                let cano = $(this).data("cano");
+                selectedCanos.push(cano);
+            })
+            if(selectedCanos.length === 0) return;
+
+            let form = $("<form></form>");
+            form.attr("method", "POST");
+            form.attr("action", "/cart/selectedDelete");
+
+            selectedCanos.forEach(function(value) {
+                let input = $("<input />");
+                input.attr("type", "hidden");
+                input.attr("name", "canos");
+                input.val(value);
+                form.append(input);
+            });
+
+            let csrfToken = $("meta[name='_csrf']").attr("content");
+            let csrfHeader = $("meta[name='_csrf_header']").attr("content");
+            form.append(
+                $("<input />")
+                    .attr("type", "hidden")
+                    .attr("name", csrfHeader)
+                    .val(csrfToken)
+            );
+
+            form.appendTo("body").submit();
+        })
     })
+
 </script>
 <div id="contents_wrap" style="">
     <div id="container">
@@ -132,7 +240,7 @@
                                     <input type="hidden" class="individual_totalPrice_input" value="${cartDto.salePrice * cartDto.itemCount}">
                                 </div>
                                 <td>
-                                    <input type="checkbox" id="basket_chk_id_1" name="basket_product_normal_type_normal"/>
+                                    <input type="checkbox" class="basket_chk" data-cano="${cartDto.cano}" />
                                 </td>
                                 <td class="thumb gClearLine">
                                     <a href="<c:url value='/item/read?ino=${cartDto.ino}'/>" id="<c:out value='${cartDto.ino}'/>">
@@ -159,14 +267,14 @@
                                     <span class="">
                                         <span class="ec-base-qty">
                                             <input id="quantity_id_1" name="quantity_name_1" size="2" value="${cartDto.itemCount}" type="text"/>
-                                            <a href="#">
+                                            <a href="#" class="upBtn" data-cano="${cartDto.cano}">
                                                 <img src="<c:url value='/images/quantity_up.gif'/>" alt="수량증가" class="up"/>
                                             </a>
-                                            <a href="#">
+                                            <a href="#" class="downBtn" data-cano="${cartDto.cano}">
                                                 <img src="<c:url value='/images/quantity_down.gif'/>" alt="수량감소" class="down"/>
                                             </a>
                                         </span>
-                                        <a href="#">
+                                        <a href="#" class="modBtn" data-cano="${cartDto.cano}">
                                           <img src="<c:url value='/images/edit_btn.gif'/>" alt="변경"/>
                                         </a>
                                     </span>
@@ -191,9 +299,9 @@
 
                                     </c:if>
                                 </td>
-                                <td class="button">
+                                <td class="button" data-cano="${cartDto.cano}">
                                     <a href="#" class="btn_ccc_86">BUY NOW</a>
-                                    <a href="#" class="btn_ccc_86">DELETE</a>
+                                    <a href="#" class="btn_ccc_86 delBtn">DELETE</a>
                                 </td>
                             </tr>
                             </c:forEach>
@@ -204,10 +312,10 @@
                 <div class="xans-element- xans-order xans-order-selectorder ec-base-button">
                     <span class="gLeft">
                         <strong class="text">선택상품을</strong>
-                        <a href="#" class="btn_ccc_80">삭제하기</a>
+                        <a href="#" class="btn_ccc_80 selectedDelete">삭제하기</a>
                     </span>
                     <span class="gRight">
-                        <a href="#" class="btn_ccc_100">장바구니 비우기</a>
+                        <a href="<c:url value='/cart/deleteAll'/>" class="btn_ccc_100">장바구니 비우기</a>
                     </span>
                 </div>
                 <!-- 총 주문금액 -->

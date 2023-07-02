@@ -24,6 +24,11 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
+    public int makeCartEmpty(String id) throws Exception {
+        return session.delete(namespace + "makeCartEmpty",id);
+    }
+
+    @Override
     public int modifyCount(CartDto dto) throws Exception {
         return session.update(namespace + "modifyCount", dto);
     }

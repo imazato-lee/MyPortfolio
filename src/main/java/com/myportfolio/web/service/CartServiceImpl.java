@@ -4,6 +4,7 @@ import com.myportfolio.web.dao.CartDao;
 import com.myportfolio.web.domain.CartDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,19 @@ public class CartServiceImpl implements CartService {
     @Override
     public int deleteCart(Integer cano) throws Exception {
         return cartDao.deleteCart(cano);
+    }
+
+    @Override
+    @Transactional
+    public void selectedDelete(List<Integer> canos) throws Exception {
+        for (Integer cano : canos) {
+            deleteCart(cano);
+        }
+    }
+
+    @Override
+    public boolean deleteAll(String id) throws Exception {
+        return cartDao.makeCartEmpty(id) > 0;
     }
 
     @Override

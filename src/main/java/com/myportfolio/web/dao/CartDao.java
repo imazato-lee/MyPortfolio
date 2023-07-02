@@ -9,6 +9,8 @@ public interface CartDao {
 
     int deleteCart(Integer cano) throws Exception;
 
+    int makeCartEmpty(String id) throws Exception;
+
     int modifyCount(CartDto dto) throws Exception;
 
     List<CartDto> getCart(String id) throws Exception;
