@@ -18,8 +18,8 @@
 * 2023/6/22 기준 구현된 기능(빨간박스처리)
 * DB테이블
 <p>
-<img width="33%" alt="home" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/4ea6725e-01fb-4e1f-8067-546b8b040b94"/>
- <img width="30%" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/eb380ec5-3b1f-42d2-a819-94b49d2c2a6d">
+ <img width="33%" alt="home" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/4ea6725e-01fb-4e1f-8067-546b8b040b94"/>
+ <img width="30%" alt="DB" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/560abb8f-049f-4b37-93b2-6234b14f2f35">
 </p>
 
 #### 회원가입
@@ -89,9 +89,10 @@
  <img width="30%" alt="notice comment" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/dd760d50-431d-4639-914b-9169f110aafd">
  <img width="30%" alt="notice_comment_paging" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/aa470029-f586-4d8c-846e-45c4faeff42d">
  <img width="30%" alt="notice_modify" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/26ae0790-d089-43a2-bf79-eb6787f78504">
-
 </p>
 
+#### 장바구니(작업중)
+<img width="30%" alt="cart_list" src="https://github.com/imazato-lee/MyPortfolio/assets/129563625/9b172e95-a9f4-4d83-9bd8-d88d8fe3ecc8">
 
 
 ---
